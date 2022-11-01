@@ -1,55 +1,57 @@
 module.exports = {
   root: true,
-  ignorePatterns: ["projects/**/*"],
+  ignorePatterns: ['projects/**/*'],
   overrides: [
     {
-      files: ["*.ts"],
+      files: ['*.ts'],
       parserOptions: {
-        project: ["tsconfig.json"],
+        project: ['tsconfig.json'],
         createDefaultProgram: true,
         tsconfigRootDir: __dirname,
       },
       extends: [
-        "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "airbnb-typescript/base",
-        "prettier",
-        "plugin:import/recommended",
-        "plugin:prettier/recommended",
+        'plugin:@angular-eslint/recommended',
+        'plugin:@angular-eslint/template/process-inline-templates',
+        'plugin:import/recommended',
+        'airbnb-typescript/base',
+        'prettier',
+        'plugin:prettier/recommended',
       ],
       rules: {
-        "@angular-eslint/directive-selector": [
-          "error",
+        '@angular-eslint/directive-selector': [
+          'error',
           {
-            type: "attribute",
-            prefix: "app",
-            style: "camelCase",
+            type: 'attribute',
+            prefix: 'app',
+            style: 'camelCase',
           },
         ],
-        "@angular-eslint/component-selector": [
-          "error",
+        '@angular-eslint/component-selector': [
+          'error',
           {
-            type: "element",
-            prefix: "app",
-            style: "kebab-case",
+            type: 'element',
+            prefix: 'app',
+            style: 'kebab-case',
           },
         ],
         // Кастомные правила
-        "import/no-unresolved": "off",
-        "import/prefer-default-export": "off",
-        "class-methods-use-this": "off",
-        "lines-between-class-members": "off",
-        "@typescript-eslint/unbound-method": [
-          "error",
+        'import/no-unresolved': 'off',
+        'import/prefer-default-export': 'off',
+        'class-methods-use-this': 'off',
+        'lines-between-class-members': 'off',
+        '@typescript-eslint/unbound-method': [
+          'error',
           {
             ignoreStatic: true,
           },
         ],
+        // 'lines-between-class-members': 'off',
+        '@typescript-eslint/lines-between-class-members': 'off',
       },
     },
     {
-      files: ["*.html"],
-      extends: ["plugin:@angular-eslint/template/recommended"],
+      files: ['*.html'],
+      extends: ['plugin:@angular-eslint/template/recommended'],
       rules: {},
     },
   ],
