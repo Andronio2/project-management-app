@@ -1,0 +1,37 @@
+.footer__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer__year,
+.footer__item {
+  font-size: 1rem;
+}
+
+.footer__icon {
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  background-image: url('../../../../assets/svg/rs_school_js.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.footer__link {
+  color: rgba(0,0,0,.87);
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.footer__link:hover {
+  color: #000000;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+p {
+  margin-bottom: 0;
+}

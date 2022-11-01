@@ -1,5 +1,16 @@
 <p>
   <mat-toolbar color="primary">
     <span>Project Management System</span>
+    <span class="spacer"></span>
+    <div class="buttons__container">
+      <button mat-flat-button>Login</button>
+      <button mat-flat-button>Sign up</button>
+      <button mat-flat-button><mat-icon>add</mat-icon> Create new board</button>
+      <button mat-button [matMenuTriggerFor]="menu">en</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>en</button>
+        <button mat-menu-item>ru</button>
+      </mat-menu>
+    </div>
   </mat-toolbar>
 </p>
