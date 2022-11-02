@@ -13,3 +13,18 @@ export interface File {
   filename: string;
   fileSize: number;
 }
+
+export interface ITaskCreate {
+  title: string;
+  description: string;
+  userId: string;
+}
+
+export interface ITaskUpdate {
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+}
