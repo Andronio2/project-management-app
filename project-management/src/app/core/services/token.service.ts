@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { TOKEN_KEY } from 'src/app/share/constants/constants';
+import { EXP_TIME, TOKEN_KEY } from 'src/app/share/constants/constants';
+import jwtDecode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,8 @@ export class TokenService {
   }
 
   public isTokenExpired(token: string): boolean {
-    const expiry = JSON.parse(atob(token.split('.')[1])).exp;
-    return expiry * 1000 > Date.now();
+    const decode: { iat: string } = jwtDecode(token);
+    const expire = (+decode.iat + EXP_TIME) * 1000;
+    return expire > +new Date();
   }
 }
