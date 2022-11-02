@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { TOKEN_KEY } from 'src/app/share/constants/constants';
 import { IToken, IUser } from 'src/app/share/models/auth.model';
@@ -10,7 +11,11 @@ import { LocalStoreService } from '../local-store.service';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private localStore: LocalStoreService) {}
+  constructor(
+    private http: HttpClient,
+    private localStore: LocalStoreService,
+    private router: Router,
+  ) {}
 
   public isAuth(): boolean {
     return !!this.getToken();
@@ -37,12 +42,17 @@ export class AuthService {
   public getToken(): string | null {
     const token: string | null = this.localStore.getData(TOKEN_KEY);
     if (token) {
-      return this.isTokenExpired(token) ? token : null;
+      if (this.isTokenExpired(token)) {
+        return token;
+      } else {
+        this.localStore.removeData(TOKEN_KEY);
+        this.router.navigate(['./welcome']);
+      }
     }
     return null;
   }
 
-  private isTokenExpired(token: string): boolean {
+  public isTokenExpired(token: string): boolean {
     const expiry = JSON.parse(atob(token.split('.')[1])).exp;
     return expiry * 1000 > Date.now();
   }
