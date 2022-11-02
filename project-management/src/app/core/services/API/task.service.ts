@@ -13,7 +13,7 @@ export class TaskService {
   constructor(private http: HttpClient, private errorHandleService: ErrorHandlerService) {}
 
   public getAllTasks(boardId: string, columnId: string): Observable<ITask[] | IErrorResponse> {
-    const url = `boards/${boardId}/columns/${columnId}/tasks`;
+    const url = `/boards/${boardId}/columns/${columnId}/tasks`;
     return this.http
       .get<ITask[]>(url)
       .pipe(catchError((args: any[]) => this.errorHandleService.errorHandler(args)));
@@ -24,7 +24,7 @@ export class TaskService {
     columnId: string,
     task: ITaskCreate,
   ): Observable<ITask | IErrorResponse> {
-    const url = `boards/${boardId}/columns/${columnId}/tasks`;
+    const url = `/boards/${boardId}/columns/${columnId}/tasks`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http
       .post<ITask>(url, task, { headers })
@@ -36,7 +36,7 @@ export class TaskService {
     columnId: string,
     taskId: string,
   ): Observable<ITask | IErrorResponse> {
-    const url = `boards/${boardId}/columns/${columnId}/tasks/${taskId}`;
+    const url = `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`;
     return this.http
       .get<ITask>(url)
       .pipe(catchError((args: any[]) => this.errorHandleService.errorHandler(args)));
@@ -47,7 +47,7 @@ export class TaskService {
     columnId: string,
     taskId: string,
   ): Observable<null | IErrorResponse> {
-    const url = `boards/${boardId}/columns/${columnId}/tasks/${taskId}`;
+    const url = `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`;
     return this.http
       .delete<null>(url)
       .pipe(catchError((args: any[]) => this.errorHandleService.errorHandler(args)));
@@ -59,7 +59,7 @@ export class TaskService {
     taskId: string,
     task: ITaskUpdate,
   ): Observable<ITask | IErrorResponse> {
-    const url = `boards/${boardId}/columns/${columnId}/tasks/${taskId}`;
+    const url = `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http
       .put<ITask>(url, task, { headers })
