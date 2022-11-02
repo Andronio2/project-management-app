@@ -6,9 +6,10 @@ import { ShareModule } from '../share/share.module';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './services/API/http-interceptor.service';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [HeaderComponent, WelcomePageComponent],
+  declarations: [HeaderComponent, WelcomePageComponent, FooterComponent],
   imports: [CommonModule, CoreRoutingModule, ShareModule, HttpClientModule],
   providers: [
     {
@@ -17,6 +18,6 @@ import { HttpInterceptorService } from './services/API/http-interceptor.service'
       multi: true,
     },
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent, FooterComponent],
 })
 export class CoreModule {}
