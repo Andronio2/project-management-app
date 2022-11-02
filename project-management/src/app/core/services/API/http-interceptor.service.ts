@@ -9,10 +9,15 @@ export class HttpInterceptorService implements HttpInterceptor {
   constructor(private tokenService: TokenService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const authRegex = /\/(signin|signup)$/gm;
+    const headers = {
+      ...(!req.url.match(authRegex) && { Authorization: `Bearer ${this.tokenService.getToken()}` }),
+    };
+
     const newReq = req.clone({
       url: `${BASEURL}${req.url}`,
       setHeaders: {
-        Authorization: `Bearer ${this.tokenService.getToken()}`,
+        ...headers,
       },
     });
     return next.handle(newReq);
