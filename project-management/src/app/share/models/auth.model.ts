@@ -6,7 +6,6 @@ export interface IUser {
 
 export interface ISigninUserDto {
   login: string;
-  example: string;
   password: string;
 }
 
