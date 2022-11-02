@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { TOKEN_KEY } from 'src/app/share/constants/constants';
-import { IToken, IUser } from 'src/app/share/models/auth.model';
+import { ICreateUserDto, ISigninUserDto, IToken, IUser } from 'src/app/share/models/auth.model';
 import { IErrorResponse } from 'src/app/share/models/error-message.model';
 import { LocalStoreService } from '../local-store.service';
 
@@ -21,13 +21,13 @@ export class AuthService {
     return !!this.getToken();
   }
 
-  public signUp(user: IUser): Observable<IUser | IErrorResponse> {
+  public signUp(user: ICreateUserDto): Observable<IUser | IErrorResponse> {
     const endpoint = '/signup';
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<IUser | IErrorResponse>(endpoint, user, { headers });
   }
 
-  public signIn(user: IUser): Observable<IToken | IErrorResponse> {
+  public signIn(user: ISigninUserDto): Observable<IToken | IErrorResponse> {
     const endpoint = '/signin';
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<IToken | IErrorResponse>(endpoint, user, { headers }).pipe(
