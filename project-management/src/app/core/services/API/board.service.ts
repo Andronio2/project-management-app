@@ -1,55 +1,51 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { IColumn, IColumnDto } from 'src/app/share/models/column.model';
+import { IBoard, IBoardDto } from 'src/app/share/models/board.model';
 import { IErrorResponse } from 'src/app/share/models/error-message.model';
 import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ColumnService {
+export class BoardsService {
   constructor(private http: HttpClient, private errorHandleService: ErrorHandlerService) {}
 
-  public getAllColumns(boardId: string): Observable<IColumn[] | IErrorResponse> {
-    const url = `boards/${boardId}/columns`;
+  public getAllBoards(): Observable<IBoard[] | IErrorResponse> {
+    const url = `/boards`;
     return this.http
-      .get<IColumn[]>(url)
+      .get<IBoard[]>(url)
       .pipe(catchError((args: any[]) => this.errorHandleService.errorHandler(args)));
   }
 
-  public createColumn(boardId: string, column: IColumnDto): Observable<IColumn | IErrorResponse> {
-    const url = `boards/${boardId}/columns`;
+  public createBoard(board: IBoardDto): Observable<IBoard | IErrorResponse> {
+    const url = `/boards`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http
-      .post<IColumn>(url, column, { headers })
+      .post<IBoard>(url, board, { headers })
       .pipe(catchError((args: any[]) => this.errorHandleService.errorHandler(args)));
   }
 
-  public getColumnById(boardId: string, columnId: string): Observable<IColumn | IErrorResponse> {
-    const url = `boards/${boardId}/columns/${columnId}`;
+  public getBoardById(id: string): Observable<IBoard | IErrorResponse> {
+    const url = `/boards/${id}`;
     return this.http
-      .get<IColumn>(url)
+      .get<IBoard>(url)
       .pipe(catchError((args: any[]) => this.errorHandleService.errorHandler(args)));
   }
 
-  public deleteColumn(boardId: string, columnId: string): Observable<null | IErrorResponse> {
-    const url = `boards/${boardId}/columns/${columnId}`;
+  public deleteBoard(id: string): Observable<null | IErrorResponse> {
+    const url = `/boards/${id}`;
     return this.http
       .delete<null>(url)
       .pipe(catchError((args: any[]) => this.errorHandleService.errorHandler(args)));
   }
 
-  public updateColumn(
-    boardId: string,
-    columnId: string,
-    column: IColumnDto,
-  ): Observable<IColumn | IErrorResponse> {
-    const url = `boards/${boardId}/columns/${columnId}`;
+  public updateBoard(id: string, board: IBoardDto): Observable<IBoard | IErrorResponse> {
+    const url = `/boards/${id}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http
-      .put<IColumn>(url, column, { headers })
+      .put<IBoard>(url, board, { headers })
       .pipe(catchError((args: any[]) => this.errorHandleService.errorHandler(args)));
   }
 }
