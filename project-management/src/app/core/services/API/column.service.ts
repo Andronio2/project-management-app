@@ -13,7 +13,7 @@ import { errorMessageAction } from 'src/app/redux/actions/error-message.action';
 export class ColumnService {
   constructor(private http: HttpClient, private store: Store) {}
 
-  public getAllColunm(boardId: string): Observable<IColumn[] | IErrorResponse> {
+  public getAllColumns(boardId: string): Observable<IColumn[] | IErrorResponse> {
     const url = `boards/${boardId}/columns`;
     return this.http.get<IColumn[]>(url).pipe(catchError(this.errorHandler.bind(this)));
   }
@@ -36,7 +36,7 @@ export class ColumnService {
     return this.http.delete<null>(url).pipe(catchError(this.errorHandler.bind(this)));
   }
 
-  public updateBoard(
+  public updateColumn(
     boardId: string,
     columnId: string,
     column: IColumnDto,
