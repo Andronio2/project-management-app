@@ -3,8 +3,8 @@
     <h1>Project Management System</h1>
     <span class="spacer"></span>
     <div class="buttons__container">
-      <a [routerLink]="['/signin']" routerLinkActive="active"  mat-flat-button>Login</a>
-      <a [routerLink]="['/signup']" routerLinkActive="active" mat-flat-button>Sign up</a>
+      <a [routerLink]="['/auth','signin']" routerLinkActive="active"  mat-flat-button>Login</a>
+      <a [routerLink]="['/auth','signup']" routerLinkActive="active" mat-flat-button>Sign up</a>
       <button mat-flat-button><mat-icon>add</mat-icon> Create new board</button>
       <button mat-button [matMenuTriggerFor]="menu">en</button>
       <mat-menu #menu="matMenu">
