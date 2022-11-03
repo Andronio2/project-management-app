@@ -26,21 +26,15 @@ export class RegisterComponent {
     });
   }
 
-  onSubmit(event: Event) {
-    event.preventDefault();
-    this.authService
-      .signUp(this.registerForm.getRawValue())
-      .pipe(
-        tap((value) => {
-          if ('login' in value) {
-            const userSign: ISigninUserDto = {
-              login: value.login,
-              password: this.password.value!,
-            };
-            this.authService.signIn(userSign).subscribe();
-          }
-        }),
-      )
-      .subscribe();
+  onSubmit() {
+    this.authService.signUp(this.registerForm.getRawValue()).subscribe((value) => {
+      if ('login' in value) {
+        const userSign: ISigninUserDto = {
+          login: value.login,
+          password: this.password.value!,
+        };
+        this.authService.signIn(userSign).subscribe();
+      }
+    });
   }
 }
