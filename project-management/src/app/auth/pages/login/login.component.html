@@ -9,6 +9,9 @@
           <mat-error *ngIf="login.hasError('required')">
             Login is <strong>required</strong>
           </mat-error>
+          <mat-error *ngIf="login.hasError('minlength')">
+            Login is <strong>too short</strong>. At least 3 characters.
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="register-form__field" appearance="fill">
           <mat-label>Password</mat-label>
@@ -16,7 +19,7 @@
           <mat-error *ngIf="password.hasError('required')">
             Password is <strong>required</strong>
           </mat-error>
-          <mat-error *ngIf="password.getError('inValidPass') && password.touched && !password.hasError('required')" class="validator-message">
+          <mat-error *ngIf="password.getError('inValidPass') && !password.hasError('required')" class="validator-message">
             Password isn't valid.
             <p> At least 8 characters. Has to contain uppercase letters, lowercase letters, numbers, and
               symbols

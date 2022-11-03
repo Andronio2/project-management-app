@@ -6,15 +6,15 @@
         <mat-form-field class="register-form__field" appearance="fill">
           <mat-label>Name</mat-label>
           <input type="text" matInput [formControl]="name" placeholder="John">
-          <mat-error *ngIf="name.hasError('required')">
-            Name is <strong>required</strong>
-          </mat-error>
         </mat-form-field>
         <mat-form-field class="register-form__field" appearance="fill">
           <mat-label>Login</mat-label>
           <input type="text" matInput [formControl]="login" placeholder="John007">
           <mat-error *ngIf="login.hasError('required')">
             Login is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="login.hasError('minlength')">
+            Login is <strong>too short</strong>. At least 3 characters.
           </mat-error>
         </mat-form-field>
         <mat-form-field class="register-form__field" appearance="fill">
@@ -23,7 +23,7 @@
           <mat-error *ngIf="password.hasError('required')">
             Password is <strong>required</strong>
           </mat-error>
-          <mat-error *ngIf="password.getError('inValidPass') && password.touched && !password.hasError('required')"
+          <mat-error *ngIf="password.getError('inValidPass') && !password.hasError('required')"
             class="validator-message">
             Your password isn't strong enough.
             <p> At least 8 characters. Has to contain uppercase letters, lowercase letters, numbers, and

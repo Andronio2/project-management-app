@@ -10,7 +10,7 @@ import passwordValidator from '../../validators/passwordValidator';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  login = new FormControl('', [Validators.required]);
+  login = new FormControl('', [Validators.required, Validators.minLength(3)]);
 
   password = new FormControl('', [Validators.required, passwordValidator]);
 
