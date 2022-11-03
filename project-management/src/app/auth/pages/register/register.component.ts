@@ -26,8 +26,7 @@ export class RegisterComponent {
     });
   }
 
-  onSubmit(event: Event) {
-    event.preventDefault();
+  onSubmit() {
     this.authService
       .signUp(this.registerForm.getRawValue())
       .pipe(

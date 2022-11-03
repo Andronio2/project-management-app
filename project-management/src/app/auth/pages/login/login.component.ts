@@ -23,8 +23,7 @@ export class LoginComponent {
     });
   }
 
-  logIn(event: Event) {
-    event.preventDefault();
+  logIn() {
     const userSign: ISigninUserDto = {
       login: this.login.value!,
       password: this.password.value!,
