@@ -24,3 +24,9 @@ export interface IUpdateUserDto {
 export interface IToken {
   token: string;
 }
+
+export interface IJWTDecode {
+  userId: string;
+  login: string;
+  iat: number;
+}
