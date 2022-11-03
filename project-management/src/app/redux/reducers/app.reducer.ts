@@ -13,14 +13,14 @@ export const appReducer = createReducer(
     UserActions.getUsersSuccess,
     (state, { users }): AppState => ({
       ...state,
-      ...('length' in users && { allUsers: users }),
+      allUsers: users,
     }),
   ),
   on(
     UserActions.getUserSuccess,
     (state, { user }): AppState => ({
       ...state,
-      ...('id' in user && { currUser: user }),
+      currUser: user,
     }),
   ),
 );
