@@ -27,19 +27,14 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    this.authService
-      .signUp(this.registerForm.getRawValue())
-      .pipe(
-        tap((value) => {
-          if ('login' in value) {
-            const userSign: ISigninUserDto = {
-              login: value.login,
-              password: this.password.value!,
-            };
-            this.authService.signIn(userSign).subscribe();
-          }
-        }),
-      )
-      .subscribe();
+    this.authService.signUp(this.registerForm.getRawValue()).subscribe((value) => {
+      if ('login' in value) {
+        const userSign: ISigninUserDto = {
+          login: value.login,
+          password: this.password.value!,
+        };
+        this.authService.signIn(userSign).subscribe();
+      }
+    });
   }
 }
