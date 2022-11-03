@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="container">
+  <form [formGroup]="loginForm" class="register-form">
+    <mat-card class="register-form__card">
+      <div class="register-form__inputs-block">
+        <mat-card-title class="register-form__title">Sign in</mat-card-title>
+        <mat-form-field class="register-form__field" appearance="fill">
+          <mat-label>Login</mat-label>
+          <input type="text" matInput [formControl]="login" placeholder="John007">
+          <mat-error *ngIf="login.hasError('required')">
+            Login is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="register-form__field" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput [formControl]="password" placeholder="*****">
+          <mat-error *ngIf="password.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="password.getError('inValidPass') && password.touched && !password.hasError('required')" class="validator-message">
+            Password isn't valid.
+            <p> At least 8 characters. Has to contain uppercase letters, lowercase letters, numbers, and
+              symbols
+            </p>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
+    </mat-card>
+
+  </form>
+</div>
