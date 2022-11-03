@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="registerForm" class="register-form">
+  <form [formGroup]="registerForm" class="register-form" (ngSubmit)="onSubmit($event)">
     <mat-card class="register-form__card">
       <div class="register-form__inputs-block">
         <mat-card-title class="register-form__title">Sign up</mat-card-title>
@@ -34,6 +34,5 @@
       </div>
       <button type="submit" [disabled]="registerForm.invalid" mat-raised-button color="primary">Submit</button>
     </mat-card>
-
   </form>
 </div>
