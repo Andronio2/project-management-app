@@ -8,7 +8,7 @@ import Selectors from 'src/app/redux/selectors/app.selectors';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import passwordValidator from '../../validators/passwordValidator';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmModalComponent } from '../../components/confirm-modal/confirm-modal.component';
+import { ConfirmModalComponent } from '../../../core/components/confirm-modal/confirm-modal.component';
 import { AuthService } from 'src/app/core/services/API/auth.service';
 
 @Component({
@@ -77,7 +77,10 @@ export class UserComponent implements OnInit {
   public openDialog(event: Event) {
     event.preventDefault();
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
-      data: false,
+      data: {
+        title: 'Delete profile',
+        question: 'Are you sure you want to delete profile?',
+      },
       width: '295px',
     });
 
