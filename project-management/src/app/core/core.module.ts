@@ -8,9 +8,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './services/API/http-interceptor.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { CreateBoardComponent } from './components/create-board/create-board.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 @NgModule({
-  declarations: [HeaderComponent, WelcomePageComponent, FooterComponent, CreateBoardComponent],
+  declarations: [
+    HeaderComponent,
+    WelcomePageComponent,
+    FooterComponent,
+    CreateBoardComponent,
+    ConfirmModalComponent,
+  ],
   imports: [CommonModule, CoreRoutingModule, ShareModule, HttpClientModule],
   providers: [
     {
@@ -19,6 +26,6 @@ import { CreateBoardComponent } from './components/create-board/create-board.com
       multi: true,
     },
   ],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, ConfirmModalComponent],
 })
 export class CoreModule {}
