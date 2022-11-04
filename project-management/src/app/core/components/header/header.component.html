@@ -1,16 +1,18 @@
-<p>
-  <mat-toolbar color="primary">
-    <h1>Project Management System</h1>
-    <span class="spacer"></span>
-    <div class="buttons__container">
-      <button mat-flat-button>Login</button>
-      <button mat-flat-button>Sign up</button>
-      <button mat-flat-button><mat-icon>add</mat-icon> Create new board</button>
-      <button mat-button [matMenuTriggerFor]="menu">{{activeLang}}</button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="changeLang('en')">en</button>
-        <button mat-menu-item (click)="changeLang('ru')">ru</button>
-      </mat-menu>
-    </div>
-  </mat-toolbar>
-</p>
+<ng-container *transloco="let t; read: 'header'">
+  <p>
+    <mat-toolbar color="primary">
+      <h1>{{ t('logo') }}</h1>
+      <span class="spacer"></span>
+      <div class="buttons__container">
+        <button mat-flat-button>{{ t('button.login') }}</button>
+        <button mat-flat-button>{{ t('button.signUp') }}</button>
+        <button mat-flat-button><mat-icon>add</mat-icon> {{ t('button.createBoard') }}</button>
+        <button mat-button [matMenuTriggerFor]="menu">{{activeLang}}</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="changeLang('en')">en</button>
+          <button mat-menu-item (click)="changeLang('ru')">ru</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+  </p>
+</ng-container>

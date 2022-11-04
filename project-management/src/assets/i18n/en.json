@@ -35,5 +35,13 @@
     "courseOpenText": "Everyone can study at RS School, regardless of age, professional employment, or place of residence. However, you should have sufficient base knowledge before the program begins.",
     "courseCertificateTitle": "Certificate",
     "courseCertificateText": "After accomplishing all three stages of education, students will receive an electronic certificate of completion."
+  },
+  "header": {
+    "logo": "Project Management System",
+    "button": {
+      "login": "Login",
+      "signUp": "Sign up",
+      "createBoard": "Create new Board"
+    }
   }
 }
