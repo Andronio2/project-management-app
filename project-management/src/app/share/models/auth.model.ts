@@ -15,12 +15,12 @@ export interface ICreateUserDto {
   password: string;
 }
 
-export interface IUpdateUserDto {
-  id: string;
-  name: string;
-  password: string;
-}
-
 export interface IToken {
   token: string;
+}
+
+export interface IJWTDecode {
+  userId: string;
+  login: string;
+  iat: number;
 }

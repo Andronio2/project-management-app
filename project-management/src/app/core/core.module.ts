@@ -7,10 +7,18 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './services/API/http-interceptor.service';
 import { FooterComponent } from './components/footer/footer.component';
+import { CreateBoardComponent } from './components/create-board/create-board.component';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { TranslocoRootModule } from '../transloco-root.module';
 
 @NgModule({
-  declarations: [HeaderComponent, WelcomePageComponent, FooterComponent],
+  declarations: [
+    HeaderComponent,
+    WelcomePageComponent,
+    FooterComponent,
+    CreateBoardComponent,
+    ConfirmModalComponent,
+  ],
   imports: [CommonModule, CoreRoutingModule, ShareModule, HttpClientModule, TranslocoRootModule],
   providers: [
     {
@@ -19,6 +27,6 @@ import { TranslocoRootModule } from '../transloco-root.module';
       multi: true,
     },
   ],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, FooterComponent, ConfirmModalComponent],
 })
 export class CoreModule {}

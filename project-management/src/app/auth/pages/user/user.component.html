@@ -1,16 +1,13 @@
 <div class="container">
-  <form [formGroup]="registerForm" class="register-form" (ngSubmit)="onSubmit()">
-    <mat-card class="register-form__card">
+  <form *ngIf="(user$ | async)" [formGroup]="editForm" class="register-form" (ngSubmit)="onSubmit()">
+    <mat-card *ngIf="isEditMode" class="register-form__card">
       <div class="register-form__inputs-block">
-        <mat-card-title class="register-form__title">Sign up</mat-card-title>
+        <mat-card-title class="register-form__title">Edit profile</mat-card-title>
         <mat-form-field class="register-form__field" appearance="fill">
           <mat-label>Name</mat-label>
-          <input type="text" matInput [formControl]="name" placeholder="John">
+          <input type="text" [value]="(user$ | async)!.name" matInput [formControl]="name" placeholder="John">
           <mat-error *ngIf="name.hasError('required')">
             Name is <strong>required</strong>
-          </mat-error>
-          <mat-error *ngIf="name.hasError('minlength')">
-            Name is <strong>too short</strong>. At least 3 characters.
           </mat-error>
         </mat-form-field>
         <mat-form-field class="register-form__field" appearance="fill">
@@ -29,7 +26,7 @@
           <mat-error *ngIf="password.hasError('required')">
             Password is <strong>required</strong>
           </mat-error>
-          <mat-error *ngIf="password.getError('inValidPass')"
+          <mat-error *ngIf="password.getError('inValidPass') && !password.hasError('required')"
             class="validator-message">
             Your password isn't strong enough.
             <p> At least 8 characters. Has to contain uppercase letters, lowercase letters, numbers, and
@@ -38,7 +35,15 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <button type="submit" [disabled]="registerForm.invalid" mat-raised-button color="primary">Submit</button>
+      <button type="submit" [disabled]="editForm.invalid" mat-raised-button color="primary">Save</button>
+      <a (click)="toggleEdit()" mat-raised-button color="accent">Cancel</a>
+    </mat-card>
+    <mat-card *ngIf="!isEditMode">
+      <mat-card-title class="register-form__title">User profile</mat-card-title>
+      <mat-card-subtitle><strong>Name</strong>: {{(user$ | async)!.name}}</mat-card-subtitle>
+      <mat-card-subtitle><strong>Login</strong>: {{(user$ | async)!.login}}</mat-card-subtitle>
+      <button (click)="toggleEdit($event)" mat-raised-button color="primary">Edit</button>
+      <button mat-raised-button color="warn" (click)="openDialog($event)">Delete</button>
     </mat-card>
   </form>
 </div>

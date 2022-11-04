@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateBoardComponent } from '../create-board/create-board.component';
 import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
@@ -11,13 +13,20 @@ export class HeaderComponent implements OnInit {
 
   availableLang: string[] | { id: string; label: string }[];
 
-  constructor(private translateService: TranslocoService) {
+  constructor(private dialog: MatDialog, private translateService: TranslocoService) {
     this.activeLang = localStorage.getItem('lang') || this.translateService.getActiveLang();
     this.availableLang = this.translateService.getAvailableLangs();
   }
 
   ngOnInit() {
     this.translateService.setActiveLang(this.activeLang);
+  }
+
+  public openCreateMod() {
+    this.dialog.open(CreateBoardComponent, {
+      minWidth: '300px',
+      maxWidth: '500px',
+    });
   }
 
   changeLang(lang: string) {
