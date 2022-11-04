@@ -37,4 +37,8 @@ export class TokenService {
     }
     return null;
   }
+
+  public deleteToken() {
+    localStorage.removeItem(TOKEN_KEY);
+  }
 }
