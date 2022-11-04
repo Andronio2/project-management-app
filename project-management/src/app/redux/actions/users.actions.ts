@@ -11,6 +11,8 @@ namespace UserActions {
     props<{ id: string; user: ICreateUserDto }>(),
   );
 
+  export const deleteUser = createAction('[User]  DELETE_USER', props<{ id: string }>());
+
   export const getUsersSuccess = createAction(
     '[User]  GET_USERS_SUCCESSES',
     props<{ users: IUser[] }>(),
@@ -20,6 +22,8 @@ namespace UserActions {
     '[User]  GET_EDIT_USER_SUCCESSES',
     props<{ user: IUser }>(),
   );
+
+  export const deleteUsersSuccess = createAction('[User] DELETE_USER_SUCCESSES');
 }
 
 export default UserActions;
