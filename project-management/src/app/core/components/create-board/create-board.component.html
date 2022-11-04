@@ -1,0 +1,33 @@
+  <form (ngSubmit)="createBoard()" [formGroup]="boardForm" class="register-form">
+      <div class="register-form__inputs-block">
+        <mat-card-title class="register-form__title">Create board</mat-card-title>
+        <mat-form-field class="register-form__field" appearance="fill">
+          <mat-label>Title</mat-label>
+          <input type="text" matInput [formControl]="title" placeholder="New board">
+          <mat-error *ngIf="title.hasError('required')">
+            Title is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="title.hasError('minlength')">
+            Title is <strong>too short</strong>. At least 3 characters.
+          </mat-error>
+          <mat-error *ngIf="title.hasError('maxlength')">
+            Title is <strong>too long</strong>. No more than 20 characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="register-form__field" appearance="fill">
+          <mat-label>Description</mat-label>
+          <input type="text" matInput [formControl]="description" placeholder="Board for ....">
+          <mat-error *ngIf="description.hasError('required')">
+            Description is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="description.hasError('minlength')">
+            Description is <strong>too short</strong>. At least 3 characters.
+          </mat-error>
+          <mat-error *ngIf="title.hasError('maxlength')">
+            Description is <strong>too long</strong>. No more than 255 characters
+          </mat-error>
+        </mat-form-field>
+        </div>
+      <button type="submit" mat-raised-button color="primary" [disabled]="boardForm.invalid">Submit</button>
+      <button type="button" (click)="cancelBoard()" mat-raised-button color="accent">Cancel</button>
+  </form>
