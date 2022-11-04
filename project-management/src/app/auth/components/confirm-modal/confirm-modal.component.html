@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete profile</h1>
+<div mat-dialog-content>
+  Are you sure you want to delete profile?
+</div>
+<div mat-dialog-actions>
+  <button (click)="getAnswer(false)" mat-button mat-dialog-close>No</button>
+  <button (click)="getAnswer(true)" mat-button mat-dialog-close cdkFocusInitial>Yes</button>
+</div>
