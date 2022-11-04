@@ -8,3 +8,4 @@ export const allBoardsLoadedAction = createAction(
 );
 
 export const getBoardAction = createAction('[BOARD] Get board', props<{ boardId: string }>());
+export const boardLoadedAction = createAction('[BOARD] Get board', props<{ board: IBoard }>());
