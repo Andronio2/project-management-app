@@ -8,7 +8,7 @@ export interface IUserState {
 
 export interface IBoardState {
   allBoards: IBoard[];
-  currBoard: IBoard;
+  currBoard?: IBoard;
 }
 
 export interface IAppState {

@@ -10,9 +10,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { userReducer } from './redux/reducers/user.reducer';
-import UserEffects from './redux/effects/users.effects';
+import { UserEffects } from './redux/effects/users.effects';
 import { BoardEffects } from './redux/effects/board.effects';
+import { appReducer } from './redux/reducers/app.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +21,7 @@ import { BoardEffects } from './redux/effects/board.effects';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    StoreModule.forRoot({ app: userReducer }, {}),
+    StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([UserEffects, BoardEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

@@ -4,10 +4,10 @@ import { EMPTY } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/core/services/API/user.service';
 import { errorMessageAction } from '../actions/error-message.action';
-import UserActions from '../actions/users.actions';
+import { UserActions } from '../actions/users.actions';
 
 @Injectable()
-export default class UserEffects {
+export class UserEffects {
   loadUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.getUsers),

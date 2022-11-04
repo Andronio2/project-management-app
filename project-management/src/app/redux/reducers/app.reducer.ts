@@ -1,8 +1,7 @@
-import { IAppState } from '../state.model';
+import { boardReducer } from './board.reducer';
 import { userReducer } from './user.reducer';
 
-export const appReducer: IAppState = {
-  errorMessage,
+export const appReducer = {
   user: userReducer,
-  board,
+  board: boardReducer,
 };
