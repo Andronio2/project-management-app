@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, Observable, tap } from 'rxjs';
 import { TOKEN_KEY } from 'src/app/share/constants/constants';
 import { ICreateUserDto, ISigninUserDto, IToken, IUser } from 'src/app/share/models/auth.model';
@@ -15,6 +16,7 @@ export class AuthService {
     private http: HttpClient,
     private tokenService: TokenService,
     private errorHandleService: ErrorHandlerService,
+    private router: Router,
   ) {}
 
   public isAuth(): boolean {
@@ -40,5 +42,10 @@ export class AuthService {
         }
       }),
     );
+  }
+
+  public logOut() {
+    this.tokenService.deleteToken();
+    this.router.navigate(['/welcome']);
   }
 }
