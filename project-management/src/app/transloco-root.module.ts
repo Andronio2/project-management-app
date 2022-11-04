@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import {
   TRANSLOCO_LOADER,
-  // Translation,
   TranslocoLoader,
   TRANSLOCO_CONFIG,
   translocoConfig,
@@ -20,7 +19,6 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   getTranslation(lang: string) {
     const langData = ((lang === 'en' ? enData : ruData) as any).default;
     return of(langData);
-    // return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
   }
 }
 
@@ -32,7 +30,6 @@ export class TranslocoHttpLoader implements TranslocoLoader {
       useValue: translocoConfig({
         availableLangs: ['en', 'ru'],
         defaultLang: 'en',
-        // Remove this option if your application doesn't support changing language in runtime.
         reRenderOnLangChange: true,
         prodMode: environment.production,
       }),
