@@ -6,6 +6,9 @@
           <mat-form-field class="register-form__field" appearance="fill">
             <mat-label>Name</mat-label>
             <input type="text" [value]="(user$ | async)!.name" matInput [formControl]="name" placeholder="John">
+            <mat-error *ngIf="name.hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="register-form__field" appearance="fill">
             <mat-label>Login</mat-label>
