@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
-import { IUser } from 'src/app/share/models/auth.model';
+import { ICreateUserDto, IUser } from 'src/app/share/models/auth.model';
 import { IErrorResponse } from 'src/app/share/models/error-message.model';
 import { ErrorHandlerService } from './error-handler.service';
 
@@ -25,7 +25,7 @@ export class UserService {
       .pipe(catchError((args: any[]) => this.errorHandleService.errorHandler(args)));
   }
 
-  public updateUser(id: string, user: IUser): Observable<IUser | IErrorResponse> {
+  public updateUser(id: string, user: ICreateUserDto): Observable<IUser | IErrorResponse> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http
       .put<IUser>(`${this.endpoint}/${id}`, user, { headers })
