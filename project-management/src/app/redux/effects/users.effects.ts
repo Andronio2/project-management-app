@@ -42,5 +42,22 @@ export default class UserEffects {
     ),
   );
 
+  updateUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.updateUser),
+      switchMap(({ id, user }) =>
+        this.userService.updateUser(id, user).pipe(
+          map((value) => {
+            if ('id' in value) {
+              return UserActions.getUserSuccess({ user: value });
+            }
+            return errorMessageAction({ errorMessage: value.message });
+          }),
+          catchError(() => EMPTY),
+        ),
+      ),
+    ),
+  );
+
   constructor(private actions$: Actions, private userService: UserService) {}
 }
