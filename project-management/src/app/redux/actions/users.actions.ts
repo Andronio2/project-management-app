@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { ICreateUserDto, IUser } from 'src/app/share/models/auth.model';
 
-namespace UserActions {
+export namespace UserActions {
   export const getUsers = createAction('[User] GET_USERS');
 
   export const getUser = createAction('[User]  GET_EDIT_USER', props<{ id: string }>());
@@ -25,5 +25,3 @@ namespace UserActions {
 
   export const deleteUsersSuccess = createAction('[User] DELETE_USER_SUCCESSES');
 }
-
-export default UserActions;

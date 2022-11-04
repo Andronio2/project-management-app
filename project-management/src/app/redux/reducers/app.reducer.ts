@@ -1,26 +1,7 @@
-import { createReducer, on } from '@ngrx/store';
-import UserActions from '../actions/users.actions';
-import { AppState } from '../state.model';
+import { boardReducer } from './board.reducer';
+import { userReducer } from './user.reducer';
 
-export const initialState: AppState = {
-  errorMessage: '',
-  allUsers: [],
+export const appReducer = {
+  user: userReducer,
+  board: boardReducer,
 };
-
-export const appReducer = createReducer(
-  initialState,
-  on(
-    UserActions.getUsersSuccess,
-    (state, { users }): AppState => ({
-      ...state,
-      allUsers: users,
-    }),
-  ),
-  on(
-    UserActions.getUserSuccess,
-    (state, { user }): AppState => ({
-      ...state,
-      currUser: user,
-    }),
-  ),
-);
