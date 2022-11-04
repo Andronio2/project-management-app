@@ -7,7 +7,6 @@ import { TokenService } from 'src/app/core/services/token.service';
 import Selectors from 'src/app/redux/selectors/app.selectors';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import passwordValidator from '../../validators/passwordValidator';
-import { UserService } from 'src/app/core/services/API/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmModalComponent } from '../../components/confirm-modal/confirm-modal.component';
 import { AuthService } from 'src/app/core/services/API/auth.service';
@@ -36,7 +35,6 @@ export class UserComponent implements OnInit {
     private store: Store,
     private tokenService: TokenService,
     private fb: FormBuilder,
-    private userService: UserService,
     private dialog: MatDialog,
     private authService: AuthService,
   ) {
@@ -83,9 +81,9 @@ export class UserComponent implements OnInit {
       width: '295px',
     });
 
-    dialogRef.afterClosed().subscribe((result: string) => {
-      if (result) {
-        this.userService.deleteUser(this.userId!);
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result && this.userId) {
+        this.store.dispatch(UserActions.deleteUser({ id: this.userId }));
         this.authService.logOut();
       }
     });

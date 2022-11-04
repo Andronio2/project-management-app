@@ -35,7 +35,7 @@ export class UserService {
   public deleteUser(id: string): Observable<IUser | IErrorResponse> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http
-      .put<IUser>(`${this.endpoint}/${id}`, { headers })
+      .delete<IUser>(`${this.endpoint}/${id}`, { headers })
       .pipe(catchError((args: any[]) => this.errorHandleService.errorHandler(args)));
   }
 }
