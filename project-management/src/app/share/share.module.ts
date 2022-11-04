@@ -10,8 +10,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const MaterialComponents = [
+  MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,

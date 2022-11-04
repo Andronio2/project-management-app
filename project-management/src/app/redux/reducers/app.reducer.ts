@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import * as UserActions from '../actions/users.actions';
+import UserActions from '../actions/users.actions';
 import { AppState } from '../state.model';
 
 export const initialState: AppState = {
@@ -13,14 +13,14 @@ export const appReducer = createReducer(
     UserActions.getUsersSuccess,
     (state, { users }): AppState => ({
       ...state,
-      ...('length' in users && { allUsers: users }),
+      allUsers: users,
     }),
   ),
   on(
     UserActions.getUserSuccess,
     (state, { user }): AppState => ({
       ...state,
-      ...('id' in user && { currUser: user }),
+      currUser: user,
     }),
   ),
 );
