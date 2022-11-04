@@ -7,10 +7,11 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './services/API/http-interceptor.service';
 import { FooterComponent } from './components/footer/footer.component';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 @NgModule({
   declarations: [HeaderComponent, WelcomePageComponent, FooterComponent],
-  imports: [CommonModule, CoreRoutingModule, ShareModule, HttpClientModule],
+  imports: [CommonModule, CoreRoutingModule, ShareModule, HttpClientModule, TranslocoRootModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
