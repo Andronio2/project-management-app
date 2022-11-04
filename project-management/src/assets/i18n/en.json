@@ -1,0 +1,39 @@
+{
+  "welcome": {
+    "title": {
+      "simple": "Simple way to manage your",
+      "project": "project",
+      "with": "with our system"
+    },
+    "text": "Join forces, manage projects, and take productivity to new heights. Achieve all your goals with our Project Management System.",
+    "button": {
+      "getStarted": "Get started",
+      "watchVideo": "Watch video"
+    },
+    "aboutTitle": "Opportunities for successful teamwork",
+    "aboutText": "For a team to be productive, it needs powerful tools. Intuitive features of our system allow the team to quickly set up any workflow: from meetings and projects to events and goal setting.",
+    "aboutBoardsTitle": "Boards",
+    "aboutBoardsText": "Make it easy for your team to focus on tasks currently at hand. Define each stage of work to see what’s important and where things are getting stuck. ",
+    "aboutTasksTitle": "Tasks",
+    "aboutTasksText": "In tasks, you can describe detailed information about the current task, add and delete them, which allows you to more flexibly manage the content of tasks.",
+    "teamTitle": "Our team",
+    "teamAndreyName": "Andrey Smirnov",
+    "teamAndreyRole": "Frontend developer",
+    "teamAndreyRole2": "Team leader",
+    "teamAndreyText": "Some text...",
+    "teamDianaName": "Diana Abdykassenova",
+    "teamDianaRole": "Frontend developer",
+    "teamDianaText": "Some text...",
+    "teamAibekName": "Aibek Kenzhebayev",
+    "teamAibekRole": "Frontend developer",
+    "teamAibekText": "Some text...",
+    "courseTitle": "About Angular Course",
+    "courseText": "This project was developed as part of the Angular Course provided by The Rolling Scopes developer community.",
+    "courseFreeTitle": "Free-Of-Charge Learning",
+    "courseFreeText": "The RS School is working by the principle of &quot;Pay it forward&quot;. Members of our community share their knowledge and check students&apos; tasks for free. And we hope that our students will continue this work as our mentors in the future.",
+    "courseOpenTitle": "Open To Everyone",
+    "courseOpenText": "Everyone can study at RS School, regardless of age, professional employment, or place of residence. However, you should have sufficient base knowledge before the program begins.",
+    "courseCertificateTitle": "Certificate",
+    "courseCertificateText": "After accomplishing all three stages of education, students will receive an electronic certificate of completion."
+  }
+}
