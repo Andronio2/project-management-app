@@ -46,8 +46,38 @@ export class BoardEffects {
       switchMap((action) =>
         this.boardService.createBoard(action.board).pipe(
           map((board) => {
-            if ('title' in board) return BoardActions.boardCreatedAction({ board });
-            else return errorMessageAction({ errorMessage: 'Could not load board' });
+            if ('title' in board) return BoardActions.getAllBoardsAction();
+            else return errorMessageAction({ errorMessage: 'Could not create board' });
+          }),
+          catchError(() => EMPTY),
+        ),
+      ),
+    ),
+  );
+
+  deleteBoard$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardActions.deleteBoardAction),
+      switchMap((action) =>
+        this.boardService.deleteBoard(action.id).pipe(
+          map((response) => {
+            if (!response) return BoardActions.getAllBoardsAction();
+            else return errorMessageAction({ errorMessage: 'Could not delete board' });
+          }),
+          catchError(() => EMPTY),
+        ),
+      ),
+    ),
+  );
+
+  updateBoard$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BoardActions.updateBoardAction),
+      switchMap((action) =>
+        this.boardService.updateBoard(action.id, action.board).pipe(
+          map((board) => {
+            if ('title' in board) return BoardActions.getAllBoardsAction();
+            else return errorMessageAction({ errorMessage: 'Could not update board' });
           }),
           catchError(() => EMPTY),
         ),

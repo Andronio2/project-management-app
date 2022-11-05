@@ -2,9 +2,9 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { IUserState } from '../state.model';
 
 export namespace Selectors {
-  export const selectState = createFeatureSelector<IUserState>('user');
+  export const selectUserState = createFeatureSelector<IUserState>('user');
 
-  export const selectUsers = createSelector(selectState, (state) => state.allUsers);
+  export const selectUsers = createSelector(selectUserState, (state) => state.allUsers);
 
-  export const selectUser = createSelector(selectState, (state) => state.currUser);
+  export const selectUser = createSelector(selectUserState, (state) => state.currUser);
 }

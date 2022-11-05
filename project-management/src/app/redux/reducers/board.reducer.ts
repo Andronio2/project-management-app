@@ -22,11 +22,4 @@ export const boardReducer = createReducer(
       currBoard: board,
     }),
   ),
-  on(
-    BoardActions.boardCreatedAction,
-    (state, { board }): IBoardState => ({
-      ...state,
-      allBoards: state.allBoards.concat([board]),
-    }),
-  ),
 );
