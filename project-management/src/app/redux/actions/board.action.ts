@@ -21,7 +21,7 @@ export namespace BoardActions {
   );
 
   export const deleteBoardAction = createAction('[BOARD] Delete board', props<{ id: string }>());
-  export const boardDeletedAction = createAction('[BOARD] Board deleted');
+  export const boardDeletedAction = createAction('[BOARD] Board deleted', props<{ id: string }>());
 
   export const updateBoardAction = createAction(
     '[BOARD] Update board',
@@ -29,6 +29,6 @@ export namespace BoardActions {
   );
   export const boardUpdatedAction = createAction(
     '[BOARD] Board updated',
-    props<{ board: IBoard }>(),
+    props<{ id: string; board: IBoard }>(),
   );
 }

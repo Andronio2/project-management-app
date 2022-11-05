@@ -26,7 +26,21 @@ export const boardReducer = createReducer(
     BoardActions.boardCreatedAction,
     (state, { board }): IBoardState => ({
       ...state,
-      allBoards: state.allBoards.concat([board]),
+      allBoards: [...state.allBoards, board],
+    }),
+  ),
+  on(
+    BoardActions.boardDeletedAction,
+    (state, { id }): IBoardState => ({
+      ...state,
+      allBoards: state.allBoards.filter((board) => board.id !== id),
+    }),
+  ),
+  on(
+    BoardActions.boardUpdatedAction,
+    (state, { id, board }): IBoardState => ({
+      ...state,
+      allBoards: state.allBoards.map((item) => (item.id !== id ? board : item)),
     }),
   ),
 );
