@@ -9,7 +9,7 @@ export namespace BoardActions {
   );
 
   export const getBoardAction = createAction('[BOARD] Get board', props<{ boardId: string }>());
-  export const boardLoadedAction = createAction('[BOARD] Get board', props<{ board: IBoard }>());
+  export const boardLoadedAction = createAction('[BOARD] Board loaded', props<{ board: IBoard }>());
 
   export const createBoardAction = createAction(
     '[BOARD] Create new board',
@@ -17,6 +17,18 @@ export namespace BoardActions {
   );
   export const boardCreatedAction = createAction(
     '[BOARD] Board created',
+    props<{ board: IBoard }>(),
+  );
+
+  export const deleteBoardAction = createAction('[BOARD] Delete board', props<{ id: string }>());
+  export const boardDeletedAction = createAction('[BOARD] Board deleted');
+
+  export const updateBoardAction = createAction(
+    '[BOARD] Update board',
+    props<{ id: string; board: IBoardDto }>(),
+  );
+  export const boardUpdatedAction = createAction(
+    '[BOARD] Board updated',
     props<{ board: IBoard }>(),
   );
 }
