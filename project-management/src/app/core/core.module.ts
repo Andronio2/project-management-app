@@ -9,6 +9,7 @@ import { HttpInterceptorService } from './services/API/http-interceptor.service'
 import { FooterComponent } from './components/footer/footer.component';
 import { CreateBoardComponent } from './components/create-board/create-board.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { TranslocoRootModule } from '../transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
     CreateBoardComponent,
     ConfirmModalComponent,
   ],
-  imports: [CommonModule, CoreRoutingModule, ShareModule, HttpClientModule],
+  imports: [CommonModule, CoreRoutingModule, ShareModule, HttpClientModule, TranslocoRootModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

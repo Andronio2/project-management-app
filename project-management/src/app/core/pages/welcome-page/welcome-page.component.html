@@ -1,136 +1,132 @@
-<div class="welcome__wrapper">
-  <div class="welcome__container container">
-    <div class="welcome__content">
-      <h2 class="welcome__title">
-        Simple way to manage your <span class="welcome__title_colored">project</span> with our system
-      </h2>
-      <p class="welcome__text">
-        Join forces, manage projects, and take productivity to new heights. Achieve all your goals with
-        our Project Management System
-      </p>
-      <div class="buttons__wrapper">
-        <button mat-raised-button color="primary">Get started</button>
-        <a class="video__link" href="#">
-          <button mat-mini-fab color="accent" aria-label="Watch video">
-            <mat-icon>play_arrow</mat-icon>
-          </button>
-          <span>Watch video</span>
-        </a>
+<ng-container *transloco="let t; read: 'welcome'">
+  <div class="welcome__wrapper">
+    <div class="welcome__container container">
+      <div class="welcome__content">
+        <h2 class="welcome__title">
+          {{ t('title.simple') }} <span class="welcome__title_colored">{{ t('title.project') }}</span> {{ t('title.with') }}
+        </h2>
+        <p class="welcome__text">
+          {{ t('text') }}
+        </p>
+        <div class="buttons__wrapper">
+          <button mat-raised-button color="primary">{{ t('button.getStarted') }}</button>
+          <a class="video__link" href="#">
+            <button mat-mini-fab color="accent" aria-label="Watch video">
+              <mat-icon>play_arrow</mat-icon>
+            </button>
+            <span>{{ t('button.watchVideo') }}</span>
+          </a>
+        </div>
+      </div>
+      <img class="welcome__img" src="../../../../assets/img/4584.png" alt="">
+    </div>
+  </div>
+  <div class="about__wrapper">
+    <div class="about__container container">
+      <img class="welcome__img" src="../../../../assets/img/4380.png" alt="">
+      <div class="about__content">
+        <h2 class="about__title title">{{ t('aboutTitle') }}</h2>
+        <p>
+          {{ t('aboutText') }}
+        </p>
+      </div>
+      <mat-card class="about__card">
+        <mat-card-header>
+          <mat-card-title>{{ t('aboutBoardsTitle') }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ t('aboutBoardsText') }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="about__card">
+        <mat-card-header>
+          <mat-card-title>{{ t('aboutTasksTitle') }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ t('aboutTasksText') }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="developers__wrapper">
+    <div class="developers__container container">
+      <h2 class="developers__title title">{{ t('teamTitle') }}</h2>
+      <div class="developers__cards">
+        <mat-card class="developer__card">
+          <mat-card-title-group>
+            <mat-card-title>{{ t('teamAndreyName') }}</mat-card-title>
+            <mat-card-subtitle>{{ t('teamAndreyRole') }}<br>{{ t('teamAndreyRole2') }}</mat-card-subtitle>
+            <img mat-card-md-image src="../../../../assets/img/Andrey_foto.jpg" >
+          </mat-card-title-group>
+          <mat-card-content>
+            {{ t('teamAndreyText') }}
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="developer__card">
+          <mat-card-title-group>
+            <mat-card-title>{{ t('teamDianaName') }}</mat-card-title>
+            <mat-card-subtitle>{{ t('teamDianaRole') }}</mat-card-subtitle>
+            <img mat-card-md-image src="../../../../assets/img/diana.jpg" >
+          </mat-card-title-group>
+          <mat-card-content>
+            {{ t('teamDianaText') }}
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="developer__card">
+          <mat-card-title-group>
+            <mat-card-title>{{ t('teamAibekName') }}</mat-card-title>
+            <mat-card-subtitle>{{ t('teamAibekRole') }}</mat-card-subtitle>
+            <img mat-card-md-image src="../../../../assets/img/aibek.jpg" >
+          </mat-card-title-group>
+          <mat-card-content>
+            {{ t('teamAibekText') }}
+          </mat-card-content>
+        </mat-card>
       </div>
     </div>
-    <img class="welcome__img" src="../../../../assets/img/4584.png" alt="">
   </div>
-</div>
-<div class="about__wrapper">
-  <div class="about__container container">
-    <img class="welcome__img" src="../../../../assets/img/4380.png" alt="">
-    <div class="about__content">
-      <h2 class="about__title title">Opportunities for successful teamwork</h2>
-      <p>
-        For a team to be productive, it needs powerful tools. Intuitive features of our system allow the
-        team to quickly set up any workflow: from meetings and projects to events and goal setting.
-      </p>
-    </div>
-    <mat-card class="about__card">
-      <mat-card-header>
-        <mat-card-title>Boards</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
+  <div class="course__wrapper">
+    <div class="course__container container">
+      <div class="course__content">
+        <h2 class="course__title title">{{ t('courseTitle') }}</h2>
         <p>
-          Make it easy for your team to focus on tasks currently at hand. Define each stage of work to see
-          what’s important and where things are getting stuck.
+          {{ t('courseText') }}
         </p>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="about__card">
-      <mat-card-header>
-        <mat-card-title>Tasks</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          In tasks, you can describe detailed information about the current task, add and delete them, which
-          allows you to more flexibly manage the content of tasks.
-        </p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div>
-<div class="developers__wrapper">
-  <div class="developers__container container">
-    <h2 class="developers__title title">Our team</h2>
-    <div class="developers__cards">
-      <mat-card class="developer__card">
-        <mat-card-title-group>
-          <mat-card-title>Andrey Smirnov</mat-card-title>
-          <mat-card-subtitle>Frontend developer<br>Team leader</mat-card-subtitle>
-          <img mat-card-md-image src="../../../../assets/img/Andrey_foto.jpg" >
-        </mat-card-title-group>
+      </div>
+      <mat-card class="about__card">
+        <mat-card-header>
+          <mat-card-title>{{ t('courseFreeTitle') }}</mat-card-title>
+        </mat-card-header>
         <mat-card-content>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quasi enim quam blanditiis. Aliquam ducimus illum delectus
+          <p>
+            {{ t('courseFreeText') }}
+          </p>
         </mat-card-content>
       </mat-card>
-      <mat-card class="developer__card">
-        <mat-card-title-group>
-          <mat-card-title>Diana Abdykassenova</mat-card-title>
-          <mat-card-subtitle>Frontend developer</mat-card-subtitle>
-          <img mat-card-md-image src="../../../../assets/img/diana.jpg" >
-        </mat-card-title-group>
+      <mat-card class="about__card">
+        <mat-card-header>
+          <mat-card-title>{{ t('courseOpenTitle') }}</mat-card-title>
+        </mat-card-header>
         <mat-card-content>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quasi enim quam blanditiis. Aliquam ducimus illum delectus
+          <p>
+            {{ t('courseOpenText') }}
+          </p>
         </mat-card-content>
       </mat-card>
-      <mat-card class="developer__card">
-        <mat-card-title-group>
-          <mat-card-title>Aibek Kenzhebayev</mat-card-title>
-          <mat-card-subtitle>Frontend developer</mat-card-subtitle>
-          <img mat-card-md-image src="../../../../assets/img/aibek.jpg" >
-        </mat-card-title-group>
+      <mat-card class="about__card">
+        <mat-card-header>
+          <mat-card-title>{{ t('courseCertificateTitle') }}</mat-card-title>
+        </mat-card-header>
         <mat-card-content>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt quasi enim quam blanditiis. Aliquam ducimus illum delectus
+          <p>
+            {{ t('courseCertificateText') }}
+          </p>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
-</div>
-<div class="course__wrapper">
-  <div class="course__container container">
-    <div class="course__content">
-      <h2 class="course__title title">About Angular Course</h2>
-      <p>
-        This project was developed as part of the Angular Course provided by The Rolling Scopes developer community.
-      </p>
-    </div>
-    <mat-card class="about__card">
-      <mat-card-header>
-        <mat-card-title>Open To Everyone</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          The RS School is working by the principle of "Pay it forward". Members of our community share their knowledge
-          and check students' tasks for free. And we hope that our students will continue this work as our mentors in the future.
-        </p>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="about__card">
-      <mat-card-header>
-        <mat-card-title>Free-Of-Charge Learning</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          Everyone can study at RS School, regardless of age, professional employment, or place of residence. However,
-          you should have sufficient base knowledge before the program begins.
-        </p>
-      </mat-card-content>
-    </mat-card>
-    <mat-card class="about__card">
-      <mat-card-header>
-        <mat-card-title>Certificate</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          After accomplishing all three stages of education, students will receive an electronic certificate of completion.
-        </p>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div>
+</ng-container>

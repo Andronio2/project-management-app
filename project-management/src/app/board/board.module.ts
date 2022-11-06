@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreateColumnComponent } from './components/create-column/create-column.component';
-import { ShareModule } from '../share/share.module';
-import { CreateTaskComponent } from './components/create-task/create-task.component';
+import { ColumnComponent } from './components/column/column.component';
+import { TaskComponent } from './components/task/task.component';
+import { BoardsListComponent } from './pages/boards-list/boards-list.component';
+import { BoardPreviewComponent } from './components/board-preview/board-preview.component';
 
 @NgModule({
-  declarations: [CreateColumnComponent, CreateTaskComponent],
-  imports: [CommonModule, ShareModule],
+  declarations: [ColumnComponent, TaskComponent, BoardsListComponent, BoardPreviewComponent],
+  imports: [CommonModule],
 })
 export class BoardModule {}

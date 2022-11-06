@@ -1,16 +1,18 @@
-<p>
-  <mat-toolbar color="primary">
-    <h1>Project Management System</h1>
-    <span class="spacer"></span>
-    <div class="buttons__container">
-      <a [routerLink]="['/auth','signin']" routerLinkActive="active"  mat-flat-button>Login</a>
-      <a [routerLink]="['/auth','signup']" routerLinkActive="active" mat-flat-button>Sign up</a>
-      <button (click)="openCreateMod()" mat-flat-button><mat-icon>add</mat-icon> Create new board</button>
-      <button mat-button [matMenuTriggerFor]="menu">en</button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>en</button>
-        <button mat-menu-item>ru</button>
-      </mat-menu>
-    </div>
-  </mat-toolbar>
-</p>
+<ng-container *transloco="let t; read: 'header'">
+  <p>
+    <mat-toolbar color="primary">
+      <h1>{{ t('logo') }}</h1>
+      <span class="spacer"></span>
+      <div class="buttons__container">
+        <a [routerLink]="['/auth','signin']" routerLinkActive="active"  mat-flat-button>{{ t('button.login') }}</a>
+        <a [routerLink]="['/auth','signup']" routerLinkActive="active" mat-flat-button>{{ t('button.signUp') }}</a>
+        <button (click)="openCreateMod()" mat-flat-button><mat-icon>add</mat-icon> {{ t('button.createBoard') }}</button>
+        <button mat-button [matMenuTriggerFor]="menu">{{activeLang}}</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="changeLang('en')">en</button>
+          <button mat-menu-item (click)="changeLang('ru')">ru</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+  </p>
+</ng-container>
