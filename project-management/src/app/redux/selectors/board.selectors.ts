@@ -6,5 +6,16 @@ export namespace Selectors {
 
   export const selectBoards = createSelector(selectBoardState, (state) => state.allBoards);
 
-  export const selectUser = createSelector(selectBoardState, (state) => state.currBoard);
+  export const selectBoard = createSelector(selectBoardState, (state) => state.currBoard);
+
+  export const selectColumns = createSelector(
+    selectBoardState,
+    (state) => state.currBoard?.columns,
+  );
+
+  export const selectColumn = createSelector(selectBoardState, (state) => state.currBoard);
+  export const selectColumnById = (columnId: string) =>
+    createSelector(selectBoardState, (state) =>
+      state.currBoard?.columns?.find((column) => column.id === columnId),
+    );
 }

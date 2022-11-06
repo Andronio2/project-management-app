@@ -10,3 +10,8 @@ export interface IColumn {
 export interface IColumnDto {
   title: string;
 }
+
+export interface IUpdateColumnDto {
+  title: string;
+  order: number;
+}
