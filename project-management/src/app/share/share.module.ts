@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 const MaterialComponents = [
   MatDialogModule,
@@ -22,6 +23,7 @@ const MaterialComponents = [
   MatToolbarModule,
   MatMenuModule,
   MatAutocompleteModule,
+  MatSelectModule,
 ];
 @NgModule({
   declarations: [],

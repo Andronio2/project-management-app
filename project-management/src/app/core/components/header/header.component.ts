@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateBoardComponent } from '../create-board/create-board.component';
+import { CreateModalComponent } from '../create-modal/create-modal.component';
 import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
@@ -23,9 +23,13 @@ export class HeaderComponent implements OnInit {
   }
 
   public openCreateMod() {
-    this.dialog.open(CreateBoardComponent, {
+    this.dialog.open(CreateModalComponent, {
       minWidth: '300px',
       maxWidth: '500px',
+      data: {
+        name: 'board',
+        type: 'Create',
+      },
     });
   }
 
