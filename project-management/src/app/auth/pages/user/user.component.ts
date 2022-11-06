@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { UserActions } from 'src/app/redux/actions/users.actions';
 import { IUser } from 'src/app/share/models/auth.model';
 import { TokenService } from 'src/app/core/services/token.service';
-import { Selectors } from 'src/app/redux/selectors/user.selectors';
+import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import passwordValidator from '../../validators/passwordValidator';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,7 +19,7 @@ import { AuthService } from 'src/app/core/services/API/auth.service';
 export class UserComponent implements OnInit {
   isEditMode: boolean = false;
 
-  user$: Observable<IUser | undefined> = this.store.select(Selectors.selectUser);
+  user$: Observable<IUser | undefined> = this.store.select(UserSelectors.selectUser);
 
   userId: string | null;
 
