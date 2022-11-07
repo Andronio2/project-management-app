@@ -15,6 +15,8 @@ import { ModalType } from 'src/app/share/constants/constants';
 export class BoardsListComponent implements OnInit {
   boards$: Observable<IBoard[]> = new Observable();
 
+  searchValue = '';
+
   constructor(private store: Store, private modalService: ModalService) {}
 
   ngOnInit(): void {
@@ -23,7 +25,7 @@ export class BoardsListComponent implements OnInit {
   }
 
   deleteBoard(id: string) {
-    this.store.dispatch(BoardActions.deleteBoardAction({ id }));
+    this.modalService.openConfirmDelete(ModalType.BOARD, id);
   }
 
   createBoard() {
