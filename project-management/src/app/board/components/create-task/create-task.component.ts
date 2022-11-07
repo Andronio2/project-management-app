@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { BoardsService } from '../../services/API/board.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-create-board',
-  templateUrl: './create-board.component.html',
-  styleUrls: ['./create-board.component.scss'],
+  selector: 'app-create-task',
+  templateUrl: './create-task.component.html',
+  styleUrls: ['./create-task.component.scss'],
 })
-export class CreateBoardComponent {
-  boardForm: FormGroup;
+export class CreateTaskComponent {
+  taskForm: FormGroup;
 
   title = new FormControl('', [
     Validators.required,
@@ -23,23 +22,18 @@ export class CreateBoardComponent {
     Validators.maxLength(255),
   ]);
 
-  constructor(
-    private fb: FormBuilder,
-    private boardService: BoardsService,
-    private dialogRef: MatDialogRef<CreateBoardComponent>,
-  ) {
-    this.boardForm = this.fb.group({
+  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<CreateTaskComponent>) {
+    this.taskForm = this.fb.group({
       title: this.title,
       description: this.description,
     });
   }
 
-  createBoard() {
-    this.boardService.createBoard(this.boardForm.getRawValue()).subscribe();
+  createTask() {
     this.dialogRef.close();
   }
 
-  cancelBoard() {
+  cancelTask() {
     this.dialogRef.close();
   }
 }
