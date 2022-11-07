@@ -40,7 +40,9 @@
     "logo": "Project Management System",
     "button": {
       "login": "Login",
+      "logout": "Logout",
       "signUp": "Sign up",
+      "editProfile": "Edit profile",
       "createBoard": "Create new Board"
     }
   }
