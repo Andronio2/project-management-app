@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IErrorResponse } from 'src/app/share/models/error-message.model';
-import { ITask, ITaskCreate, ITaskUpdate } from 'src/app/share/models/task.model';
+import { ITask, ITaskCreateDto, ITaskUpdateDto } from 'src/app/share/models/task.model';
 import { ErrorHandlerService } from './error-handler.service';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class TaskService {
   public createTask(
     boardId: string,
     columnId: string,
-    task: ITaskCreate,
+    task: ITaskCreateDto,
   ): Observable<ITask | IErrorResponse> {
     const url = `/boards/${boardId}/columns/${columnId}/tasks`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -57,7 +57,7 @@ export class TaskService {
     boardId: string,
     columnId: string,
     taskId: string,
-    task: ITaskUpdate,
+    task: ITaskUpdateDto,
   ): Observable<ITask | IErrorResponse> {
     const url = `/boards/${boardId}/columns/${columnId}/tasks/${taskId}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
