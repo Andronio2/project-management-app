@@ -4,9 +4,9 @@
       <h1>{{ t('logo') }}</h1>
       <span class="spacer"></span>
       <div class="buttons__container">
-        <ng-container *ngIf="!isAuth; else authBlock">
-          <a *ngIf="!isAuth" [routerLink]="['/auth','signin']" routerLinkActive="active"  mat-flat-button>{{ t('button.login') }}</a>
-          <a *ngIf="!isAuth" [routerLink]="['/auth','signup']" routerLinkActive="active" mat-flat-button>{{ t('button.signUp') }}</a>
+        <ng-container *ngIf="(isAuth$ | async) === false; else authBlock">
+          <a *ngIf="(isAuth$ | async) === false" [routerLink]="['/auth','signin']" routerLinkActive="active"  mat-flat-button>{{ t('button.login') }}</a>
+          <a *ngIf="(isAuth$ | async) === false" [routerLink]="['/auth','signup']" routerLinkActive="active" mat-flat-button>{{ t('button.signUp') }}</a>
         </ng-container>
         <ng-template #authBlock>
           <button (click)="openCreateMod()" mat-flat-button><mat-icon>add</mat-icon> {{ t('button.createBoard') }}</button>
