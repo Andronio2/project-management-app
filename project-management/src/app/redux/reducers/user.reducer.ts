@@ -22,4 +22,11 @@ export const userReducer = createReducer(
       currUser: user,
     }),
   ),
+  on(
+    UserActions.deleteUsersSuccess,
+    (state): IUserState => ({
+      ...state,
+      currUser: undefined,
+    }),
+  ),
 );
