@@ -10,7 +10,7 @@
         </ng-container>
         <ng-template #authBlock>
           <button (click)="openCreateMod()" mat-flat-button><mat-icon>add</mat-icon> {{ t('button.createBoard') }}</button>
-          <button mat-flat-button>{{ t('button.editProfile') }}</button>
+          <a [routerLink]="['/auth', 'user']" routerLinkActive="active"  mat-flat-button>{{ t('button.editProfile') }}</a>
           <button (click)="logOut()" mat-flat-button>{{ t('button.logout') }}</button>
         </ng-template>
         <button mat-button [matMenuTriggerFor]="menu">{{activeLang}}</button>
