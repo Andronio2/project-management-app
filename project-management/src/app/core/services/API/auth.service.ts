@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { catchError, Observable, tap } from 'rxjs';
+import { UserActions } from 'src/app/redux/actions/users.actions';
 import { TOKEN_KEY } from 'src/app/share/constants/constants';
 import { ICreateUserDto, ISigninUserDto, IToken, IUser } from 'src/app/share/models/auth.model';
 import { IErrorResponse } from 'src/app/share/models/error-message.model';
@@ -17,6 +19,7 @@ export class AuthService {
     private tokenService: TokenService,
     private errorHandleService: ErrorHandlerService,
     private router: Router,
+    private store: Store,
   ) {}
 
   public isAuth(): boolean {
@@ -39,6 +42,7 @@ export class AuthService {
       tap((value) => {
         if ('token' in value) {
           localStorage.setItem(TOKEN_KEY, value.token);
+          this.store.dispatch(UserActions.getUser({ id: this.tokenService.getId()! }));
         }
       }),
     );
