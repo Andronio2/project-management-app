@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CreateModalComponent } from './components/create-modal/create-modal.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { TranslocoRootModule } from '../transloco-root.module';
+import { ErrorModalComponent } from './components/error-modal/error-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TranslocoRootModule } from '../transloco-root.module';
     FooterComponent,
     CreateModalComponent,
     ConfirmModalComponent,
+    ErrorModalComponent,
   ],
   imports: [CommonModule, CoreRoutingModule, ShareModule, HttpClientModule, TranslocoRootModule],
   providers: [
