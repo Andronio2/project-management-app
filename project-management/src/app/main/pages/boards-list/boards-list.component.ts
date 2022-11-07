@@ -25,7 +25,7 @@ export class BoardsListComponent implements OnInit {
   }
 
   deleteBoard(id: string) {
-    this.store.dispatch(BoardActions.deleteBoardAction({ id }));
+    this.modalService.openConfirmDelete(ModalType.BOARD, id);
   }
 
   createBoard() {
