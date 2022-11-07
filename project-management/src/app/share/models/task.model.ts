@@ -14,13 +14,13 @@ export interface File {
   fileSize: number;
 }
 
-export interface ITaskCreate {
+export interface ITaskCreateDto {
   title: string;
   description: string;
   userId: string;
 }
 
-export interface ITaskUpdate {
+export interface ITaskUpdateDto {
   title: string;
   order: number;
   description: string;

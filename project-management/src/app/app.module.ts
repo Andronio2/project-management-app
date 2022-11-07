@@ -13,6 +13,8 @@ import { environment } from '../environments/environment';
 import { UserEffects } from './redux/effects/users.effects';
 import { BoardEffects } from './redux/effects/board.effects';
 import { appReducer } from './redux/reducers/app.reducer';
+import { ColumnEffects } from './redux/effects/column.effects';
+import { TaskEffects } from './redux/effects/task.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +24,7 @@ import { appReducer } from './redux/reducers/app.reducer';
     BrowserAnimationsModule,
     CoreModule,
     StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([UserEffects, BoardEffects]),
+    EffectsModule.forRoot([UserEffects, BoardEffects, ColumnEffects, TaskEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
