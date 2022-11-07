@@ -1,1 +1,4 @@
-@import '../../../share/styles/form.scss'
+@import '../../../share/styles/form.scss';
+:host {
+  flex-grow: 2;
+}
