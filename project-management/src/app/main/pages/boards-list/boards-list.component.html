@@ -1,0 +1,19 @@
+<h2 class="boards__title">Boards</h2>
+<div class="board__container">
+  <mat-card class="board" *ngFor="let board of boards$ | async">
+    <mat-card-header class="board__header">
+      <mat-card-title>{{board.title}}</mat-card-title>
+      <button mat-mini-fab color="accent" aria-label="delete button" (click)="deleteBoard(board.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{board.description}}</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="board__create board" (click)="createBoard()">
+    <mat-card-header class="board__create-content">
+      <mat-card-title>Create new board</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</div>
