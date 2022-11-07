@@ -2,10 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
-import { CreateModalComponent } from 'src/app/core/components/create-modal/create-modal.component';
+import { ModalService } from 'src/app/core/services/modal.service';
 import { BoardActions } from 'src/app/redux/actions/board.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
 import { IBoard } from 'src/app/share/models/board.model';
+import { ModalType } from 'src/app/share/constants/constants';
 
 @Component({
   selector: 'app-boards-list',
@@ -17,7 +18,11 @@ export class BoardsListComponent implements OnInit, OnDestroy {
 
   boards: IBoard[] = [];
 
-  constructor(private store: Store, private dialog: MatDialog) {}
+  constructor(
+    private store: Store,
+    private dialog: MatDialog,
+    private modalService: ModalService,
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(BoardActions.getAllBoardsAction());
@@ -39,13 +44,6 @@ export class BoardsListComponent implements OnInit, OnDestroy {
   }
 
   createBoard() {
-    this.dialog.open(CreateModalComponent, {
-      minWidth: '300px',
-      maxWidth: '500px',
-      data: {
-        name: 'board',
-        type: 'Create',
-      },
-    });
+    this.modalService.openCreateMod(ModalType.CREATE, ModalType.BOARD);
   }
 }
