@@ -45,5 +45,8 @@
       "editProfile": "Edit profile",
       "createBoard": "Create new Board"
     }
+  },
+  "main": {
+    "boards": "Boards"
   }
 }
