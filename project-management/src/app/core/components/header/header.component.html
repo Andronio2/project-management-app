@@ -5,8 +5,8 @@
       <span class="spacer"></span>
       <div class="buttons__container">
         <ng-container *ngIf="(isAuth$ | async) === false; else authBlock">
-          <a *ngIf="(isAuth$ | async) === false" [routerLink]="['/auth','signin']" routerLinkActive="active"  mat-flat-button>{{ t('button.login') }}</a>
-          <a *ngIf="(isAuth$ | async) === false" [routerLink]="['/auth','signup']" routerLinkActive="active" mat-flat-button>{{ t('button.signUp') }}</a>
+          <a  [routerLink]="['/auth','signin']" routerLinkActive="active"  mat-flat-button>{{ t('button.login') }}</a>
+          <a  [routerLink]="['/auth','signup']" routerLinkActive="active" mat-flat-button>{{ t('button.signUp') }}</a>
         </ng-container>
         <ng-template #authBlock>
           <button (click)="openCreateMod()" mat-flat-button><mat-icon>add</mat-icon> {{ t('button.createBoard') }}</button>
