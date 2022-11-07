@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+import { Store } from '@ngrx/store';
+import { UserActions } from 'src/app/redux/actions/users.actions';
 import { ModalType } from 'src/app/share/constants/constants';
+import { AuthService } from '../../services/API/auth.service';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
@@ -13,12 +16,20 @@ export class HeaderComponent implements OnInit {
 
   availableLang: string[] | { id: string; label: string }[];
 
-  constructor(private modalService: ModalService, private translateService: TranslocoService) {
+  constructor(
+    private modalService: ModalService,
+    private translateService: TranslocoService,
+    private authService: AuthService,
+    private store: Store,
+  ) {
     this.activeLang = localStorage.getItem('lang') || this.translateService.getActiveLang();
     this.availableLang = this.translateService.getAvailableLangs();
   }
 
   ngOnInit() {
+    if (this.authService.isAuth()) {
+      this.store.dispatch(UserActions.SignInSuccess());
+    }
     this.translateService.setActiveLang(this.activeLang);
   }
 

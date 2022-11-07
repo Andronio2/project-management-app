@@ -50,6 +50,7 @@ export class AuthService {
 
   public logOut() {
     this.tokenService.deleteToken();
+    this.store.dispatch(UserActions.LogOut());
     this.router.navigate(['/welcome']);
   }
 }

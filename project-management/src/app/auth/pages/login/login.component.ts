@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/core/services/API/auth.service';
+import { Store } from '@ngrx/store';
+import { UserActions } from 'src/app/redux/actions/users.actions';
 import { ICreateUserDto, ISigninUserDto } from 'src/app/share/models/auth.model';
 
 @Component({
@@ -8,9 +9,9 @@ import { ICreateUserDto, ISigninUserDto } from 'src/app/share/models/auth.model'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private store: Store) {}
 
   logIn(formData: ISigninUserDto | ICreateUserDto) {
-    this.authService.signIn(formData).subscribe();
+    this.store.dispatch(UserActions.SignIn({ user: formData }));
   }
 }

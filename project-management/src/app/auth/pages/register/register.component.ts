@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/core/services/API/auth.service';
+import { Store } from '@ngrx/store';
+import { UserActions } from 'src/app/redux/actions/users.actions';
 import { ICreateUserDto, ISigninUserDto } from 'src/app/share/models/auth.model';
 
 @Component({
@@ -8,17 +9,9 @@ import { ICreateUserDto, ISigninUserDto } from 'src/app/share/models/auth.model'
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private store: Store) {}
 
   onSubmit(formData: ICreateUserDto | ISigninUserDto) {
-    this.authService.signUp(formData as ICreateUserDto).subscribe((value) => {
-      if ('login' in value) {
-        const userSign: ISigninUserDto = {
-          login: value.login,
-          password: formData.password,
-        };
-        this.authService.signIn(userSign).subscribe();
-      }
-    });
+    this.store.dispatch(UserActions.SignUp({ user: formData as ICreateUserDto }));
   }
 }
