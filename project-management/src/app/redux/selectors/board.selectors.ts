@@ -13,9 +13,16 @@ export namespace Selectors {
     (state) => state.currBoard?.columns,
   );
 
-  export const selectColumn = createSelector(selectBoardState, (state) => state.currBoard);
   export const selectColumnById = (columnId: string) =>
     createSelector(selectBoardState, (state) =>
       state.currBoard?.columns?.find((column) => column.id === columnId),
+    );
+
+  export const selectTasks = (columnId: string) =>
+    createSelector(selectColumnById(columnId), (state) => state?.tasks);
+
+  export const selectTasksBiId = (columnId: string, taskId: string) =>
+    createSelector(selectColumnById(columnId), (state) =>
+      state?.tasks?.find((task) => task.id === taskId),
     );
 }

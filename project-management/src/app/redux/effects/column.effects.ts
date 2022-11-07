@@ -46,10 +46,10 @@ export class ColumnEffects {
       ofType(ColumnActions.createColumnAction),
       switchMap((props) =>
         this.columnService.createColumn(props.boardId, props.column).pipe(
-          map((board) => {
-            if ('title' in board)
+          map((column) => {
+            if ('title' in column)
               return ColumnActions.getAllColumnsAction({ boardId: props.boardId });
-            else return errorMessageAction({ errorMessage: 'Could not create board' });
+            else return errorMessageAction({ errorMessage: 'Could not create column' });
           }),
           catchError(() => EMPTY),
         ),
@@ -64,7 +64,7 @@ export class ColumnEffects {
         this.columnService.deleteColumn(props.boardId, props.columnId).pipe(
           map((response) => {
             if (!response) return ColumnActions.getAllColumnsAction({ boardId: props.boardId });
-            else return errorMessageAction({ errorMessage: 'Could not delete board' });
+            else return errorMessageAction({ errorMessage: 'Could not delete column' });
           }),
           catchError(() => EMPTY),
         ),
@@ -77,10 +77,10 @@ export class ColumnEffects {
       ofType(ColumnActions.updateColumnAction),
       switchMap((props) =>
         this.columnService.updateColumn(props.boardId, props.columnId, props.column).pipe(
-          map((board) => {
-            if ('title' in board)
+          map((column) => {
+            if ('title' in column)
               return ColumnActions.getAllColumnsAction({ boardId: props.boardId });
-            else return errorMessageAction({ errorMessage: 'Could not update board' });
+            else return errorMessageAction({ errorMessage: 'Could not update column' });
           }),
           catchError(() => EMPTY),
         ),
