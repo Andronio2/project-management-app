@@ -47,6 +47,7 @@
     }
   },
   "main": {
-    "boards": "Доски"
+    "boards": "Доски",
+    "searchBoards": "Поиск досок"
   }
 }

@@ -47,6 +47,7 @@
     }
   },
   "main": {
-    "boards": "Boards"
+    "boards": "Boards",
+    "searchBoards": "Search boards"
   }
 }

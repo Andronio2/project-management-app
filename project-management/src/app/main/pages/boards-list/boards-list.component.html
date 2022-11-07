@@ -1,7 +1,16 @@
 <ng-container *transloco="let t">
-  <h2 class="boards__title">{{ t('main.boards')}}</h2>
+  <div class="boards__header">
+    <h2 class="boards__title">{{ t('main.boards')}}</h2>
+    <mat-form-field class="boards__search" appearance="outline">
+      <mat-label>{{ t('main.searchBoards') }}</mat-label>
+      <input matInput type="text" [(ngModel)]="searchValue">
+      <button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
   <div class="board__container">
-    <mat-card class="board" *ngFor="let board of boards$ | async">
+    <mat-card class="board" *ngFor="let board of (boards$ | async)! | searchBoards:searchValue">
       <mat-card-header class="board__header">
         <mat-card-title>{{board.title}}</mat-card-title>
         <button mat-mini-fab color="accent" aria-label="delete button" (click)="deleteBoard(board.id)">

@@ -15,6 +15,8 @@ import { ModalType } from 'src/app/share/constants/constants';
 export class BoardsListComponent implements OnInit {
   boards$: Observable<IBoard[]> = new Observable();
 
+  searchValue = '';
+
   constructor(private store: Store, private modalService: ModalService) {}
 
   ngOnInit(): void {
