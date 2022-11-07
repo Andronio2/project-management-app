@@ -2,6 +2,7 @@ import { IUser } from '../share/models/auth.model';
 import { IBoard } from '../share/models/board.model';
 
 export interface IUserState {
+  isAuth: boolean;
   allUsers: IUser[];
   currUser?: IUser;
 }

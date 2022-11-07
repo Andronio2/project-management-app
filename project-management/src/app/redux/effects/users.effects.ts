@@ -5,9 +5,46 @@ import { map, catchError, switchMap } from 'rxjs/operators';
 import { UserService } from 'src/app/core/services/API/user.service';
 import { errorMessageAction } from '../actions/error-message.action';
 import { UserActions } from '../actions/users.actions';
+import { AuthService } from 'src/app/core/services/API/auth.service';
 
 @Injectable()
 export class UserEffects {
+  signIn$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.SignIn),
+      switchMap(({ user }) =>
+        this.authService.signIn(user).pipe(
+          map((token) => {
+            if ('token' in token) {
+              return UserActions.SignInSuccess();
+            }
+            return errorMessageAction({ errorMessage: token.message });
+          }),
+          catchError(() => EMPTY),
+        ),
+      ),
+    ),
+  );
+
+  signUp$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.SignUp),
+      switchMap((action) =>
+        this.authService.signUp(action.user).pipe(
+          map((user) => {
+            if ('id' in user) {
+              return UserActions.SignIn({
+                user: { login: action.user.login, password: action.user.password },
+              });
+            }
+            return errorMessageAction({ errorMessage: user.message });
+          }),
+          catchError(() => EMPTY),
+        ),
+      ),
+    ),
+  );
+
   loadUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.getUsers),
@@ -72,5 +109,9 @@ export class UserEffects {
       ),
     ),
   );
-  constructor(private actions$: Actions, private userService: UserService) {}
+  constructor(
+    private actions$: Actions,
+    private userService: UserService,
+    private authService: AuthService,
+  ) {}
 }

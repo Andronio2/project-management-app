@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ICreateUserDto, IUser } from 'src/app/share/models/auth.model';
+import { ICreateUserDto, ISigninUserDto, IUser } from 'src/app/share/models/auth.model';
 
 export namespace UserActions {
   export const getUsers = createAction('[User] GET_USERS');
@@ -24,4 +24,12 @@ export namespace UserActions {
   );
 
   export const deleteUsersSuccess = createAction('[User] DELETE_USER_SUCCESSES');
+
+  export const SignUp = createAction('[User] SIGN_UP', props<{ user: ICreateUserDto }>());
+
+  export const SignIn = createAction('[User] SIGN_IN', props<{ user: ISigninUserDto }>());
+
+  export const SignInSuccess = createAction('[User] SIGN_IN_SUCCESS');
+
+  export const LogOut = createAction('[User] LOG_OUT');
 }

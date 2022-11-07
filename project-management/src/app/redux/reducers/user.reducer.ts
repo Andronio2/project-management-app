@@ -4,6 +4,7 @@ import { IUserState } from '../state.model';
 
 export const initialState: IUserState = {
   allUsers: [],
+  isAuth: false,
 };
 
 export const userReducer = createReducer(
@@ -27,6 +28,21 @@ export const userReducer = createReducer(
     (state): IUserState => ({
       ...state,
       currUser: undefined,
+      isAuth: false,
+    }),
+  ),
+  on(
+    UserActions.SignInSuccess,
+    (state): IUserState => ({
+      ...state,
+      isAuth: true,
+    }),
+  ),
+  on(
+    UserActions.LogOut,
+    (state): IUserState => ({
+      ...state,
+      isAuth: false,
     }),
   ),
 );
