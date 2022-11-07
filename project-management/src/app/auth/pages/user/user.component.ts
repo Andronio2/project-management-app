@@ -7,9 +7,8 @@ import { TokenService } from 'src/app/core/services/token.service';
 import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import passwordValidator from '../../validators/passwordValidator';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmModalComponent } from '../../../core/components/confirm-modal/confirm-modal.component';
-import { AuthService } from 'src/app/core/services/API/auth.service';
+import { ModalService } from 'src/app/core/services/modal.service';
+import { ModalType } from 'src/app/share/constants/constants';
 
 @Component({
   selector: 'app-user',
@@ -35,8 +34,7 @@ export class UserComponent implements OnInit {
     private store: Store,
     private tokenService: TokenService,
     private fb: FormBuilder,
-    private dialog: MatDialog,
-    private authService: AuthService,
+    private modalService: ModalService,
   ) {
     this.userId = this.tokenService.getId();
     this.editForm = this.fb.group({
@@ -76,19 +74,8 @@ export class UserComponent implements OnInit {
 
   public openDialog(event: Event) {
     event.preventDefault();
-    const dialogRef = this.dialog.open(ConfirmModalComponent, {
-      data: {
-        title: 'Delete profile',
-        question: 'Are you sure you want to delete profile?',
-      },
-      width: '295px',
-    });
-
-    dialogRef.afterClosed().subscribe((result: boolean) => {
-      if (result && this.userId) {
-        this.store.dispatch(UserActions.deleteUser({ id: this.userId }));
-        this.authService.logOut();
-      }
-    });
+    if (this.userId) {
+      this.modalService.openConfirmDelete(ModalType.USER, this.userId);
+    }
   }
 }

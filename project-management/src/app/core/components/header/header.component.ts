@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { CreateModalComponent } from '../create-modal/create-modal.component';
 import { TranslocoService } from '@ngneat/transloco';
+import { ModalType } from 'src/app/share/constants/constants';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
 
   availableLang: string[] | { id: string; label: string }[];
 
-  constructor(private dialog: MatDialog, private translateService: TranslocoService) {
+  constructor(private modalService: ModalService, private translateService: TranslocoService) {
     this.activeLang = localStorage.getItem('lang') || this.translateService.getActiveLang();
     this.availableLang = this.translateService.getAvailableLangs();
   }
@@ -23,14 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public openCreateMod() {
-    this.dialog.open(CreateModalComponent, {
-      minWidth: '300px',
-      maxWidth: '500px',
-      data: {
-        name: 'board',
-        type: 'Create',
-      },
-    });
+    this.modalService.openCreateMod(ModalType.CREATE, ModalType.BOARD);
   }
 
   changeLang(lang: string) {
