@@ -45,4 +45,8 @@ export class HeaderComponent implements OnInit {
     this.activeLang = lang;
     localStorage.setItem('lang', this.activeLang);
   }
+
+  logOut() {
+    this.authService.logOut();
+  }
 }
