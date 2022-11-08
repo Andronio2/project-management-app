@@ -13,7 +13,7 @@
     <mat-card class="board" *ngFor="let board of (boards$ | async)! | searchBoards:searchValue" (click)="goToBoardPage(board.id)">
       <mat-card-header class="board__header">
         <mat-card-title>{{board.title}}</mat-card-title>
-        <button mat-mini-fab color="accent" aria-label="delete button" (click)="deleteBoard(board.id)">
+        <button mat-mini-fab color="accent" aria-label="delete button" (click)="deleteBoard($event, board.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-header>
