@@ -9,6 +9,14 @@
         <mat-card-title>{{ column.title }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
+        <div class="board__tasks">
+          <mat-card class="board__task" *ngFor="let task of (tasks$ | async)!">
+            <mat-card-header>
+              <mat-card-title>{{ task.title }}</mat-card-title>
+            </mat-card-header>
+          </mat-card>
+        </div>
+        <button mat-raised-button (click)="createTask()"><mat-icon>add</mat-icon> Add a task</button>
       </mat-card-content>
     </mat-card>
   </div>
