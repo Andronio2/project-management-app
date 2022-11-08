@@ -1,0 +1,27 @@
+:host {
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+.board__header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.board__title {
+  margin-bottom: 0;
+}
+
+.board__columns {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  padding: 1rem 0;
+  overflow: auto;
+}
+
+.board__column {
+  min-width: 300px;
+  // max-height: calc(100vh - 228px);
+}
