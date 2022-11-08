@@ -6,6 +6,7 @@ import { UserService } from 'src/app/core/services/API/user.service';
 import { errorMessageAction } from '../actions/error-message.action';
 import { UserActions } from '../actions/users.actions';
 import { AuthService } from 'src/app/core/services/API/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserEffects {
@@ -16,6 +17,7 @@ export class UserEffects {
         this.authService.signIn(user).pipe(
           map((token) => {
             if ('token' in token) {
+              this.router.navigate(['/main']);
               return UserActions.SignInSuccess();
             }
             return errorMessageAction({ errorMessage: token.message });
@@ -113,5 +115,6 @@ export class UserEffects {
     private actions$: Actions,
     private userService: UserService,
     private authService: AuthService,
+    private router: Router,
   ) {}
 }
