@@ -6,7 +6,6 @@ import { BoardActions } from 'src/app/redux/actions/board.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
 import { IBoard } from 'src/app/share/models/board.model';
 import { ModalType } from 'src/app/share/constants/constants';
-import { AuthService } from 'src/app/core/services/API/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,17 +18,9 @@ export class BoardsListComponent implements OnInit {
 
   searchValue = '';
 
-  constructor(
-    private store: Store,
-    private modalService: ModalService,
-    private authService: AuthService,
-    private router: Router,
-  ) {}
+  constructor(private store: Store, private modalService: ModalService, private router: Router) {}
 
   ngOnInit(): void {
-    if (!this.authService.isAuth()) {
-      this.router.navigate(['/welcome']);
-    }
     this.store.dispatch(BoardActions.getAllBoardsAction());
     this.boards$ = this.store.select(Selectors.selectBoards);
   }
@@ -40,5 +31,9 @@ export class BoardsListComponent implements OnInit {
 
   createBoard() {
     this.modalService.openCreateMod(ModalType.CREATE, ModalType.BOARD);
+  }
+
+  goToBoardPage(id: string) {
+    this.router.navigate(['/board', id]);
   }
 }

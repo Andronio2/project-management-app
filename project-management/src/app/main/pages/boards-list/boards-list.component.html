@@ -1,6 +1,6 @@
 <ng-container *transloco="let t">
   <div class="boards__header">
-    <h2 class="boards__title">{{ t('main.boards')}}</h2>
+    <h2 class="boards__title">{{ t('main.boards') }}</h2>
     <mat-form-field class="boards__search" appearance="outline">
       <mat-label>{{ t('main.searchBoards') }}</mat-label>
       <input matInput type="text" [(ngModel)]="searchValue">
@@ -10,7 +10,7 @@
     </mat-form-field>
   </div>
   <div class="board__container">
-    <mat-card class="board" *ngFor="let board of (boards$ | async)! | searchBoards:searchValue">
+    <mat-card class="board" *ngFor="let board of (boards$ | async)! | searchBoards:searchValue" (click)="goToBoardPage(board.id)">
       <mat-card-header class="board__header">
         <mat-card-title>{{board.title}}</mat-card-title>
         <button mat-mini-fab color="accent" aria-label="delete button" (click)="deleteBoard(board.id)">

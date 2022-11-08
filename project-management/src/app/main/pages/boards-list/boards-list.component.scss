@@ -1,9 +1,9 @@
 :host {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   padding: 2rem;
   background-color: #e8eaf6;
-  min-height: calc(100vh - 192px);
 }
 
 .boards__header {
