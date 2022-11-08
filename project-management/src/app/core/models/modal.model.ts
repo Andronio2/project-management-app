@@ -7,6 +7,7 @@ export interface IBoardModal {
   name: string;
   type: string;
   boardId: string;
+  columnId: string;
 }
 
 export interface IErrorModal {
