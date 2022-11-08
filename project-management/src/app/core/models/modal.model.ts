@@ -6,6 +6,7 @@ export interface IConfirmData {
 export interface IBoardModal {
   name: string;
   type: string;
+  boardId: string;
 }
 
 export interface IErrorModal {
