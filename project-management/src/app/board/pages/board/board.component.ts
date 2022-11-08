@@ -44,7 +44,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.modalService.openCreateMod(ModalType.CREATE, ModalType.COLUMN, this.boardId);
   }
 
-  createTask() {
-    this.modalService.openCreateMod(ModalType.CREATE, ModalType.TASK);
+ createTask(columnId: string) {
+    this.modalService.openCreateMod(ModalType.CREATE, ModalType.TASK, this.boardId, columnId);
   }
 }

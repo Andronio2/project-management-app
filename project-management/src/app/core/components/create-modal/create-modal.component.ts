@@ -8,6 +8,7 @@ import { ColumnActions } from 'src/app/redux/actions/column.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
 import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { UserActions } from 'src/app/redux/actions/users.actions';
+import { TaskActions } from 'src/app/redux/actions/task.action';
 
 @Component({
   selector: 'app-create-modal',
@@ -69,6 +70,13 @@ export class CreateModalComponent implements OnInit {
         break;
 
       case 'task':
+        this.store.dispatch(
+          TaskActions.createTaskAction({
+            boardId: this.data.boardId,
+            columnId: this.data.columnId,
+            task: this.boardForm.getRawValue(),
+          }),
+        );
         break;
 
       default:
