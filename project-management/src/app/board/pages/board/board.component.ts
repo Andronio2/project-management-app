@@ -61,7 +61,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   createColumn() {
-    this.modalService.openCreateMod(ModalType.CREATE, ModalType.COLUMN);
+    this.modalService.openCreateMod(ModalType.CREATE, ModalType.COLUMN, this.boardId);
   }
 
   createTask() {
