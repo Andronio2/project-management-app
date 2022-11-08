@@ -60,17 +60,12 @@ export class CreateModalComponent implements OnInit {
         break;
 
       case 'column':
-        this.currBoard$.subscribe((currBoard) => {
-          if (currBoard) {
-            this.store.dispatch(
-              ColumnActions.createColumnAction({
-                boardId: currBoard.id,
-                column: this.boardForm.getRawValue(),
-              }),
-            );
-          }
-        });
-
+        this.store.dispatch(
+          ColumnActions.createColumnAction({
+            boardId: this.data.boardId,
+            column: this.boardForm.getRawValue(),
+          }),
+        );
         break;
 
       case 'task':
