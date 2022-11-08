@@ -49,5 +49,8 @@
   "main": {
     "boards": "Boards",
     "searchBoards": "Search boards"
+  },
+  "board": {
+    "createColumn": "Create a column"
   }
 }

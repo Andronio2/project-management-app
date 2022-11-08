@@ -49,5 +49,8 @@
   "main": {
     "boards": "Доски",
     "searchBoards": "Поиск досок"
+  },
+  "board": {
+    "createColumn": "Создать колонку"
   }
 }
