@@ -4,19 +4,17 @@
     <button mat-raised-button (click)="createColumn()"><mat-icon>add</mat-icon> {{ t('createColumn') }}</button>
   </div>
   <div class="board__columns">
-    <mat-card class="board__column" *ngFor="let column of (board$ | async)!.columns">
+    <mat-card class="board__column" *ngFor="let column of (board$ | async)?.columns">
       <mat-card-header>
         <mat-card-title>{{ column.title }}</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
+      <mat-card-content class="board__column-content">
         <div class="board__tasks">
           <mat-card class="board__task" *ngFor="let task of column.tasks">
-            <mat-card-header>
-              <mat-card-title>{{ task.title }}</mat-card-title>
-            </mat-card-header>
+            <mat-card-content>{{ task.title }}</mat-card-content>
           </mat-card>
         </div>
-        <button mat-raised-button (click)="createTask(column.id)"><mat-icon>add</mat-icon> Add a task</button>
+        <button mat-button (click)="createTask(column.id)">Add a task</button>
       </mat-card-content>
     </mat-card>
   </div>
