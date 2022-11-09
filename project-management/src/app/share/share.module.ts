@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { SortColumnsTasksPipe } from './pipes/sort-columns-tasks.pipe';
 
 const MaterialComponents = [
   MatDialogModule,
@@ -26,8 +27,8 @@ const MaterialComponents = [
   MatSelectModule,
 ];
 @NgModule({
-  declarations: [],
+  declarations: [SortColumnsTasksPipe],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ...MaterialComponents],
-  exports: [FormsModule, ReactiveFormsModule, ...MaterialComponents],
+  exports: [FormsModule, ReactiveFormsModule, ...MaterialComponents, SortColumnsTasksPipe],
 })
 export class ShareModule {}
