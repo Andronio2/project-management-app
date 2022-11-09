@@ -1,21 +1,10 @@
 <ng-container *transloco="let t; read: 'board'">
   <div class="board__header">
+    <button mat-icon-button color="primary" aria-label="back button" (click)="goToMainPage()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
     <h2 class="board__title">{{(board$ | async)?.title}}</h2>
     <button mat-raised-button (click)="createColumn()"><mat-icon>add</mat-icon> {{ t('createColumn') }}</button>
   </div>
-  <div class="board__columns">
-    <mat-card class="board__column" *ngFor="let column of (board$ | async)?.columns">
-      <mat-card-header>
-        <mat-card-title>{{ column.title }}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="board__column-content">
-        <div class="board__tasks">
-          <mat-card class="board__task" *ngFor="let task of column.tasks">
-            <mat-card-content>{{ task.title }}</mat-card-content>
-          </mat-card>
-        </div>
-        <button mat-button (click)="createTask(column.id)">Add a task</button>
-      </mat-card-content>
-    </mat-card>
-  </div>
+  <app-column [board]="{ board$, boardId }"></app-column>
 </ng-container>
