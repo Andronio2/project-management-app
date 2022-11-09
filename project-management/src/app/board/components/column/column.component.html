@@ -3,7 +3,7 @@
   <ng-template #editColumnTitle>
     <mat-form-field appearance="standard">
       <mat-label>Edit title</mat-label>
-      <input matInput type="text" [(ngModel)]="columnTitle" value="column.title">
+      <input matInput type="text" [(ngModel)]="fromBoard.column.title">
       </mat-form-field>
   </ng-template>
   <button mat-mini-fab color="accent" aria-label="delete button" (click)="deleteColumn(fromBoard.column.id)">
