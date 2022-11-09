@@ -7,9 +7,10 @@ import BoardRoutingModule from './board-routing.module';
 import { BoardComponent } from './pages/board/board.component';
 import { ShareModule } from '../share/share.module';
 import { TranslocoModule } from '@ngneat/transloco';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [ColumnComponent, TaskComponent, BoardPreviewComponent, BoardComponent],
-  imports: [CommonModule, BoardRoutingModule, ShareModule, TranslocoModule],
+  imports: [CommonModule, BoardRoutingModule, ShareModule, TranslocoModule, DragDropModule],
 })
 export class BoardModule {}
