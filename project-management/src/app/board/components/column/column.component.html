@@ -1,1 +1,18 @@
-<p>column works!</p>
+<mat-card class="board__column" *ngFor="let column of (board.board$ | async)?.columns">
+  <mat-card-header class="board__column-header">
+    <mat-card-title *ngIf="!isEditColumnTitle; else editColumnTitle" (click)="setEditMode()">{{ column.title }}</mat-card-title>
+    <ng-template #editColumnTitle>
+      <mat-form-field appearance="standard">
+        <mat-label>Edit title</mat-label>
+        <input matInput type="text" [(ngModel)]="columnTitle" value="column.title">
+        </mat-form-field>
+    </ng-template>
+    <button mat-mini-fab color="accent" aria-label="delete button" (click)="deleteColumn(column.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-header>
+  <mat-card-content class="board__column-content">
+    <app-task [column]="column"></app-task>
+    <button mat-button (click)="createTask(column.id)">Add a task</button>
+  </mat-card-content>
+</mat-card>
