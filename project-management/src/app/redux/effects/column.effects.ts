@@ -5,6 +5,7 @@ import { map, catchError, switchMap } from 'rxjs/operators';
 import { ColumnService } from '../../core/services/API/column.service';
 import { errorMessageAction } from '../actions/error-message.action';
 import { ColumnActions } from '../actions/column.action';
+import { BoardActions } from '../actions/board.action';
 
 @Injectable()
 export class ColumnEffects {
@@ -47,8 +48,7 @@ export class ColumnEffects {
       switchMap((props) =>
         this.columnService.createColumn(props.boardId, props.column).pipe(
           map((column) => {
-            if ('title' in column)
-              return ColumnActions.getAllColumnsAction({ boardId: props.boardId });
+            if ('title' in column) return BoardActions.getBoardAction({ boardId: props.boardId });
             else return errorMessageAction({ errorMessage: 'Could not create column' });
           }),
           catchError(() => EMPTY),
@@ -63,7 +63,7 @@ export class ColumnEffects {
       switchMap((props) =>
         this.columnService.deleteColumn(props.boardId, props.columnId).pipe(
           map((response) => {
-            if (!response) return ColumnActions.getAllColumnsAction({ boardId: props.boardId });
+            if (!response) return BoardActions.getBoardAction({ boardId: props.boardId });
             else return errorMessageAction({ errorMessage: 'Could not delete column' });
           }),
           catchError(() => EMPTY),
@@ -78,8 +78,7 @@ export class ColumnEffects {
       switchMap((props) =>
         this.columnService.updateColumn(props.boardId, props.columnId, props.column).pipe(
           map((column) => {
-            if ('title' in column)
-              return ColumnActions.getAllColumnsAction({ boardId: props.boardId });
+            if ('title' in column) return BoardActions.getBoardAction({ boardId: props.boardId });
             else return errorMessageAction({ errorMessage: 'Could not update column' });
           }),
           catchError(() => EMPTY),
