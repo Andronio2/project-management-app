@@ -1,4 +1,4 @@
-<mat-card-header class="board__column-header">
+<mat-card-header class="column__header">
   <mat-card-title *ngIf="!isEditColumnTitle; else editColumnTitle" (click)="setEditMode()">{{ fromBoard.column.title }}</mat-card-title>
   <ng-template #editColumnTitle>
     <mat-form-field appearance="standard">
@@ -10,9 +10,9 @@
     <mat-icon>delete</mat-icon>
   </button>
 </mat-card-header>
-<mat-card-content class="board__column-content">
-  <div class="board__tasks">
-    <mat-card class="board__task" *ngFor="let task of fromBoard.column.tasks" (click)="editTask(task.id)">
+<mat-card-content class="column__content">
+  <div class="column__tasks">
+    <mat-card class="column__task" *ngFor="let task of fromBoard.column.tasks" (click)="editTask(task.id)">
       <app-task [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task }"></app-task>
     </mat-card>
   </div>

@@ -1,3 +1,10 @@
-.board__task-content {
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.task-content {
   margin-bottom: 0;
 }
