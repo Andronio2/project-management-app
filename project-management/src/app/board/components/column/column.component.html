@@ -16,5 +16,5 @@
       <app-task [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task }"></app-task>
     </mat-card>
   </div>
-  <button mat-button (click)="createTask(fromBoard.column.id)">Add a task</button>
+  <button mat-button color="primary" (click)="createTask(fromBoard.column.id)">Add a task</button>
 </mat-card-content>
