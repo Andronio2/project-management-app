@@ -18,7 +18,8 @@ export class TaskComponent {
 
   constructor(private modalService: ModalService) {}
 
-  deleteTask(id: string) {
+  deleteTask(e: Event, id: string) {
+    e.stopPropagation();
     this.modalService.openConfirmDelete(
       ModalType.TASK,
       this.fromColumn.boardId,
