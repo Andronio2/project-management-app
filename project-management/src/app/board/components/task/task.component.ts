@@ -9,11 +9,19 @@ import { IColumn } from 'src/app/share/models/column.model';
   styleUrls: ['./task.component.scss'],
 })
 export class TaskComponent {
-  @Input() column!: IColumn;
+  @Input() boardColumn!: {
+    boardId: string;
+    column: IColumn;
+  };
 
-  constructor() {}
+  constructor(private modalService: ModalService) {}
 
   deleteTask(id: string) {
-
+    this.modalService.openConfirmDelete(
+      ModalType.TASK,
+      this.boardColumn.boardId,
+      this.boardColumn.column.id,
+      id,
+    );
   }
 }
