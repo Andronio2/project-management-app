@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { IColumn, IColumnDto } from 'src/app/share/models/column.model';
+import { IColumn, IColumnDto, IUpdateColumnDto } from 'src/app/share/models/column.model';
 import { IErrorResponse } from 'src/app/share/models/error-message.model';
 import { ErrorHandlerService } from './error-handler.service';
 
@@ -44,7 +44,7 @@ export class ColumnService {
   public updateColumn(
     boardId: string,
     columnId: string,
-    column: IColumnDto,
+    column: IUpdateColumnDto,
   ): Observable<IColumn | IErrorResponse> {
     const url = `/boards/${boardId}/columns/${columnId}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

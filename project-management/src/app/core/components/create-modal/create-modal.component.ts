@@ -19,7 +19,14 @@ import { ModalType } from 'src/app/share/constants/constants';
 export class CreateModalComponent implements OnInit {
   boardForm: FormGroup;
 
-  title = new FormControl('', [
+  updateData = {
+    title: '',
+    description: '',
+    userId: '',
+    order: 0,
+  };
+
+  title = new FormControl(this.updateData.title, [
     Validators.required,
     Validators.minLength(3),
     Validators.maxLength(20),
@@ -27,9 +34,14 @@ export class CreateModalComponent implements OnInit {
 
   description =
     this.data.name !== 'column' &&
-    new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(255)]);
+    new FormControl(this.updateData.description, [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(255),
+    ]);
 
-  userId = this.data.name === 'task' && new FormControl('', [Validators.required]);
+  userId =
+    this.data.name === 'task' && new FormControl(this.updateData.userId, [Validators.required]);
 
   currBoard$ = this.store.select(Selectors.selectBoard);
 
@@ -41,10 +53,43 @@ export class CreateModalComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IBoardModal,
   ) {
+    this.currBoard$.subscribe((board) => {
+      if (this.data.type === ModalType.UPDATE && board) {
+        switch (this.data.name) {
+          case ModalType.BOARD:
+            this.updateData.title = board.title;
+            this.updateData.description = board.description;
+            break;
+          case ModalType.COLUMN:
+            this.updateData.title = board.columns!.find(
+              (column) => column.id === this.data.columnId,
+            )!.title;
+            this.updateData.order = board.columns!.find(
+              (column) => column.id === this.data.columnId,
+            )!.order;
+            break;
+          case ModalType.TASK:
+            this.updateData.title = board
+              .columns!.find((column) => column.id === this.data.columnId)!
+              .tasks!.find((task) => task.id === this.data.taskId)!.title;
+            this.updateData.description = board
+              .columns!.find((column) => column.id === this.data.columnId)!
+              .tasks!.find((task) => task.id === this.data.taskId)!.description;
+            this.updateData.order = board
+              .columns!.find((column) => column.id === this.data.columnId)!
+              .tasks!.find((task) => task.id === this.data.taskId)!.order;
+            break;
+          default:
+            break;
+        }
+      }
+    });
     this.boardForm = this.fb.group({
       title: this.title,
       ...(this.description && { description: this.description }),
       ...(this.userId && { userId: this.userId }),
+      ...(this.data.type === ModalType.UPDATE &&
+        this.data.name !== ModalType.BOARD && { order: this.updateData.order }),
     });
   }
   ngOnInit(): void {
@@ -107,7 +152,10 @@ export class CreateModalComponent implements OnInit {
               boardId: this.data.boardId,
               columnId: this.data.columnId,
               taskId: this.data.taskId,
-              task: this.boardForm.getRawValue(),
+              task: {
+                ...this.boardForm.getRawValue(),
+                boardId: this.data.boardId,
+              },
             }),
           );
         }
