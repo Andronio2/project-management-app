@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { BoardActions } from 'src/app/redux/actions/board.action';
 import { ColumnActions } from 'src/app/redux/actions/column.action';
+import { TaskActions } from 'src/app/redux/actions/task.action';
 import { UserActions } from 'src/app/redux/actions/users.actions';
 import { ModalType } from 'src/app/share/constants/constants';
 import { ConfirmModalComponent } from '../components/confirm-modal/confirm-modal.component';
@@ -68,6 +69,11 @@ export class ModalService {
           case ModalType.COLUMN:
             if (columnId) {
               this.store.dispatch(ColumnActions.deleteColumnAction({ boardId: id, columnId }));
+            }
+            break;
+          case ModalType.TASK:
+            if (taskId && columnId) {
+              this.store.dispatch(TaskActions.deleteTaskAction({ boardId: id, columnId, taskId }));
             }
             break;
           default:
