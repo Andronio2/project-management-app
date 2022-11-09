@@ -79,6 +79,9 @@ export class CreateModalComponent implements OnInit {
             this.updateData.order = board
               .columns!.find((column) => column.id === this.data.columnId)!
               .tasks!.find((task) => task.id === this.data.taskId)!.order;
+            this.updateData.userId = board
+              .columns!.find((column) => column.id === this.data.columnId)!
+              .tasks!.find((task) => task.id === this.data.taskId)!.userId;
             break;
           default:
             break;
@@ -96,6 +99,13 @@ export class CreateModalComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.name === 'task') {
       this.store.dispatch(UserActions.getUsers());
+    }
+    this.title.setValue(this.updateData.title);
+    if (this.description) {
+      this.description.setValue(this.updateData.description);
+    }
+    if (this.userId) {
+      this.userId.setValue(this.updateData.userId);
     }
   }
 
