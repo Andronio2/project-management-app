@@ -6,5 +6,9 @@
     <h2 class="board__title">{{(board$ | async)?.title}}</h2>
     <button mat-raised-button (click)="createColumn()"><mat-icon>add</mat-icon> {{ t('createColumn') }}</button>
   </div>
-  <app-column [board]="{ board$, boardId }"></app-column>
+  <div class="board__columns">
+    <mat-card class="board__column" *ngFor="let column of (board$ | async)?.columns">
+      <app-column [fromBoard]="{ column, boardId }"></app-column>
+    </mat-card>
+  </div>
 </ng-container>

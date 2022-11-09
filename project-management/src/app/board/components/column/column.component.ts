@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { ModalType } from 'src/app/share/constants/constants';
-import { IBoard } from 'src/app/share/models/board.model';
+import { IColumn } from 'src/app/share/models/column.model';
 
 @Component({
   selector: 'app-column',
@@ -10,8 +9,8 @@ import { IBoard } from 'src/app/share/models/board.model';
   styleUrls: ['./column.component.scss'],
 })
 export class ColumnComponent {
-  @Input() board!: {
-    board$: Observable<IBoard | undefined>;
+  @Input() fromBoard!: {
+    column: IColumn;
     boardId: string;
   };
 
@@ -22,14 +21,29 @@ export class ColumnComponent {
   constructor(private modalService: ModalService) {}
 
   deleteColumn(id: string) {
-    this.modalService.openConfirmDelete(ModalType.COLUMN, this.board.boardId, id);
+    this.modalService.openConfirmDelete(ModalType.COLUMN, this.fromBoard.boardId, id);
   }
 
   createTask(columnId: string) {
-    this.modalService.openCreateMod(ModalType.CREATE, ModalType.TASK, this.board.boardId, columnId);
+    this.modalService.openCreateMod(
+      ModalType.CREATE,
+      ModalType.TASK,
+      this.fromBoard.boardId,
+      columnId,
+    );
   }
 
   setEditMode() {
     this.isEditColumnTitle = true;
+  }
+
+  editTask(id: string) {
+    this.modalService.openCreateMod(
+      ModalType.UPDATE,
+      ModalType.TASK,
+      this.fromBoard.boardId,
+      this.fromBoard.column.id,
+      id,
+    );
   }
 }
