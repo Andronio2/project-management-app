@@ -24,4 +24,14 @@ export class TaskComponent {
       id,
     );
   }
+
+  editTask(id: string) {
+    this.modalService.openCreateMod(
+      ModalType.UPDATE,
+      ModalType.TASK,
+      this.boardColumn.boardId,
+      this.boardColumn.column.id,
+      id,
+    );
+  }
 }

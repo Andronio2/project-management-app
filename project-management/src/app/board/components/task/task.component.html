@@ -1,4 +1,4 @@
-<mat-card class="board__task" *ngFor="let task of boardColumn.column.tasks">
+<mat-card class="board__task" *ngFor="let task of boardColumn.column.tasks" (click)="editTask(task.id)">
   <mat-card-content class="board__task-content">{{ task.title }}</mat-card-content>
   <button mat-icon-button color="primary" aria-label="delete button" (click)="deleteTask(task.id)">
     <mat-icon>delete</mat-icon>
