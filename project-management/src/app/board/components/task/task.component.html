@@ -1,1 +1,6 @@
-<p>task works!</p>
+<mat-card class="board__task" *ngFor="let task of column.tasks">
+  <mat-card-content class="board__task-content">{{ task.title }}</mat-card-content>
+  <button mat-icon-button color="primary" aria-label="delete button" (click)="deleteTask(task.id)">
+    <mat-icon>delete</mat-icon>
+  </button>
+</mat-card>
