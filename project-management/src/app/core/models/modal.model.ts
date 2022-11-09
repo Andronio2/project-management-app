@@ -8,6 +8,7 @@ export interface IBoardModal {
   type: string;
   boardId: string;
   columnId: string;
+  taskId: string;
 }
 
 export interface IErrorModal {

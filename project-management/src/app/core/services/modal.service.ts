@@ -26,7 +26,13 @@ export class ModalService {
     setTimeout(() => dialogRef.close(), 3000);
   }
 
-  public openCreateMod(type: string, name: string, boardId?: string, columnId?: string) {
+  public openCreateMod(
+    type: string,
+    name: string,
+    boardId?: string,
+    columnId?: string,
+    taskId?: string,
+  ) {
     this.dialog.open(CreateModalComponent, {
       minWidth: '300px',
       maxWidth: '500px',
@@ -35,6 +41,7 @@ export class ModalService {
         type,
         boardId,
         columnId,
+        taskId,
       },
     });
   }
