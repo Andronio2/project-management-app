@@ -1,1 +1,4 @@
-<p>task works!</p>
+<mat-card-content class="task-content">{{ fromColumn.task.title }}</mat-card-content>
+<button mat-icon-button aria-label="delete button" (click)="deleteTask($event, fromColumn.task.id)">
+  <mat-icon>delete</mat-icon>
+</button>

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { ModalService } from 'src/app/core/services/modal.service';
@@ -24,6 +24,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     private store: Store,
     public route: ActivatedRoute,
     private modalService: ModalService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +45,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.modalService.openCreateMod(ModalType.CREATE, ModalType.COLUMN, this.boardId);
   }
 
-  createTask(columnId: string) {
-    this.modalService.openCreateMod(ModalType.CREATE, ModalType.TASK, this.boardId, columnId);
+  goToMainPage() {
+    this.router.navigate(['/main']);
   }
 }
