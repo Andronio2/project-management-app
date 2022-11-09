@@ -10,6 +10,7 @@ import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { UserActions } from 'src/app/redux/actions/users.actions';
 import { TaskActions } from 'src/app/redux/actions/task.action';
 import { ModalType } from 'src/app/share/constants/constants';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-create-modal',
@@ -53,7 +54,7 @@ export class CreateModalComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IBoardModal,
   ) {
-    this.currBoard$.subscribe((board) => {
+    this.currBoard$.pipe(take(1)).subscribe((board) => {
       if (this.data.type === ModalType.UPDATE && board) {
         switch (this.data.name) {
           case ModalType.BOARD:
