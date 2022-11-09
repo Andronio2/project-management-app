@@ -9,6 +9,7 @@ import { Selectors } from 'src/app/redux/selectors/board.selectors';
 import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { UserActions } from 'src/app/redux/actions/users.actions';
 import { TaskActions } from 'src/app/redux/actions/task.action';
+import { ModalType } from 'src/app/share/constants/constants';
 
 @Component({
   selector: 'app-create-modal',
@@ -55,28 +56,61 @@ export class CreateModalComponent implements OnInit {
   createBoard() {
     switch (this.data.name) {
       case 'board':
-        this.store.dispatch(
-          BoardActions.createBoardAction({ board: this.boardForm.getRawValue() }),
-        );
+        if (this.data.type === ModalType.CREATE) {
+          this.store.dispatch(
+            BoardActions.createBoardAction({ board: this.boardForm.getRawValue() }),
+          );
+        }
+        if (this.data.type === ModalType.UPDATE) {
+          this.store.dispatch(
+            BoardActions.updateBoardAction({
+              id: this.data.boardId,
+              board: this.boardForm.getRawValue(),
+            }),
+          );
+        }
         break;
 
       case 'column':
-        this.store.dispatch(
-          ColumnActions.createColumnAction({
-            boardId: this.data.boardId,
-            column: this.boardForm.getRawValue(),
-          }),
-        );
+        if (this.data.type === ModalType.CREATE) {
+          this.store.dispatch(
+            ColumnActions.createColumnAction({
+              boardId: this.data.boardId,
+              column: this.boardForm.getRawValue(),
+            }),
+          );
+        }
+        if (this.data.type === ModalType.UPDATE) {
+          this.store.dispatch(
+            ColumnActions.updateColumnAction({
+              boardId: this.data.boardId,
+              columnId: this.data.columnId,
+              column: this.boardForm.getRawValue(),
+            }),
+          );
+        }
         break;
 
       case 'task':
-        this.store.dispatch(
-          TaskActions.createTaskAction({
-            boardId: this.data.boardId,
-            columnId: this.data.columnId,
-            task: this.boardForm.getRawValue(),
-          }),
-        );
+        if (this.data.type === ModalType.CREATE) {
+          this.store.dispatch(
+            TaskActions.createTaskAction({
+              boardId: this.data.boardId,
+              columnId: this.data.columnId,
+              task: this.boardForm.getRawValue(),
+            }),
+          );
+        }
+        if (this.data.type === ModalType.UPDATE) {
+          this.store.dispatch(
+            TaskActions.updateTaskAction({
+              boardId: this.data.boardId,
+              columnId: this.data.columnId,
+              taskId: this.data.taskId,
+              task: this.boardForm.getRawValue(),
+            }),
+          );
+        }
         break;
 
       default:
