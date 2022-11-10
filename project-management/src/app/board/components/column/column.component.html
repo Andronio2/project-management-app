@@ -6,7 +6,7 @@
       <input matInput type="text" [(ngModel)]="fromBoard.column.title">
       </mat-form-field>
   </ng-template>
-  <button mat-mini-fab color="accent" aria-label="delete button" (click)="deleteColumn(fromBoard.column.id)">
+  <button mat-icon-button color="accent" aria-label="delete button" (click)="deleteColumn(fromBoard.column.id)">
     <mat-icon>delete</mat-icon>
   </button>
 </mat-card-header>
@@ -16,5 +16,5 @@
       <app-task [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task }"></app-task>
     </mat-card>
   </div>
-  <button mat-button (click)="createTask(fromBoard.column.id)">Add a task</button>
+  <button mat-button color="primary" (click)="createTask(fromBoard.column.id)">Add a task</button>
 </mat-card-content>
