@@ -3,11 +3,26 @@
     <button mat-icon-button color="primary" aria-label="back button" (click)="goToMainPage()">
       <mat-icon>arrow_back_ios</mat-icon>
     </button>
-    <h2 class="board__title">{{(board$ | async)?.title}}</h2>
-    <button mat-raised-button (click)="createColumn()"><mat-icon>add</mat-icon> {{ t('createColumn') }}</button>
+    <h2 class="board__title">{{ (board$ | async)?.title }}</h2>
+    <button mat-raised-button (click)="createColumn()">
+      <mat-icon>add</mat-icon> {{ t('createColumn') }}
+    </button>
   </div>
-  <div class="board__columns">
-    <mat-card class="board__column" *ngFor="let column of (board$ | async)?.columns">
+  <div
+    class="board__columns"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="dropColumn($event)"
+  >
+    <mat-card
+      class="board__column"
+      *ngFor="let column of (board$ | async)?.columns || [] | sortColumnsTasks"
+      cdkDropList
+      cdkDrag
+      id="{{ column.id }}"
+      [cdkDropListConnectedTo]="getOtherColumns(column.id)"
+      (cdkDropListDropped)="dropTask($event)"
+    >
       <app-column [fromBoard]="{ column, boardId }"></app-column>
     </mat-card>
   </div>

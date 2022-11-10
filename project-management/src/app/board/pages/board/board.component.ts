@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, take, takeUntil } from 'rxjs';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { BoardActions } from 'src/app/redux/actions/board.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
 import { ModalType } from 'src/app/share/constants/constants';
 import { IBoard } from 'src/app/share/models/board.model';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
@@ -47,5 +48,33 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   goToMainPage() {
     this.router.navigate(['/main']);
+  }
+
+  dropTask(event: CdkDragDrop<IBoard>) {
+    console.log('taskEvent ', event);
+    (window as any).eee = event;
+    (window as any).qqq = event.container.data;
+    // if (event.container === event.previousContainer) {
+    //   moveItemInArray(this.list, event.previousIndex, event.currentIndex);
+    // }
+    // console.log(this.list);
+  }
+
+  dropColumn(event: CdkDragDrop<IBoard>) {
+    console.log('ColumnEvent', event);
+    (window as any).eee = event;
+    (window as any).qqq = event.container.data;
+    // if (event.container === event.previousContainer) {
+    //   moveItemInArray(this.list, event.previousIndex, event.currentIndex);
+    // }
+    // console.log(this.list);
+  }
+
+  getOtherColumns(columnId: string): string[] {
+    let columnList: string[] = [];
+    this.board$.pipe(take(1)).subscribe((board) => {
+      columnList = board!.columns!.map((column) => column.id);
+    });
+    return columnList.filter((colId) => colId !== columnId);
   }
 }

@@ -1,19 +1,34 @@
 <mat-card-header class="column__header">
-  <mat-card-title *ngIf="!isEditColumnTitle; else editColumnTitle" (click)="setEditMode()">{{ fromBoard.column.title }}</mat-card-title>
+  <mat-card-title *ngIf="!isEditColumnTitle; else editColumnTitle" (click)="setEditMode()">
+    {{ fromBoard.column.title }}
+  </mat-card-title>
   <ng-template #editColumnTitle>
     <mat-form-field appearance="standard">
       <mat-label>Edit title</mat-label>
-      <input matInput type="text" [(ngModel)]="fromBoard.column.title">
-      </mat-form-field>
+      <input matInput type="text" [(ngModel)]="fromBoard.column.title" />
+    </mat-form-field>
   </ng-template>
-  <button mat-icon-button color="accent" aria-label="delete button" (click)="deleteColumn(fromBoard.column.id)">
+  <button
+    mat-icon-button
+    color="accent"
+    aria-label="delete button"
+    (click)="deleteColumn(fromBoard.column.id)"
+  >
     <mat-icon>delete</mat-icon>
   </button>
 </mat-card-header>
 <mat-card-content class="column__content">
   <div class="column__tasks">
-    <mat-card class="column__task" *ngFor="let task of fromBoard.column.tasks" (click)="editTask(task.id)">
-      <app-task [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task }"></app-task>
+    <mat-card
+      class="column__task"
+      *ngFor="let task of fromBoard.column.tasks || [] | sortColumnsTasks"
+      cdkDrag
+      (click)="editTask(task.id)"
+      id="{{ task.id }}"
+    >
+      <app-task
+        [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task }"
+      ></app-task>
     </mat-card>
   </div>
   <button mat-button color="primary" (click)="createTask(fromBoard.column.id)">Add a task</button>
