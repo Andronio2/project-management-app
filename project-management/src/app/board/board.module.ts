@@ -9,7 +9,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-  declarations: [ColumnComponent, TaskComponent, BoardPreviewComponent, BoardComponent],
+  declarations: [ColumnComponent, TaskComponent, BoardComponent],
   imports: [CommonModule, BoardRoutingModule, ShareModule, TranslocoModule, DragDropModule],
 })
 export class BoardModule {}
