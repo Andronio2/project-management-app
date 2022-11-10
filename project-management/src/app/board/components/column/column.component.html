@@ -23,7 +23,7 @@
       class="column__task"
       *ngFor="let task of fromBoard.column.tasks || [] | sortColumnsTasks"
       cdkDrag
-      (dblclick)="editTask(task.id)"
+      (click)="editTask(task.id)"
       id="{{ task.id }}"
     >
       <app-task
