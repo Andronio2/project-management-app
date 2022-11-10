@@ -25,6 +25,11 @@ export class BoardsListComponent implements OnInit {
     this.boards$ = this.store.select(Selectors.selectBoards);
   }
 
+  editBoard(e: Event, id: string) {
+    e.stopPropagation();
+    this.modalService.openCreateMod(ModalType.UPDATE, ModalType.BOARD, id);
+  }
+
   deleteBoard(e: Event, id: string) {
     e.stopPropagation();
     this.modalService.openConfirmDelete(ModalType.BOARD, id);

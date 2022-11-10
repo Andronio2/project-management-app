@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { BoardActions } from 'src/app/redux/actions/board.action';
 import { ColumnActions } from 'src/app/redux/actions/column.action';
+import { TaskActions } from 'src/app/redux/actions/task.action';
 import { UserActions } from 'src/app/redux/actions/users.actions';
 import { ModalType } from 'src/app/share/constants/constants';
 import { ConfirmModalComponent } from '../components/confirm-modal/confirm-modal.component';
@@ -26,7 +27,13 @@ export class ModalService {
     setTimeout(() => dialogRef.close(), 3000);
   }
 
-  public openCreateMod(type: string, name: string, boardId?: string, columnId?: string) {
+  public openCreateMod(
+    type: string,
+    name: string,
+    boardId?: string,
+    columnId?: string,
+    taskId?: string,
+  ) {
     this.dialog.open(CreateModalComponent, {
       minWidth: '300px',
       maxWidth: '500px',
@@ -35,6 +42,7 @@ export class ModalService {
         type,
         boardId,
         columnId,
+        taskId,
       },
     });
   }
@@ -61,6 +69,11 @@ export class ModalService {
           case ModalType.COLUMN:
             if (columnId) {
               this.store.dispatch(ColumnActions.deleteColumnAction({ boardId: id, columnId }));
+            }
+            break;
+          case ModalType.TASK:
+            if (taskId && columnId) {
+              this.store.dispatch(TaskActions.deleteTaskAction({ boardId: id, columnId, taskId }));
             }
             break;
           default:
