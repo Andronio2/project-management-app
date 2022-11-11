@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { UserActions } from 'src/app/redux/actions/users.actions';
@@ -6,24 +6,31 @@ import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { ModalType } from 'src/app/share/constants/constants';
 import { AuthService } from '../../services/API/auth.service';
 import { ModalService } from '../../services/modal.service';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   activeLang: string;
 
   availableLang: string[] | { id: string; label: string }[];
 
   isAuth$ = this.store.select(UserSelectors.selectIsAuth);
 
+  hideSideMenu = false;
+
+  destroy$ = new Subject();
+
   constructor(
     private modalService: ModalService,
     private translateService: TranslocoService,
     private authService: AuthService,
     private store: Store,
+    private responsive: BreakpointObserver,
   ) {
     this.activeLang = localStorage.getItem('lang') || this.translateService.getActiveLang();
     this.availableLang = this.translateService.getAvailableLangs();
@@ -34,6 +41,22 @@ export class HeaderComponent implements OnInit {
       this.store.dispatch(UserActions.SignInSuccess());
     }
     this.translateService.setActiveLang(this.activeLang);
+
+    this.responsive
+      .observe([Breakpoints.XSmall])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((result) => {
+        this.hideSideMenu = false;
+
+        if (result.matches) {
+          this.hideSideMenu = true;
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
   public openCreateMod() {
