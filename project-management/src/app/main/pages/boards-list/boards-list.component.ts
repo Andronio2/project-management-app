@@ -42,4 +42,8 @@ export class BoardsListComponent implements OnInit {
   goToBoardPage(id: string) {
     this.router.navigate(['/board', id]);
   }
+
+  clickBoardMenu(e: Event) {
+    e.stopPropagation();
+  }
 }
