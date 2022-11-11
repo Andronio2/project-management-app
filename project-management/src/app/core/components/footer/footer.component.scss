@@ -1,5 +1,12 @@
-mat-toolbar {
+.footer__container {
+  display: flex;
   background-color: #bdbdbd;
+  @media (max-width: 530px) {
+    flex-direction: column;
+    align-items: center;
+    height: 100px;
+    padding: 1rem;
+  }
 }
 
 .footer__wrapper {
@@ -34,8 +41,4 @@ mat-toolbar {
 
 .spacer {
   flex: 1 1 auto;
-}
-
-p {
-  margin-bottom: 0;
 }
