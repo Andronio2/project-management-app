@@ -9,7 +9,7 @@
       </button>
     </mat-form-field>
   </div>
-  <div class="board__container">
+  <div class="boards__container">
     <mat-card class="board" *ngFor="let board of (boards$ | async)! | searchBoards:searchValue" (click)="goToBoardPage(board.id)">
       <mat-card-header class="board__header">
         <mat-card-title>{{board.title}}</mat-card-title>
