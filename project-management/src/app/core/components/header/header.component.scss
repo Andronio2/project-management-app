@@ -1,4 +1,5 @@
 .header__logo {
+  cursor: pointer;
   @media (max-width: 425px) {
     font-size: 1.1rem;
   }
@@ -11,4 +12,13 @@
 .buttons__container {
   display: flex;
   gap: 1rem;
+}
+
+.add {
+  &.material-icons {
+    font-size: 18px;
+  }
+  &.mat-icon {
+    height: 20px;
+  }
 }

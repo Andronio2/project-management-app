@@ -20,3 +20,12 @@
   flex-direction: column;
   gap: 0.7rem;
 }
+
+.add {
+  &.material-icons {
+    font-size: 18px;
+  }
+  &.mat-icon {
+    height: 22px;
+  }
+}

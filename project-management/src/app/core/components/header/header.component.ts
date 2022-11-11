@@ -8,6 +8,7 @@ import { AuthService } from '../../services/API/auth.service';
 import { ModalService } from '../../services/modal.service';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -31,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private store: Store,
     private responsive: BreakpointObserver,
+    private router: Router,
   ) {
     this.activeLang = localStorage.getItem('lang') || this.translateService.getActiveLang();
     this.availableLang = this.translateService.getAvailableLangs();
@@ -71,5 +73,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logOut() {
     this.authService.logOut();
+  }
+
+  goToMainPage() {
+    this.router.navigate(['/main']);
   }
 }

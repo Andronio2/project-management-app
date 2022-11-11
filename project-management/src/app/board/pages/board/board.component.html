@@ -5,7 +5,7 @@
     </button>
     <h2 class="board__title">{{ (board$ | async)?.title }}</h2>
     <button mat-raised-button (click)="createColumn()">
-      <mat-icon>add</mat-icon> {{ t('createColumn') }}
+      <mat-icon class="add">add</mat-icon>{{ t('createColumn') }}
     </button>
   </div>
   <div
