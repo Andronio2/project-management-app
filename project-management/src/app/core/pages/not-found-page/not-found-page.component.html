@@ -1,0 +1,5 @@
+<ng-container *transloco="let t; read: 'error'">
+  <h2 class="not-found__title">{{ t('title') }}</h2>
+  <p class="not-found__text">{{ t('content.text') }}
+    <a class="not-found__link" [routerLink]="['/main']"> {{ t('content.link') }}</a>.</p>
+</ng-container>

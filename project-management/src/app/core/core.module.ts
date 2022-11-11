@@ -11,6 +11,7 @@ import { CreateModalComponent } from './components/create-modal/create-modal.com
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ErrorModalComponent } from './components/error-modal/error-modal.compon
     CreateModalComponent,
     ConfirmModalComponent,
     ErrorModalComponent,
+    NotFoundPageComponent,
   ],
   imports: [CommonModule, CoreRoutingModule, ShareModule, HttpClientModule, TranslocoRootModule],
   providers: [
