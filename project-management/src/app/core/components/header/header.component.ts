@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.translateService.setActiveLang(this.activeLang);
 
     this.responsive
-      .observe([Breakpoints.XSmall])
+      .observe([Breakpoints.Small, Breakpoints.XSmall])
       .pipe(takeUntil(this.destroy$))
       .subscribe((result) => {
         this.hideSideMenu = false;
