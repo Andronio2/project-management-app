@@ -43,14 +43,24 @@
       "logout": "Logout",
       "signUp": "Sign up",
       "editProfile": "Edit profile",
-      "createBoard": "Create new Board"
+      "createBoard": "Create new board"
     }
   },
   "main": {
     "boards": "Boards",
-    "searchBoards": "Search boards"
+    "searchBoards": "Search boards",
+    "edit": "Edit",
+    "delete": "Delete"
   },
   "board": {
-    "createColumn": "Create a column"
+    "createColumn": "Create a column",
+    "addTask": "Add a task"
+  },
+  "error": {
+    "title": "Invalid URL",
+    "content": {
+      "text": "This page was not found. Please check the entered URL or go to the",
+      "link": "Main page"
+    }
   }
 }
