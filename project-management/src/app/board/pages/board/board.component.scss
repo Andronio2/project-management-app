@@ -2,6 +2,9 @@
   flex-grow: 1;
   padding: 2rem 2rem 0;
   background-color: #e8eaf6;
+  @media (max-width: 768px) {
+    padding: 1rem 1rem 0;
+  }
 }
 
 .board__header {
@@ -9,6 +12,9 @@
   align-items: center;
   gap: 2rem;
   margin-bottom: 2rem;
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
 }
 
 .board__title {
@@ -31,4 +37,11 @@
   max-height: calc(100vh - 315px);
   overflow-y: auto;
   padding: 1rem 1rem 0;
+  @media (max-width: 465px) {
+    min-width: 255px;
+  }
+}
+
+.mat-icon-button {
+  width: 24px;
 }
