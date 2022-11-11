@@ -45,3 +45,12 @@
 .mat-icon-button {
   width: 24px;
 }
+
+.add {
+  &.material-icons {
+    font-size: 18px;
+  }
+  &.mat-icon {
+    height: 20px;
+  }
+}

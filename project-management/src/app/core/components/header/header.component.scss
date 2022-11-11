@@ -13,3 +13,12 @@
   display: flex;
   gap: 1rem;
 }
+
+.add {
+  &.material-icons {
+    font-size: 18px;
+  }
+  &.mat-icon {
+    height: 20px;
+  }
+}
