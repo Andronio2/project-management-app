@@ -1,24 +1,41 @@
 <ng-container *transloco="let t; read: 'header'">
-  <p>
-    <mat-toolbar color="primary">
-      <h1>{{ t('logo') }}</h1>
-      <span class="spacer"></span>
-      <div class="buttons__container">
+  <mat-toolbar color="primary">
+    <h1 class="header__logo">{{ t('logo') }}</h1>
+    <span class="spacer"></span>
+    <div class="buttons__container" *ngIf="!hideSideMenu; else navMenu">
+      <ng-container *ngIf="(isAuth$ | async) === false; else authBlock">
+        <a  [routerLink]="['/auth','signin']" routerLinkActive="active"  mat-flat-button>{{ t('button.login') }}</a>
+        <a  [routerLink]="['/auth','signup']" routerLinkActive="active" mat-flat-button>{{ t('button.signUp') }}</a>
+      </ng-container>
+      <ng-template #authBlock>
+        <button (click)="openCreateMod()" mat-flat-button><mat-icon>add</mat-icon> {{ t('button.createBoard') }}</button>
+        <a [routerLink]="['/auth', 'user']" routerLinkActive="active"  mat-flat-button>{{ t('button.editProfile') }}</a>
+        <button (click)="logOut()" mat-flat-button>{{ t('button.logout') }}</button>
+      </ng-template>
+      <button mat-button [matMenuTriggerFor]="menu">{{activeLang}}</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="changeLang('en')">en</button>
+        <button mat-menu-item (click)="changeLang('ru')">ru</button>
+      </mat-menu>
+    </div>
+    <ng-template #navMenu>
+      <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+      <mat-menu #menu="matMenu">
         <ng-container *ngIf="(isAuth$ | async) === false; else authBlock">
-          <a  [routerLink]="['/auth','signin']" routerLinkActive="active"  mat-flat-button>{{ t('button.login') }}</a>
-          <a  [routerLink]="['/auth','signup']" routerLinkActive="active" mat-flat-button>{{ t('button.signUp') }}</a>
+          <a mat-menu-item [routerLink]="['/auth','signin']">{{ t('button.login') }}</a>
+          <a mat-menu-item [routerLink]="['/auth','signup']">{{ t('button.signUp') }}</a>
         </ng-container>
         <ng-template #authBlock>
-          <button (click)="openCreateMod()" mat-flat-button><mat-icon>add</mat-icon> {{ t('button.createBoard') }}</button>
-          <a [routerLink]="['/auth', 'user']" routerLinkActive="active"  mat-flat-button>{{ t('button.editProfile') }}</a>
-          <button (click)="logOut()" mat-flat-button>{{ t('button.logout') }}</button>
+          <button mat-menu-item (click)="openCreateMod()">{{ t('button.createBoard') }}</button>
+          <a mat-menu-item [routerLink]="['/auth', 'user']">{{ t('button.editProfile') }}</a>
+          <button mat-menu-item (click)="logOut()">{{ t('button.logout') }}</button>
         </ng-template>
-        <button mat-button [matMenuTriggerFor]="menu">{{activeLang}}</button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="changeLang('en')">en</button>
-          <button mat-menu-item (click)="changeLang('ru')">ru</button>
-        </mat-menu>
-      </div>
-    </mat-toolbar>
-  </p>
+        <button mat-menu-item [matMenuTriggerFor]="languages">{{activeLang}}</button>
+      </mat-menu>
+      <mat-menu #languages="matMenu">
+        <button mat-menu-item (click)="changeLang('en')">en</button>
+        <button mat-menu-item (click)="changeLang('ru')">ru</button>
+      </mat-menu>
+    </ng-template>
+  </mat-toolbar>
 </ng-container>
