@@ -46,6 +46,8 @@ export class CreateModalComponent implements OnInit {
 
   currBoard$ = this.store.select(Selectors.selectBoard);
 
+  allBoards$ = this.store.select(Selectors.selectBoards);
+
   users$ = this.store.select(UserSelectors.selectUsers);
 
   constructor(
@@ -57,10 +59,6 @@ export class CreateModalComponent implements OnInit {
     this.currBoard$.pipe(take(1)).subscribe((board) => {
       if (this.data.type === ModalType.UPDATE && board) {
         switch (this.data.name) {
-          case ModalType.BOARD:
-            this.updateData.title = board.title;
-            this.updateData.description = board.description;
-            break;
           case ModalType.COLUMN:
             this.updateData.title = board.columns!.find(
               (column) => column.id === this.data.columnId,
@@ -86,6 +84,14 @@ export class CreateModalComponent implements OnInit {
           default:
             break;
         }
+      }
+    });
+    this.allBoards$.pipe(take(1)).subscribe((boards) => {
+      if (this.data.type === ModalType.UPDATE && this.data.name === ModalType.BOARD) {
+        this.updateData.title = boards.find((board) => board.id === this.data.boardId)!.title;
+        this.updateData.description = boards.find(
+          (board) => board.id === this.data.boardId,
+        )!.description;
       }
     });
     this.boardForm = this.fb.group({
