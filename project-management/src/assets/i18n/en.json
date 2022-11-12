@@ -37,7 +37,7 @@
     "courseCertificateText": "After accomplishing all three stages of education, students will receive an electronic certificate of completion."
   },
   "header": {
-    "logo": "Project Management System",
+    "logo": "Project Management",
     "button": {
       "login": "Login",
       "logout": "Logout",
@@ -61,6 +61,52 @@
     "content": {
       "text": "This page was not found. Please check the entered URL or go to the",
       "link": "Main page"
+    }
+  },
+  "authAndModal": {
+    "signIn": "Sign in",
+    "editProfile": "Edit profile",
+    "name": "Name",
+    "login": "Login",
+    "password": "Password",
+    "userProfile": "User profile",
+    "title": "Title",
+    "description": "Description",
+    "user": "User",
+    "error2": "Error",
+    "deleteQuestion": "Are you sure you want to delete this",
+    "error": {
+      "nameIs": "Name is",
+      "loginIs": "Login is",
+      "titleIs": "Title is",
+      "descriptionIs": "Description is",
+      "userIs": "User is",
+      "required": "required",
+      "tooShort": "too short",
+      "tooShort2": "too short",
+      "tooLong": "too long",
+      "tooLong2": "too long",
+      "atLeast3": "At least 3 characters.",
+      "atLeast8": "At least 8 characters. Has to contain uppercase letters, lowercase letters, numbers, and symbols.",
+      "noMore": "No more than 20 characters.",
+      "noMore2": "No more than 255 characters.",
+      "passwordIs": "Password is",
+      "passwordStrength": "Your password isn't strong enough."
+    },
+    "button": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "submit": "Submit",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "modalQuestion": {
+      "board": "board",
+      "column": "column",
+      "task": "task",
+      "user": "user"
     }
   }
 }
