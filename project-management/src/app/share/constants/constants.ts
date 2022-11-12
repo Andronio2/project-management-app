@@ -12,3 +12,9 @@ export enum ModalType {
   TASK = 'task',
   USER = 'user',
 }
+
+export enum BoardLoadedState {
+  unknown,
+  loaded,
+  error,
+}

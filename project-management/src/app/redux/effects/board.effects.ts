@@ -6,10 +6,16 @@ import { BoardActions } from '../actions/board.action';
 import { BoardsService } from '../../core/services/API/board.service';
 import { errorMessageAction } from '../actions/error-message.action';
 import { IBoard } from 'src/app/share/models/board.model';
+import { Store } from '@ngrx/store';
+import { BoardLoadedState } from 'src/app/share/constants/constants';
 
 @Injectable()
 export class BoardEffects {
-  constructor(private actions$: Actions, private boardService: BoardsService) {}
+  constructor(
+    private actions$: Actions,
+    private boardService: BoardsService,
+    private store: Store,
+  ) {}
 
   loadAllBoards$ = createEffect(() =>
     this.actions$.pipe(
@@ -36,8 +42,13 @@ export class BoardEffects {
       ofType(BoardActions.getBoardAction),
       switchMap((action) => this.boardService.getBoardById(action.boardId)),
       map((board) => {
-        if ('title' in board) return BoardActions.boardLoadedAction({ board });
-        else return errorMessageAction({ errorMessage: 'Could not load board' });
+        if ('title' in board) {
+          this.store.dispatch(BoardActions.boardRequestDone({ done: BoardLoadedState.loaded }));
+          return BoardActions.boardLoadedAction({ board });
+        } else {
+          this.store.dispatch(BoardActions.boardRequestDone({ done: BoardLoadedState.error }));
+          return errorMessageAction({ errorMessage: 'Could not load board' });
+        }
       }),
       catchError(() => EMPTY),
     ),
