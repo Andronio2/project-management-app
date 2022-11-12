@@ -7,7 +7,7 @@ const passwordValidator = ({ value }: AbstractControl<string, string>): Validati
 
   const isValid = validTests.every((res) => res === true);
 
-  return isValid || value.length === 0 ? null : { inValidPass: 'password invalid' };
+  return isValid || value.length === 0 ? null : { inValidPass: 'invalid password' };
 };
 
 export default passwordValidator;
