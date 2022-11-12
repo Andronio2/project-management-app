@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { take, takeUntil, tap } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { BoardActions } from 'src/app/redux/actions/board.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
@@ -65,10 +65,11 @@ export class BoardComponent implements OnInit, OnDestroy {
     console.log('ColumnEvent', event);
     (window as any).eee = event;
     const columnId = event.item.element.nativeElement.id;
-    const order = event.currentIndex;
-    this.store.select(Selectors.selectColumnById(columnId)).pipe(
-      take(1),
-      tap((columnInfo) => {
+    const order = event.currentIndex + 1;
+    this.store
+      .select(Selectors.selectColumnById(columnId))
+      .pipe(take(1))
+      .subscribe((columnInfo) => {
         const title = columnInfo!.title;
         const column = { title, order };
         this.store.dispatch(
@@ -78,8 +79,7 @@ export class BoardComponent implements OnInit, OnDestroy {
             column,
           }),
         );
-      }),
-    );
+      });
   }
 
   getOtherColumns(columnId: string): string[] {
