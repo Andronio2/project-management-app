@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { UserActions } from 'src/app/redux/actions/users.actions';
 import { IUser } from 'src/app/share/models/auth.model';
 import { TokenService } from 'src/app/core/services/token.service';
@@ -18,7 +18,14 @@ import { ModalType } from 'src/app/share/constants/constants';
 export class UserComponent implements OnInit {
   isEditMode: boolean = false;
 
-  user$: Observable<IUser | undefined> = this.store.select(UserSelectors.selectUser);
+  user$: Observable<IUser | undefined> = this.store.select(UserSelectors.selectUser).pipe(
+    tap((user) => {
+      if (user) {
+        this.login.setValue(user.login);
+        this.name.setValue(user.name);
+      }
+    }),
+  );
 
   userId: string | null;
 
