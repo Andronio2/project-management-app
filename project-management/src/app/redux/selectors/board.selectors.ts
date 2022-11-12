@@ -1,8 +1,10 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { BoardLoadedState } from 'src/app/share/constants/constants';
 import { IBoardState } from '../state.model';
 
 export namespace Selectors {
   export const selectBoardState = createFeatureSelector<IBoardState>('board');
+  export const selectBoardLoadedState = createFeatureSelector<BoardLoadedState>('boardLoaded');
 
   export const selectBoards = createSelector(selectBoardState, (state) => state.allBoards);
 

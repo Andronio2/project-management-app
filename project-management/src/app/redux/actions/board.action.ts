@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { BoardLoadedState } from 'src/app/share/constants/constants';
 import { IBoard, IBoardDto } from 'src/app/share/models/board.model';
 
 export namespace BoardActions {
@@ -10,6 +11,10 @@ export namespace BoardActions {
 
   export const getBoardAction = createAction('[BOARD] Get board', props<{ boardId: string }>());
   export const boardLoadedAction = createAction('[BOARD] Board loaded', props<{ board: IBoard }>());
+  export const boardRequestDone = createAction(
+    '[BOARD] Board request done',
+    props<{ done: BoardLoadedState }>(),
+  );
 
   export const createBoardAction = createAction(
     '[BOARD] Create new board',

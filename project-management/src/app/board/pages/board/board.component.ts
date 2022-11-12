@@ -5,7 +5,7 @@ import { Observable, Subject, take, takeUntil } from 'rxjs';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { BoardActions } from 'src/app/redux/actions/board.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
-import { ModalType } from 'src/app/share/constants/constants';
+import { BoardLoadedState, ModalType } from 'src/app/share/constants/constants';
 import { IBoard } from 'src/app/share/models/board.model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
@@ -34,6 +34,12 @@ export class BoardComponent implements OnInit, OnDestroy {
       const boardId = this.boardId;
       this.store.dispatch(BoardActions.getBoardAction({ boardId }));
       this.board$ = this.store.select(Selectors.selectBoard);
+      this.store
+        .select(Selectors.selectBoardLoadedState)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((state) => {
+          if (state === BoardLoadedState.error) this.router.navigate(['/error']);
+        });
     });
   }
 
