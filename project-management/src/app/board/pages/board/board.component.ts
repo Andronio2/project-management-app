@@ -1,13 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, take, takeUntil } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { take, takeUntil, tap } from 'rxjs/operators';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { BoardActions } from 'src/app/redux/actions/board.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
 import { ModalType } from 'src/app/share/constants/constants';
 import { IBoard } from 'src/app/share/models/board.model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { ColumnActions } from 'src/app/redux/actions/column.action';
 
 @Component({
   selector: 'app-board',
@@ -53,7 +55,6 @@ export class BoardComponent implements OnInit, OnDestroy {
   dropTask(event: CdkDragDrop<IBoard>) {
     console.log('taskEvent ', event);
     (window as any).eee = event;
-    (window as any).qqq = event.container.data;
     // if (event.container === event.previousContainer) {
     //   moveItemInArray(this.list, event.previousIndex, event.currentIndex);
     // }
@@ -63,11 +64,22 @@ export class BoardComponent implements OnInit, OnDestroy {
   dropColumn(event: CdkDragDrop<IBoard>) {
     console.log('ColumnEvent', event);
     (window as any).eee = event;
-    (window as any).qqq = event.container.data;
-    // if (event.container === event.previousContainer) {
-    //   moveItemInArray(this.list, event.previousIndex, event.currentIndex);
-    // }
-    // console.log(this.list);
+    const columnId = event.item.element.nativeElement.id;
+    const order = event.currentIndex;
+    this.store.select(Selectors.selectColumnById(columnId)).pipe(
+      take(1),
+      tap((columnInfo) => {
+        const title = columnInfo!.title;
+        const column = { title, order };
+        this.store.dispatch(
+          ColumnActions.updateColumnAction({
+            boardId: this.boardId,
+            columnId,
+            column,
+          }),
+        );
+      }),
+    );
   }
 
   getOtherColumns(columnId: string): string[] {
