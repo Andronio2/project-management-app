@@ -1,5 +1,5 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { ModalService } from 'src/app/core/services/modal.service';
@@ -20,6 +20,8 @@ export class ColumnComponent implements OnInit {
     column: IColumn;
     boardId: string;
   };
+
+  @Output() dragDisableEvent = new EventEmitter<boolean>();
 
   board$ = this.store.select(Selectors.selectBoard);
 
@@ -48,10 +50,12 @@ export class ColumnComponent implements OnInit {
 
   setEditMode() {
     this.isEditColumnTitle = true;
+    this.dragDisableEvent.emit(true);
   }
 
   editColumn() {
     this.isEditColumnTitle = false;
+    this.dragDisableEvent.emit(false);
     this.store.dispatch(
       ColumnActions.updateColumnAction({
         boardId: this.fromBoard.boardId,

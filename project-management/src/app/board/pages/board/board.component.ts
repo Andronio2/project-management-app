@@ -23,6 +23,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   destroy$ = new Subject();
 
+  isDragDisable = false;
+
   constructor(
     private store: Store,
     public route: ActivatedRoute,
@@ -70,5 +72,9 @@ export class BoardComponent implements OnInit, OnDestroy {
           }),
         );
       });
+  }
+
+  setDragDisable(isDisable: boolean) {
+    this.isDragDisable = isDisable;
   }
 }

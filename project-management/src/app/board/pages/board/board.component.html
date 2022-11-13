@@ -19,8 +19,9 @@
       *ngFor="let column of (board$ | async)?.columns || [] | sortColumnsTasks"
       cdkDrag
       [attr.data-col-id]="column.id"
+      [cdkDragDisabled]="isDragDisable"
     >
-      <app-column [fromBoard]="{ column, boardId }"></app-column>
+      <app-column [fromBoard]="{ column, boardId }" (dragDisableEvent)="setDragDisable($event)"></app-column>
     </mat-card>
   </div>
 </ng-container>
