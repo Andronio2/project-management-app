@@ -10,7 +10,6 @@ import { BoardLoadedState, ModalType } from 'src/app/share/constants/constants';
 import { IBoard } from 'src/app/share/models/board.model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ColumnActions } from 'src/app/redux/actions/column.action';
-import { TaskActions } from 'src/app/redux/actions/task.action';
 
 @Component({
   selector: 'app-board',
@@ -23,6 +22,8 @@ export class BoardComponent implements OnInit, OnDestroy {
   board$: Observable<IBoard | undefined> = new Observable();
 
   destroy$ = new Subject();
+
+  isDragDisable = false;
 
   constructor(
     private store: Store,
@@ -59,40 +60,9 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.router.navigate(['/main']);
   }
 
-  dropTask(event: CdkDragDrop<IBoard>) {
-    const id = event.item.element.nativeElement.id;
-    const oldColumnId = event.previousContainer.id;
-    const columnId = event.container.id;
-    const order = event.currentIndex + 1;
-
-    this.store
-      .select(Selectors.selectTasksById(oldColumnId, id))
-      .pipe(take(1))
-      .subscribe((taskInfo) => {
-        const title = taskInfo!.title;
-        const description = taskInfo!.description;
-        const userId = taskInfo!.userId;
-        const task = {
-          title,
-          order,
-          description,
-          userId,
-          boardId: this.boardId,
-          columnId,
-        };
-        this.store.dispatch(
-          TaskActions.updateTaskAction({
-            boardId: this.boardId,
-            columnId: oldColumnId,
-            taskId: id,
-            task,
-          }),
-        );
-      });
-  }
-
   dropColumn(event: CdkDragDrop<IBoard>) {
-    const columnId = event.item.element.nativeElement.id;
+    console.log(event);
+    const columnId = event.item.element.nativeElement.getAttribute('data-col-id')!;
     const order = event.currentIndex + 1;
     this.store
       .select(Selectors.selectColumnById(columnId))
@@ -110,11 +80,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       });
   }
 
-  getOtherColumns(columnId: string): string[] {
-    let columnList: string[] = [];
-    this.board$.pipe(take(1)).subscribe((board) => {
-      columnList = board!.columns!.map((column) => column.id);
-    });
-    return columnList.filter((colId) => colId !== columnId);
+  setDragDisable(isDisable: boolean) {
+    this.isDragDisable = isDisable;
   }
 }

@@ -6,20 +6,41 @@
     <form (ngSubmit)="editColumn()">
       <mat-form-field appearance="standard">
         <mat-label>Edit title</mat-label>
-        <input matInput type="text" [(ngModel)]="columnTitle" name="column-title"/>
+        <input matInput type="text" [(ngModel)]="columnTitle" name="column-title" />
       </mat-form-field>
     </form>
   </ng-template>
-  <button mat-icon-button color="accent" aria-label="delete button" (click)="deleteColumn(fromBoard.column.id)">
+  <button
+    mat-icon-button
+    color="accent"
+    aria-label="delete button"
+    (click)="deleteColumn(fromBoard.column.id)"
+  >
     <mat-icon>delete</mat-icon>
   </button>
 </mat-card-header>
 <mat-card-content class="column__content">
-  <div class="column__tasks">
-    <mat-card class="column__task" *ngFor="let task of fromBoard.column.tasks || [] | sortColumnsTasks" cdkDrag
-      (click)="editTask(task.id)" id="{{ task.id }}">
-      <app-task [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task }"></app-task>
+  <div
+    class="column__tasks"
+    cdkDropList
+    (cdkDropListDropped)="dropTask($event)"
+    [cdkDropListConnectedTo]="getOtherColumns(fromBoard.column.id)"
+    id="{{ fromBoard.column.id }}"
+  >
+    <div class="column__empty" *ngIf="(fromBoard.column.tasks || []).length === 0"></div>
+    <mat-card
+      class="column__task"
+      *ngFor="let task of fromBoard.column.tasks || [] | sortColumnsTasks"
+      cdkDrag
+      (click)="editTask(task.id)"
+      id="{{ task.id }}"
+    >
+      <app-task
+        [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task }"
+      ></app-task>
     </mat-card>
   </div>
-  <button mat-button color="primary" (click)="createTask(fromBoard.column.id)"><mat-icon class="add">add</mat-icon>{{ "board.addTask" | transloco }}</button>
+  <button mat-button color="primary" (click)="createTask(fromBoard.column.id)">
+    <mat-icon class="add">add</mat-icon>{{ 'board.addTask' | transloco }}
+  </button>
 </mat-card-content>

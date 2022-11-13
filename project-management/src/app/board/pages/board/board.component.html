@@ -17,13 +17,11 @@
     <mat-card
       class="board__column"
       *ngFor="let column of (board$ | async)?.columns || [] | sortColumnsTasks"
-      cdkDropList
       cdkDrag
-      id="{{ column.id }}"
-      [cdkDropListConnectedTo]="getOtherColumns(column.id)"
-      (cdkDropListDropped)="dropTask($event)"
+      [attr.data-col-id]="column.id"
+      [cdkDragDisabled]="isDragDisable"
     >
-      <app-column [fromBoard]="{ column, boardId }"></app-column>
+      <app-column [fromBoard]="{ column, boardId }" (dragDisableEvent)="setDragDisable($event)"></app-column>
     </mat-card>
   </div>
 </ng-container>
