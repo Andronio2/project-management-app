@@ -21,7 +21,7 @@ export namespace Selectors {
   export const selectTasks = (columnId: string) =>
     createSelector(selectColumnById(columnId), (state) => state?.tasks);
 
-  export const selectTasksBiId = (columnId: string, taskId: string) =>
+  export const selectTasksById = (columnId: string, taskId: string) =>
     createSelector(selectColumnById(columnId), (state) =>
       state?.tasks?.find((task) => task.id === taskId),
     );

@@ -10,6 +10,7 @@ import { ModalType } from 'src/app/share/constants/constants';
 import { IBoard } from 'src/app/share/models/board.model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ColumnActions } from 'src/app/redux/actions/column.action';
+import { TaskActions } from 'src/app/redux/actions/task.action';
 
 @Component({
   selector: 'app-board',
@@ -53,17 +54,38 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   dropTask(event: CdkDragDrop<IBoard>) {
-    console.log('taskEvent ', event);
-    (window as any).eee = event;
-    // if (event.container === event.previousContainer) {
-    //   moveItemInArray(this.list, event.previousIndex, event.currentIndex);
-    // }
-    // console.log(this.list);
+    const id = event.item.element.nativeElement.id;
+    const oldColumnId = event.previousContainer.id;
+    const columnId = event.container.id;
+    const order = event.currentIndex + 1;
+
+    this.store
+      .select(Selectors.selectTasksById(oldColumnId, id))
+      .pipe(take(1))
+      .subscribe((taskInfo) => {
+        const title = taskInfo!.title;
+        const description = taskInfo!.description;
+        const userId = taskInfo!.userId;
+        const task = {
+          title,
+          order,
+          description,
+          userId,
+          boardId: this.boardId,
+          columnId,
+        };
+        this.store.dispatch(
+          TaskActions.updateTaskAction({
+            boardId: this.boardId,
+            columnId: oldColumnId,
+            taskId: id,
+            task,
+          }),
+        );
+      });
   }
 
   dropColumn(event: CdkDragDrop<IBoard>) {
-    console.log('ColumnEvent', event);
-    (window as any).eee = event;
     const columnId = event.item.element.nativeElement.id;
     const order = event.currentIndex + 1;
     this.store
