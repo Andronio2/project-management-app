@@ -11,6 +11,7 @@ import { UserActions } from 'src/app/redux/actions/users.actions';
 import { TaskActions } from 'src/app/redux/actions/task.action';
 import { ModalType } from 'src/app/share/constants/constants';
 import { take } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-create-modal',
@@ -18,6 +19,14 @@ import { take } from 'rxjs';
   styleUrls: ['./create-modal.component.scss'],
 })
 export class CreateModalComponent implements OnInit {
+  type: string = `${this.translocoService.translate(
+    `authAndModal.modalQuestion.${this.data.type}`,
+  )}`;
+
+  name: string = `${this.translocoService.translate(
+    `authAndModal.modalQuestion.${this.data.name}`,
+  )}`;
+
   boardForm: FormGroup;
 
   updateData = {
@@ -55,6 +64,7 @@ export class CreateModalComponent implements OnInit {
     private store: Store,
     private dialogRef: MatDialogRef<CreateModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IBoardModal,
+    private translocoService: TranslocoService,
   ) {
     this.currBoard$.pipe(take(1)).subscribe((board) => {
       if (this.data.type === ModalType.UPDATE && board) {

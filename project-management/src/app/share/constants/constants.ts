@@ -6,8 +6,8 @@ export const TOKEN_KEY = 'AuthToken-SCh';
 export const EXP_TIME = 8 * 3600;
 
 export enum ModalType {
-  CREATE = 'Create',
-  UPDATE = 'Update',
+  CREATE = 'create',
+  UPDATE = 'update',
   BOARD = 'board',
   COLUMN = 'column',
   TASK = 'task',

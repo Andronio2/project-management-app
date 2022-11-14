@@ -5,7 +5,7 @@
   <ng-template #editColumnTitle>
     <form (ngSubmit)="editColumn()">
       <mat-form-field appearance="standard">
-        <mat-label>Edit title</mat-label>
+        <mat-label>{{ 'board.editColumn' | transloco }}</mat-label>
         <input matInput type="text" [(ngModel)]="columnTitle" name="column-title" />
       </mat-form-field>
     </form>
