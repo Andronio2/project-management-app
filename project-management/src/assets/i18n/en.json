@@ -65,6 +65,10 @@
     "content": {
       "text": "This page was not found. Please check the entered URL or go to the",
       "link": "Main page"
+    },
+    "code": {
+      "403": "not found",
+      "401": "user not unauthorized"
     }
   },
   "authAndModal": {
