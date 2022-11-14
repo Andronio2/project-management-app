@@ -25,6 +25,16 @@
   width: 300px;
 }
 
+.boards__search-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.boards__search-full-width {
+  width: 100%;
+}
+
 .boards__container {
   display: flex;
   flex-wrap: wrap;

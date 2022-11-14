@@ -48,9 +48,12 @@
   },
   "main": {
     "boards": "Boards",
-    "searchBoards": "Search boards",
+    "searchBoards": "Search tasks",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "task": "task",
+    "board": "board",
+    "column": "column"
   },
   "board": {
     "createColumn": "Create a column",

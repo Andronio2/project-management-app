@@ -48,9 +48,12 @@
   },
   "main": {
     "boards": "Доски",
-    "searchBoards": "Поиск досок",
+    "searchBoards": "Поиск задач",
     "edit": "Редактировать",
-    "delete": "Удалить"
+    "delete": "Удалить",
+    "task": "задача",
+    "board": "доска",
+    "column": "колонка"
   },
   "board": {
     "createColumn": "Создать колонку",
