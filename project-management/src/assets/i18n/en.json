@@ -57,7 +57,8 @@
   },
   "board": {
     "createColumn": "Create a column",
-    "addTask": "Add a task"
+    "addTask": "Add a task",
+    "editColumn": "Edit column"
   },
   "error": {
     "title": "Invalid URL",
@@ -109,7 +110,13 @@
       "board": "board",
       "column": "column",
       "task": "task",
-      "user": "user"
+      "user": "user",
+      "create": "Create",
+      "update": "Edit"
+    },
+    "placeholder": {
+      "title": "To do...",
+      "description": "In this task..."
     }
   }
 }

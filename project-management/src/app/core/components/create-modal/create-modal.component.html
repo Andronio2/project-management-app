@@ -1,10 +1,10 @@
 <ng-container *transloco="let t; read: 'authAndModal'">
   <form (ngSubmit)="createBoard()" [formGroup]="boardForm" class="register-form">
     <div class="register-form__inputs-block">
-      <mat-card-title class="register-form__title">{{data.type}} {{data.name}}</mat-card-title>
+      <mat-card-title class="register-form__title">{{type}} {{name}}</mat-card-title>
       <mat-form-field class="register-form__field" appearance="fill">
         <mat-label>{{ t('title') }}</mat-label>
-        <input type="text" matInput [formControl]="title" placeholder="New">
+        <input type="text" matInput [formControl]="title" [placeholder]="t('placeholder.title')">
         <mat-error *ngIf="title.hasError('required')">
           {{ t('error.titleIs') }} <strong>{{ t('error.required') }}</strong>
         </mat-error>
@@ -17,7 +17,7 @@
       </mat-form-field>
       <mat-form-field class="register-form__field" appearance="fill" *ngIf="description">
         <mat-label>{{ t('description') }}</mat-label>
-        <input type="text" matInput [formControl]="description" placeholder="This for ....">
+        <input type="text" matInput [formControl]="description" [placeholder]="t('placeholder.description')">
         <mat-error *ngIf="description.hasError('required')">
           {{ t('error.descriptionIs') }} <strong>{{ t('error.required') }}</strong>
         </mat-error>

@@ -56,8 +56,12 @@ export class ModalService {
   public openConfirmDelete(type: ModalType, id: string, columnId?: string, taskId?: string) {
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
       data: {
-        title: `${this.translocoService.translate('authAndModal.button.delete')} ${type}`,
-        question: `${this.translocoService.translate('authAndModal.deleteQuestion')} ${type}?`,
+        title: `${this.translocoService.translate(
+          'authAndModal.button.delete',
+        )} ${this.translocoService.translate(`authAndModal.modalQuestion.${type}`)}`,
+        question: `${this.translocoService.translate(
+          'authAndModal.deleteQuestion',
+        )} ${this.translocoService.translate(`authAndModal.modalQuestion.${type}`)}?`,
       },
       width: '295px',
     });
