@@ -10,6 +10,7 @@ import { BoardLoadedState, ModalType } from 'src/app/share/constants/constants';
 import { IBoard } from 'src/app/share/models/board.model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ColumnActions } from 'src/app/redux/actions/column.action';
+import { UserActions } from 'src/app/redux/actions/users.actions';
 
 @Component({
   selector: 'app-board',
@@ -45,6 +46,7 @@ export class BoardComponent implements OnInit, OnDestroy {
           if (state === BoardLoadedState.error) this.router.navigate(['/error']);
         });
     });
+    this.store.dispatch(UserActions.getUsers());
   }
 
   ngOnDestroy(): void {
