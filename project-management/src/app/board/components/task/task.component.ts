@@ -1,8 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { ModalService } from 'src/app/core/services/modal.service';
-import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { ModalType } from 'src/app/share/constants/constants';
 import { IUser } from 'src/app/share/models/auth.model';
 import { IColumn } from 'src/app/share/models/column.model';
@@ -18,21 +16,17 @@ export class TaskComponent implements OnInit, OnDestroy {
     boardId: string;
     column: IColumn;
     task: ITask;
+    users: IUser[];
   };
 
   user: IUser | undefined;
 
   destroy$ = new Subject();
 
-  constructor(private modalService: ModalService, private store: Store) {}
+  constructor(private modalService: ModalService) {}
 
   ngOnInit(): void {
-    this.store
-      .select(UserSelectors.selectUsers)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((users) => {
-        this.user = users.find((user) => user.id === this.fromColumn.task.userId);
-      });
+    this.user = this.fromColumn.users.find((user) => user.id === this.fromColumn.task.userId);
   }
 
   ngOnDestroy(): void {

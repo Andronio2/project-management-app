@@ -36,13 +36,15 @@
     <div class="column__empty" *ngIf="(fromBoard.column.tasks || []).length === 0"></div>
     <mat-card
       class="column__task"
-      *ngFor="let task of fromBoard.column.tasks || [] | sortColumnsTasks"
+      *ngFor="let task of fromBoard.column.tasks || [] |
+      sortColumnsTasks |
+      filterTasks:[fromBoard.users, selected]"
       cdkDrag
       (click)="editTask(task.id)"
       id="{{ task.id }}"
     >
       <app-task
-        [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task }"
+        [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task, users: fromBoard.users }"
       ></app-task>
     </mat-card>
   </div>

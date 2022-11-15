@@ -13,6 +13,7 @@
   gap: 2rem;
   margin-bottom: 2rem;
   @media (max-width: 768px) {
+    flex-wrap: wrap;
     gap: 1.5rem;
   }
 }
@@ -21,11 +22,18 @@
   margin-bottom: 0;
 }
 
+.spacer {
+  flex: 1 1 auto;
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+
 .board__columns {
   display: flex;
   flex-wrap: nowrap;
   gap: 1rem;
-  height: calc(100vh - 265px);
+  height: calc(100vh - 305px);
   padding-bottom: 2rem;
   overflow-x: auto;
 }

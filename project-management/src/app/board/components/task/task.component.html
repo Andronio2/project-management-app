@@ -1,6 +1,6 @@
 <mat-card-content class="task-content">{{ fromColumn.task.title }}</mat-card-content>
 <div class="task__icons">
-  <mat-icon class="task__user" color="primary" [matTooltip]="user?.name || ''" (click)="clickBoardMenu($event)">person</mat-icon>
+  <mat-icon class="task__user" color="primary" [matTooltip]="user?.login || ''" (click)="clickBoardMenu($event)">person</mat-icon>
   <button mat-icon-button aria-label="delete button" (click)="deleteTask($event, fromColumn.task.id)">
     <mat-icon class="delete__icon" color="accent">delete</mat-icon>
   </button>

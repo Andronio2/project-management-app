@@ -7,9 +7,10 @@ import { BoardComponent } from './pages/board/board.component';
 import { ShareModule } from '../share/share.module';
 import { TranslocoModule } from '@ngneat/transloco';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FilterTasksPipe } from './pipes/filter-tasks.pipe';
 
 @NgModule({
-  declarations: [ColumnComponent, TaskComponent, BoardComponent],
+  declarations: [ColumnComponent, TaskComponent, BoardComponent, FilterTasksPipe],
   imports: [CommonModule, BoardRoutingModule, ShareModule, TranslocoModule, DragDropModule],
 })
 export class BoardModule {}
