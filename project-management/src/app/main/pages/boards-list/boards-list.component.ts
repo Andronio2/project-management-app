@@ -81,8 +81,8 @@ export class BoardsListComponent implements OnInit, OnDestroy {
       return (
         option.task.title.toLowerCase().includes(filterValue) ||
         option.task.description.toLowerCase().includes(filterValue) ||
-        option.task.order === +filterValue ||
-        this.user?.name.toLowerCase().includes(filterValue)
+        option.task.id.toLowerCase().includes(filterValue) ||
+        this.user?.login.toLowerCase().includes(filterValue)
       );
     });
   }
