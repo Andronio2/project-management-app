@@ -8,7 +8,7 @@
       <mat-icon class="add">add</mat-icon>{{ t('createColumn') }}
     </button>
     <span class="spacer"></span>
-    <mat-form-field appearance="outline">
+    <mat-form-field class="board__filter" appearance="outline">
       <mat-label>{{ t('filterBy') }}</mat-label>
       <mat-select [(value)]="selected" (selectionChange)="selected$.next(selected)">
         <mat-option value="allUsers">{{t('allUsers')}}</mat-option>
