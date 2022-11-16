@@ -25,6 +25,22 @@ export const boardReducer = createReducer(
     }),
   ),
   on(
+    BoardActions.deleteBoardAction,
+    (state, { id }): IBoardState => ({
+      ...state,
+      allBoards: state.allBoards.filter((board) => board.id !== id),
+    }),
+  ),
+  on(
+    BoardActions.updateBoardAction,
+    (state, { id, board }): IBoardState => ({
+      ...state,
+      allBoards: state.allBoards.map((oldBoard) =>
+        oldBoard.id !== id ? oldBoard : { ...oldBoard, ...board },
+      ),
+    }),
+  ),
+  on(
     ColumnActions.allColumnsLoadedAction,
     (state, { columns }): IBoardState => ({
       ...state,
