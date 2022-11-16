@@ -1,5 +1,5 @@
 <ng-container *transloco="let t; read: 'header'">
-  <mat-toolbar class="header__inner" color="primary">
+  <mat-toolbar [ngClass]="headerChanged?'header__changed':'header__inner'" color="primary" (scroll)="onScroll()">
     <h1 class="header__logo" (click)="goToMainPage()">{{ t('logo') }}</h1>
     <span class="spacer"></span>
     <div class="buttons__container" *ngIf="!hideSideMenu; else navMenu">

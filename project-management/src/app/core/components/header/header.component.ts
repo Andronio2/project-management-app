@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { UserActions } from 'src/app/redux/actions/users.actions';
@@ -17,6 +17,12 @@ import { ProgressBarService } from '../../services/progress-bar.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @HostListener('window:scroll', ['event']) onScroll() {
+    this.headerChanged = window.scrollY > 64 ? true : false;
+  }
+
+  headerChanged = false;
+
   activeLang: string;
 
   availableLang: string[] | { id: string; label: string }[];
