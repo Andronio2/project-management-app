@@ -1,3 +1,30 @@
+@import '@angular/material/theming';
+$app-primary: mat-palette($mat-indigo);
+$app-accent: mat-palette($mat-amber, A200, A100, A400);
+$theme: mat-light-theme((
+  color: (
+    primary: $app-primary,
+    accent: $app-accent,
+  )
+));
+$color: mat-get-color-config($theme);
+$primary: map-get($color, primary);
+
+:host {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  height: 90px;
+  top: -26px;
+  background-color: mat-color($primary);
+  z-index: 1;
+}
+
+.header__inner {
+  position: sticky;
+  top: 0;
+}
+
 .header__logo {
   cursor: pointer;
 }
