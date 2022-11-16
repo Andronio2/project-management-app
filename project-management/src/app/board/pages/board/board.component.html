@@ -7,6 +7,16 @@
     <button mat-raised-button (click)="createColumn()">
       <mat-icon class="add">add</mat-icon>{{ t('createColumn') }}
     </button>
+    <span class="spacer"></span>
+    <mat-form-field class="board__filter" appearance="outline">
+      <mat-label>{{ t('filterBy') }}</mat-label>
+      <mat-select [(value)]="selected" (selectionChange)="selected$.next(selected)">
+        <mat-option value="allUsers">{{t('allUsers')}}</mat-option>
+        <mat-option *ngFor="let user of users" [value]="user.login">
+          {{user.login}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div
     class="board__columns"
@@ -21,7 +31,7 @@
       [attr.data-col-id]="column.id"
       [cdkDragDisabled]="isDragDisable"
     >
-      <app-column [fromBoard]="{ column, boardId }" (dragDisableEvent)="setDragDisable($event)"></app-column>
+      <app-column [fromBoard]="{ column, boardId, users, selected$ }" (dragDisableEvent)="setDragDisable($event)"></app-column>
     </mat-card>
   </div>
 </ng-container>

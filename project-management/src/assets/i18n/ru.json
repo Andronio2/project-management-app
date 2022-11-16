@@ -20,13 +20,13 @@
     "teamAndreyName": "Андрей Смирнов",
     "teamAndreyRole": "Frontend разработчик",
     "teamAndreyRole2": "Лидер команды",
-    "teamAndreyText": "Какой-то текст...",
+    "teamAndreyText": "Настройка NgRX: создание Actions, Effects, Reducers, Selectors для Boards. Создание API для работы с Board. Деплой Backend. Реализация Drag-n-drop.",
     "teamDianaName": "Диана Абдыкасенова",
     "teamDianaRole": "Frontend разработчик",
-    "teamDianaText": "Какой-то текст...",
+    "teamDianaText": "Создание Приветственной, Главной и Board страниц. Дизайн приложения. Локализация. Адаптивная верстка. Интерактивность элементов и анимация. Реализация дополнительного функционала.",
     "teamAibekName": "Айбек Кенжебаев",
     "teamAibekRole": "Frontend разработчик",
-    "teamAibekText": "Какой-то текст...",
+    "teamAibekText": "Настройка NgRX: создание Actions, Effects, Reducers, Selectors для страниц авторизации и для пользователей. Модальные окна удаления, создания/редактирования и ошибок.",
     "courseTitle": "О курсе Angular",
     "courseText": "Данный проект разработан в рамках курса Angular, предоставленного сообществом разработчиков The Rolling Scopes.",
     "courseFreeTitle": "Бесплатное обучение",
@@ -58,7 +58,9 @@
   "board": {
     "createColumn": "Создать колонку",
     "addTask": "Добавить задачу",
-    "editColumn": "Редактировать колонку"
+    "editColumn": "Редактировать колонку",
+    "filterBy": "Фильтровать задачи по",
+    "allUsers": "Все пользователи"
   },
   "error": {
     "title": "Неверный URL",
