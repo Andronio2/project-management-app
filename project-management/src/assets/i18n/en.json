@@ -58,7 +58,9 @@
   "board": {
     "createColumn": "Create a column",
     "addTask": "Add a task",
-    "editColumn": "Edit column"
+    "editColumn": "Edit column",
+    "filterBy": "Filter tasks by",
+    "allUsers": "All users"
   },
   "error": {
     "title": "Invalid URL",

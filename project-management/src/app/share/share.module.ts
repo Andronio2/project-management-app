@@ -12,6 +12,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SortColumnsTasksPipe } from './pipes/sort-columns-tasks.pipe';
 
 const MaterialComponents = [
@@ -25,6 +27,8 @@ const MaterialComponents = [
   MatMenuModule,
   MatAutocompleteModule,
   MatSelectModule,
+  MatTooltipModule,
+  MatProgressBarModule,
 ];
 @NgModule({
   declarations: [SortColumnsTasksPipe],
