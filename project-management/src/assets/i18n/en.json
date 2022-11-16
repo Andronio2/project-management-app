@@ -74,7 +74,9 @@
       "403": "User was not founded",
       "401": "User not unauthorized",
       "409": "User login already exists",
-      "400": "Bad Request"
+      "400": "Bad Request",
+      "0": "Http failure response"
+
     }
   },
   "authAndModal": {
