@@ -9,5 +9,3 @@ export const showActionAction = createAction(
   '[ERROR_MESSAGE] Show error',
   props<{ errorMessage: string; errorStatus: number }>(),
 );
-
-export const errorMessageShowedAction = createAction('[ERROR_MESSAGE] Show error message showed');
