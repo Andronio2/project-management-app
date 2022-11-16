@@ -7,8 +7,9 @@ import { ModalType } from 'src/app/share/constants/constants';
 import { AuthService } from '../../services/API/auth.service';
 import { ModalService } from '../../services/modal.service';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
+import { ProgressBarService } from '../../services/progress-bar.service';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +25,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   hideSideMenu = false;
 
+  isLoading$ = new Observable<boolean>();
+
   destroy$ = new Subject();
 
   constructor(
@@ -33,9 +36,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private store: Store,
     private responsive: BreakpointObserver,
     private router: Router,
+    private progressBarService: ProgressBarService,
   ) {
     this.activeLang = localStorage.getItem('lang') || this.translateService.getActiveLang();
     this.availableLang = this.translateService.getAvailableLangs();
+    this.isLoading$ = this.progressBarService.isLoading$;
   }
 
   ngOnInit() {
@@ -54,6 +59,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.hideSideMenu = true;
         }
       });
+
+    this.progressBarService.show();
   }
 
   ngOnDestroy(): void {
