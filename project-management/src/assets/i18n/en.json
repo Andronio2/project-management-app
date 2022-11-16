@@ -69,8 +69,12 @@
       "link": "Main page"
     },
     "code": {
-      "403": "not found",
-      "401": "user not unauthorized"
+      "500": "Internal Server error",
+      "404": "Not founded",
+      "403": "User was not founded",
+      "401": "User not unauthorized",
+      "409": "User login already exists",
+      "400": "Bad Request"
     }
   },
   "authAndModal": {
