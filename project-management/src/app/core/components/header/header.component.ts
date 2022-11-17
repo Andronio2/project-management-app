@@ -65,8 +65,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.hideSideMenu = true;
         }
       });
-
-    this.progressBarService.show();
   }
 
   ngOnDestroy(): void {
