@@ -13,7 +13,7 @@ export class LoaderInterceptorService implements HttpInterceptor {
       tap({
         error: () => this.progressBar.hide(),
       }),
-      finalize(() => this.progressBar.hide())
+      finalize(() => this.progressBar.hide()),
     );
   }
 }

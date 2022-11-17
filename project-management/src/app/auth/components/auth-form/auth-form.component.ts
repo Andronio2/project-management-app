@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { ProgressBarService } from 'src/app/core/services/progress-bar.service';
 import { ICreateUserDto, ISigninUserDto } from 'src/app/share/models/auth.model';
 import passwordValidator from '../../validators/passwordValidator';
@@ -8,7 +9,7 @@ import passwordValidator from '../../validators/passwordValidator';
   templateUrl: './auth-form.component.html',
   styleUrls: ['./auth-form.component.scss'],
 })
-export class AuthFormComponent implements OnInit {
+export class AuthFormComponent implements OnInit, OnDestroy {
   @Input() formType: string = '';
 
   @Input() title: string = '';
@@ -25,6 +26,8 @@ export class AuthFormComponent implements OnInit {
 
   isLoading$ = this.progressBarService.isLoading$;
 
+  destroy$ = new Subject();
+
   constructor(private fb: FormBuilder, private progressBarService: ProgressBarService) {}
 
   ngOnInit(): void {
@@ -36,18 +39,21 @@ export class AuthFormComponent implements OnInit {
       login: this.login,
       password: this.password,
     });
-    this.isLoading$.subscribe({
-      next: (res) => {
-        if (res) {
-          this.authForm?.disable();
-        } else {
-          this.authForm?.enable();
-        }
-      },
+    this.isLoading$.pipe(takeUntil(this.destroy$)).subscribe((res) => {
+      if (res) {
+        this.authForm?.disable();
+      } else {
+        this.authForm?.enable();
+      }
     });
   }
 
   onSubmit() {
     this.getFormData.emit(this.authForm?.getRawValue());
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }
