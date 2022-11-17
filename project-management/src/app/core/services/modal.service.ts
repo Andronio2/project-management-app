@@ -23,10 +23,11 @@ export class ModalService {
     private translocoService: TranslocoService,
   ) {}
 
-  public openErrorMod(message: string) {
+  public openErrorMod(message: string, status: number) {
     const dialogRef = this.dialog.open(ErrorModalComponent, {
       data: {
         message,
+        status,
       },
       width: '295px',
     });

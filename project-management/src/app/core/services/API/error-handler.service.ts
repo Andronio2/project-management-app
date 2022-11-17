@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { errorMessageAction } from 'src/app/redux/actions/error-message.action';
+import { errorMessageAction, showActionAction } from 'src/app/redux/actions/error-message.action';
 import { IErrorResponse } from 'src/app/share/models/error-message.model';
 
 @Injectable({
@@ -13,7 +13,9 @@ export class ErrorHandlerService {
   public errorHandler(this: ErrorHandlerService, ...args: any[]): Observable<IErrorResponse> {
     const error = args[0];
     const message = error.error.message ? error.error.message : error.message;
-    this.store.dispatch(errorMessageAction(message));
+    const errorStatus = error.error.status ? error.error.status : error.status;
+
+    this.store.dispatch(showActionAction({ errorMessage: message, errorStatus }));
     return of({
       statusCode: error.status,
       message,

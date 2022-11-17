@@ -1,11 +1,13 @@
 import { boardStatusReducer } from './board-stat.reducer';
-import { boardReducer } from './board.reducer';
+import { allBoardsReducer } from './all-boards.reducer';
 import { markTaskReducer } from './mark-task.reducer';
 import { userReducer } from './user.reducer';
+import { combineReducers } from '@ngrx/store';
+import { currBoardReducer } from './curr-board.reducer';
 
 export const appReducer = {
   user: userReducer,
-  board: boardReducer,
+  board: combineReducers({ allBoards: allBoardsReducer, currBoard: currBoardReducer }),
   boardLoaded: boardStatusReducer,
   markTask: markTaskReducer,
 };

@@ -38,7 +38,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <button type="submit" [disabled]="authForm!.invalid" mat-raised-button color="primary">{{ t('button.submit') }}</button>
+        <button type="submit" [disabled]="authForm!.invalid || (isLoading$ | async)" mat-raised-button color="primary">{{ t('button.submit') }}</button>
       </mat-card>
     </form>
   </div>

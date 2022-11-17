@@ -12,6 +12,7 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 import { TranslocoRootModule } from '../transloco-root.module';
 import { ErrorModalComponent } from './components/error-modal/error-modal.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { LoaderInterceptorService } from './services/API/loader-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,11 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
       multi: true,
     },
   ],
