@@ -1,7 +1,7 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { ColumnActions } from 'src/app/redux/actions/column.action';
@@ -12,7 +12,6 @@ import { ModalType } from 'src/app/share/constants/constants';
 import { IUser } from 'src/app/share/models/auth.model';
 import { IBoard } from 'src/app/share/models/board.model';
 import { IColumn } from 'src/app/share/models/column.model';
-import { ITask } from 'src/app/share/models/task.model';
 
 @Component({
   selector: 'app-column',
