@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { ModalType } from 'src/app/share/constants/constants';
@@ -11,7 +11,7 @@ import { ITask } from 'src/app/share/models/task.model';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
 })
-export class TaskComponent implements OnInit, OnDestroy {
+export class TaskComponent implements OnInit {
   @Input() fromColumn!: {
     boardId: string;
     column: IColumn;
@@ -27,11 +27,6 @@ export class TaskComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user = this.fromColumn.users.find((user) => user.id === this.fromColumn.task.userId);
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.complete();
   }
 
   deleteTask(e: Event, id: string) {
