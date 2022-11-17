@@ -13,4 +13,5 @@ export interface IBoardModal {
 
 export interface IErrorModal {
   message: string;
+  status: number;
 }
