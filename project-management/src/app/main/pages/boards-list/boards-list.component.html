@@ -6,10 +6,13 @@
         <mat-label>{{ t('main.searchBoards') }}</mat-label>
         <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="goToBoardPage(option.board.id)">
-            {{ t('main.task') + ': ' + option.task.title + ', ' +
-              t('main.board') + ': ' + option.board.title + ', ' +
-              t('main.column') + ': ' + option.column.title}}
+          <mat-option
+            *ngFor="let option of filteredOptions | async" [value]="option"
+            (click)="saveTaskIdToStore(option.board.id, option.task.id)"
+          >
+            <span class="search__colored">{{ t('main.task') }}:</span> {{ option.task.title }},
+            <span class="search__colored">{{ t('main.board') }}:</span> {{ option.board.title }},
+            <span class="search__colored">{{ t('main.column') }}:</span> {{ option.column.title }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
