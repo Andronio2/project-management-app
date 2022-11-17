@@ -81,4 +81,30 @@ export const currBoardReducer = createReducer(
     });
     return { ...state!, columns };
   }),
+  on(TaskActions.updateTaskAction, (state, { columnId, taskId, task }): IBoard => {
+    const columns = state!.columns!.map((col) => {
+      if (col.id !== columnId) return col;
+      else {
+        const newTasks = col.tasks?.map((tsk) => (tsk.id === taskId ? { ...tsk, ...task } : tsk));
+        return {
+          ...col,
+          tasks: newTasks,
+        };
+      }
+    });
+    return { ...state!, columns };
+  }),
+  on(TaskActions.deleteTaskAction, (state, { columnId, taskId }): IBoard => {
+    const columns = state!.columns!.map((col) => {
+      if (col.id !== columnId) return col;
+      else {
+        const newTasks = col.tasks!.filter((tsk) => tsk.id !== taskId);
+        return {
+          ...col,
+          tasks: newTasks,
+        };
+      }
+    });
+    return { ...state!, columns };
+  }),
 );
