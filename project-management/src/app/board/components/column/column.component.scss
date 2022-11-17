@@ -21,6 +21,16 @@
   gap: 0.7rem;
 }
 
+.column__task_colored {
+  animation: fade 4s;
+}
+
+@keyframes fade {
+  0% {background-color: #fce4ec;}
+  70% {background-color: #fce4ec;}
+  100% {background-color: #ffffff;}
+ }
+
 .add {
   &.material-icons {
     font-size: 18px;

@@ -1,23 +1,25 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { ColumnActions } from 'src/app/redux/actions/column.action';
 import { TaskActions } from 'src/app/redux/actions/task.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
+import { selectTaskState } from 'src/app/redux/selectors/mark-task.selectors';
 import { ModalType } from 'src/app/share/constants/constants';
 import { IUser } from 'src/app/share/models/auth.model';
 import { IBoard } from 'src/app/share/models/board.model';
 import { IColumn } from 'src/app/share/models/column.model';
+import { ITask } from 'src/app/share/models/task.model';
 
 @Component({
   selector: 'app-column',
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.scss'],
 })
-export class ColumnComponent implements OnInit {
+export class ColumnComponent implements OnInit, OnDestroy {
   @Input() fromBoard!: {
     column: IColumn;
     boardId: string;
@@ -35,6 +37,8 @@ export class ColumnComponent implements OnInit {
 
   selected = 'allUsers';
 
+  taskId$ = new Observable<string>();
+
   destroy$ = new Subject();
 
   constructor(private modalService: ModalService, private store: Store) {}
@@ -44,6 +48,12 @@ export class ColumnComponent implements OnInit {
     this.fromBoard.selected$.pipe(takeUntil(this.destroy$)).subscribe((selected) => {
       this.selected = selected;
     });
+    this.taskId$ = this.store.select(selectTaskState);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
   deleteColumn(id: string) {

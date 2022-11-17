@@ -13,6 +13,8 @@ import { IColumn } from 'src/app/share/models/column.model';
 import { UserActions } from 'src/app/redux/actions/users.actions';
 import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { IUser } from 'src/app/share/models/auth.model';
+import { setTaskByIdAction } from 'src/app/redux/actions/mark-task.action';
+import { selectTaskState } from 'src/app/redux/selectors/mark-task.selectors';
 
 interface ISearchOption {
   task: ITask;
@@ -58,6 +60,7 @@ export class BoardsListComponent implements OnInit, OnDestroy {
         return title ? this._filter(title as string) : this.options.slice();
       }),
     );
+    this.store.dispatch(setTaskByIdAction({ taskId: '' }));
   }
 
   ngOnDestroy(): void {
@@ -101,8 +104,13 @@ export class BoardsListComponent implements OnInit, OnDestroy {
     this.modalService.openCreateMod(ModalType.CREATE, ModalType.BOARD);
   }
 
-  goToBoardPage(id: string) {
-    this.router.navigate(['/board', id]);
+  saveTaskIdToStore(boardId: string, taskId: string) {
+    this.store.dispatch(setTaskByIdAction({ taskId }));
+    this.goToBoardPage(boardId);
+  }
+
+  goToBoardPage(boardId: string) {
+    this.router.navigate(['/board', boardId]);
   }
 
   clickBoardMenu(e: Event) {
