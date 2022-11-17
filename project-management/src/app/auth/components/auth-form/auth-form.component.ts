@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/core/services/API/auth.service';
 import { ICreateUserDto, ISigninUserDto } from 'src/app/share/models/auth.model';
 import passwordValidator from '../../validators/passwordValidator';
+import AOS from 'aos';
 @Component({
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
@@ -34,6 +35,7 @@ export class AuthFormComponent implements OnInit {
       login: this.login,
       password: this.password,
     });
+    AOS.init();
   }
 
   onSubmit() {
