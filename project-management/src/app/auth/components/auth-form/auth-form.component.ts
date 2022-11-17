@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProgressBarService } from 'src/app/core/services/progress-bar.service';
 import { ICreateUserDto, ISigninUserDto } from 'src/app/share/models/auth.model';

@@ -77,7 +77,6 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   dropColumn(event: CdkDragDrop<IBoard>) {
-    console.log(event);
     const columnId = event.item.element.nativeElement.getAttribute('data-col-id')!;
     const order = event.currentIndex + 1;
     this.store
