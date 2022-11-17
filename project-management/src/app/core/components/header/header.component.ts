@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.progressBarService.show();
+    // this.progressBarService.show();
   }
 
   ngOnDestroy(): void {
