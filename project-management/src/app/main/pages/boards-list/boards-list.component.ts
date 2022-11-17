@@ -14,7 +14,6 @@ import { UserActions } from 'src/app/redux/actions/users.actions';
 import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { IUser } from 'src/app/share/models/auth.model';
 import { setTaskByIdAction } from 'src/app/redux/actions/mark-task.action';
-import { selectTaskState } from 'src/app/redux/selectors/mark-task.selectors';
 
 interface ISearchOption {
   task: ITask;

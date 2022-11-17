@@ -4,7 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { ProgressBarService } from 'src/app/core/services/progress-bar.service';
 import { ICreateUserDto, ISigninUserDto } from 'src/app/share/models/auth.model';
 import passwordValidator from '../../validators/passwordValidator';
-import AOS from 'aos';
+
 @Component({
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
