@@ -57,6 +57,13 @@ export const currBoardReducer = createReducer(
       columns,
     };
   }),
+  on(
+    ColumnActions.deleteColumnAction,
+    (state, { columnId }): IBoard => ({
+      ...state!,
+      columns: state!.columns!.filter((col) => col.id !== columnId),
+    }),
+  ),
   on(TaskActions.allTasksLoadedAction, (state, { columnId, tasks }): IBoard => {
     const columns = state!.columns!.map((col) => (col.id !== columnId ? col : { ...col, tasks }));
     return { ...state!, columns };
