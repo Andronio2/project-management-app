@@ -23,10 +23,10 @@
       <mat-card-header class="board__header">
         <mat-card-title>{{board.title}}</mat-card-title>
         <div class="board__buttons">
-          <button mat-button [matMenuTriggerFor]="menu" (click)="clickBoardMenu($event)"><mat-icon class="more-icon">more_vert</mat-icon></button>
+          <button type="button" mat-button [matMenuTriggerFor]="menu" (click)="clickBoardMenu($event)"><mat-icon class="more-icon">more_vert</mat-icon></button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="editBoard($event, board.id)"><mat-icon color="primary">edit</mat-icon>{{ t('main.edit') }}</button>
-            <button mat-menu-item (click)="deleteBoard($event, board.id)"><mat-icon color="accent">delete</mat-icon>{{ t('main.delete') }}</button>
+            <button type="button" mat-menu-item (click)="editBoard($event, board.id)"><mat-icon color="primary">edit</mat-icon>{{ t('main.edit') }}</button>
+            <button type="button" mat-menu-item (click)="deleteBoard($event, board.id)"><mat-icon color="accent">delete</mat-icon>{{ t('main.delete') }}</button>
           </mat-menu>
         </div>
       </mat-card-header>
