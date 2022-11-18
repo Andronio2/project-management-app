@@ -17,4 +17,5 @@ export interface IAppState {
   user: IUserState;
   board: IBoardState;
   boardLoaded: BoardLoadedState;
+  markTask: string;
 }

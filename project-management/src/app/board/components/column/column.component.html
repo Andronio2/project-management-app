@@ -41,6 +41,7 @@
       filterTasks:[fromBoard.users, selected]"
       cdkDrag
       (click)="editTask(task.id)"
+      [class.column__task_colored]="(taskId$ | async) === task.id"
       id="{{ task.id }}"
     >
       <app-task

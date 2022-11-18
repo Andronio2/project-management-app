@@ -23,7 +23,7 @@
     "teamAndreyText": "Setting up NgRX: creating Actions, Effects, Reducers, Selectors for Boards. Creating an API for working with the Board. Deploy Backend. Drag-n-drop implementation.",
     "teamDianaName": "Diana Abdykassenova",
     "teamDianaRole": "Frontend developer",
-    "teamDianaText": "Creation of Welcome, Main and Board pages. Application design. Localization. Adaptive layout. Interactivity of elements and animation. Implementation of additional functionality.",
+    "teamDianaText": "Creation of Welcome, Main and Board pages. Application design. Localization. Adaptive layout. Interactivity of elements and animation. Filtering tasks by users.",
     "teamAibekName": "Aibek Kenzhebayev",
     "teamAibekRole": "Frontend developer",
     "teamAibekText": "Setting up NgRX: creating Actions, Effects, Reducers, Selectors for authorization pages and for users. Modal windows for deleting, creating/editing and errors.",
