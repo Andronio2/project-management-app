@@ -1,10 +1,10 @@
 <ng-container *transloco="let t; read: 'board'">
   <div class="board__header">
-    <button mat-icon-button color="primary" aria-label="back button" (click)="goToMainPage()">
+    <button type="button" mat-icon-button color="primary" aria-label="back button" (click)="goToMainPage()">
       <mat-icon>arrow_back_ios</mat-icon>
     </button>
     <h2 class="board__title">{{ (board$ | async)?.title }}</h2>
-    <button mat-raised-button (click)="createColumn()">
+    <button type="button" mat-raised-button (click)="createColumn()">
       <mat-icon class="add">add</mat-icon>{{ t('createColumn') }}
     </button>
     <span class="spacer"></span>
