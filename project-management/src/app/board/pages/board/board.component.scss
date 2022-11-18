@@ -16,7 +16,7 @@
   margin-bottom: 1rem;
   @media (max-width: 768px) {
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 1rem;
   }
   @media (max-width: 530px) {
     margin-bottom: 0;
@@ -60,10 +60,6 @@
   @media (max-width: 530px) {
     max-height: calc(100vh - 350px);
   }
-}
-
-.mat-icon-button {
-  width: 24px;
 }
 
 .add {

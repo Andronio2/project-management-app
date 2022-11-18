@@ -5,10 +5,10 @@
   <ng-template #editColumnTitle>
     <form (ngSubmit)="editColumn()">
       <button mat-icon-button color="primary" aria-label="Submit" (click)="editColumn()">
-        <mat-icon>check_circle</mat-icon>
+        <mat-icon>done</mat-icon>
       </button>
-      <button mat-icon-button color="accent" aria-label="Cancel" (click)="isEditColumnTitle=false">
-        <mat-icon>cancel</mat-icon>
+      <button class="close__btn" mat-icon-button color="accent" aria-label="Cancel" (click)="isEditColumnTitle=false">
+        <mat-icon>close</mat-icon>
       </button>
       <mat-form-field appearance="standard">
         <mat-label>{{ 'board.editColumn' | transloco }}</mat-label>
