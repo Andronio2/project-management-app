@@ -33,7 +33,7 @@ export class BoardsListComponent implements OnInit, OnDestroy {
 
   myControl = new FormControl<string | ISearchOption>('');
   options: ISearchOption[] = [];
-  filteredOptions!: Observable<ISearchOption[]>;
+  filteredOptions$!: Observable<ISearchOption[]>;
 
   user: IUser | undefined;
 
@@ -44,6 +44,7 @@ export class BoardsListComponent implements OnInit, OnDestroy {
     this.store.dispatch(BoardActions.getAllBoardsAction());
     this.boards$ = this.store.select(Selectors.selectBoards);
     this.boards$.pipe(takeUntil(this.destroy$)).subscribe((boards) => {
+      this.options = [];
       boards.forEach((board) => {
         board.columns?.forEach((column) => {
           column.tasks?.forEach((task) => {
@@ -52,7 +53,7 @@ export class BoardsListComponent implements OnInit, OnDestroy {
         });
       });
     });
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions$ = this.myControl.valueChanges.pipe(
       startWith(''),
       map((value) => {
         const title = typeof value === 'string' ? value : value?.task.title;

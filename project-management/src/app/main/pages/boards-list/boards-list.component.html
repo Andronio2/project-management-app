@@ -3,11 +3,11 @@
     <h2 class="boards__title">{{ t('main.boards') }}</h2>
     <form class="boards__search-form">
       <mat-form-field class="boards__search-full-width" appearance="outline">
-        <mat-label>{{ t('main.searchBoards') }}</mat-label>
+        <mat-label>{{ t('main.searchTasks') }}</mat-label>
         <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
           <mat-option
-            *ngFor="let option of filteredOptions | async" [value]="option"
+            *ngFor="let option of filteredOptions$ | async" [value]="option"
             (click)="saveTaskIdToStore(option.board.id, option.task.id)"
           >
             <span class="search__colored">{{ t('main.task') }}:</span> {{ option.task.title }},
