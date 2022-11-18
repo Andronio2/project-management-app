@@ -4,10 +4,10 @@
   </mat-card-title>
   <ng-template #editColumnTitle>
     <form (ngSubmit)="editColumn()">
-      <button mat-icon-button color="primary" aria-label="Submit" (click)="editColumn()">
+      <button type="button" mat-icon-button color="primary" aria-label="Submit" (click)="editColumn()">
         <mat-icon>done</mat-icon>
       </button>
-      <button class="close__btn" mat-icon-button color="accent" aria-label="Cancel" (click)="isEditColumnTitle=false">
+      <button type="button" class="close__btn" mat-icon-button color="accent" aria-label="Cancel" (click)="isEditColumnTitle=false">
         <mat-icon>close</mat-icon>
       </button>
       <mat-form-field appearance="standard">
@@ -17,6 +17,7 @@
     </form>
   </ng-template>
   <button
+    type="button"
     mat-icon-button
     color="accent"
     aria-label="delete button"
@@ -49,7 +50,7 @@
       ></app-task>
     </mat-card>
   </div>
-  <button mat-button color="primary" (click)="createTask(fromBoard.column.id)">
+  <button type="button" mat-button color="primary" (click)="createTask(fromBoard.column.id)">
     <mat-icon class="add">add</mat-icon>{{ 'board.addTask' | transloco }}
   </button>
 </mat-card-content>

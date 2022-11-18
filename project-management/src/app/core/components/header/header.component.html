@@ -39,4 +39,7 @@
     </ng-template>
   </mat-toolbar>
 </ng-container>
-<mat-progress-bar mode="indeterminate" color="accent" *ngIf="isLoading$ | async"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="isLoading$ | async; else elseProgressBar"></mat-progress-bar>
+<ng-template #elseProgressBar>
+  <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+</ng-template>
