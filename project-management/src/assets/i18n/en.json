@@ -48,7 +48,7 @@
   },
   "main": {
     "boards": "Boards",
-    "searchBoards": "Search tasks",
+    "searchTasks": "Search tasks",
     "edit": "Edit",
     "delete": "Delete",
     "task": "task",
