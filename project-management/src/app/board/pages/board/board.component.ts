@@ -13,6 +13,7 @@ import { ColumnActions } from 'src/app/redux/actions/column.action';
 import { UserActions } from 'src/app/redux/actions/users.actions';
 import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { IUser } from 'src/app/share/models/auth.model';
+import { ProgressBarService } from 'src/app/core/services/progress-bar.service';
 
 @Component({
   selector: 'app-board',
@@ -34,11 +35,14 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   selected$ = new Subject<string>();
 
+  isLoading$ = this.progressBarService.isLoading$;
+
   constructor(
     private store: Store,
     public route: ActivatedRoute,
     private modalService: ModalService,
     private router: Router,
+    private progressBarService: ProgressBarService,
   ) {}
 
   ngOnInit(): void {

@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { ModalService } from 'src/app/core/services/modal.service';
+import { ProgressBarService } from 'src/app/core/services/progress-bar.service';
 import { ColumnActions } from 'src/app/redux/actions/column.action';
 import { TaskActions } from 'src/app/redux/actions/task.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
@@ -40,7 +41,13 @@ export class ColumnComponent implements OnInit, OnDestroy {
 
   destroy$ = new Subject();
 
-  constructor(private modalService: ModalService, private store: Store) {}
+  isLoading$ = this.progressBarService.isLoading$;
+
+  constructor(
+    private modalService: ModalService,
+    private store: Store,
+    private progressBarService: ProgressBarService,
+  ) {}
 
   ngOnInit(): void {
     this.columnTitle = this.fromBoard.column.title;
