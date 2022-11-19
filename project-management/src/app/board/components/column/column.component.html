@@ -41,6 +41,7 @@
       sortColumnsTasks |
       filterTasks:[fromBoard.users, selected]"
       cdkDrag
+      [cdkDragDisabled]="isLoading$ | async"
       (click)="editTask(task.id)"
       [class.column__task_colored]="(taskId$ | async) === task.id"
       id="{{ task.id }}"
