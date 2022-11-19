@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Observable, startWith, Subject, takeUntil } from 'rxjs';
 import { ModalService } from 'src/app/core/services/modal.service';
@@ -14,6 +14,7 @@ import { UserActions } from 'src/app/redux/actions/users.actions';
 import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { IUser } from 'src/app/share/models/auth.model';
 import { setTaskByIdAction } from 'src/app/redux/actions/mark-task.action';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 interface ISearchOption {
   task: ITask;
@@ -36,6 +37,8 @@ export class BoardsListComponent implements OnInit, OnDestroy {
   filteredOptions$!: Observable<ISearchOption[]>;
 
   user: IUser | undefined;
+
+  @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
 
   constructor(private store: Store, private modalService: ModalService, private router: Router) {}
 
@@ -91,12 +94,11 @@ export class BoardsListComponent implements OnInit, OnDestroy {
   }
 
   editBoard(e: Event, id: string) {
-    e.stopPropagation();
+    this.trigger.closeMenu();
     this.modalService.openCreateMod(ModalType.UPDATE, ModalType.BOARD, id);
   }
 
   deleteBoard(e: Event, id: string) {
-    e.stopPropagation();
     this.modalService.openConfirmDelete(ModalType.BOARD, id);
   }
 
