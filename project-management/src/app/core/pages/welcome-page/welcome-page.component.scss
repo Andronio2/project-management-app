@@ -67,27 +67,8 @@
 .get-started__btn {
   transition: 0.3s;
   &:hover {
-    background-color: #303f9f;
-  }
-}
-
-.video__link:hover {
-  transition: 0.3s;
-  .video__btn {
     background-color: #e91e63;
   }
-  .video__text {
-    color: #000000;
-  }
-}
-
-.video__link {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: rgba(0,0,0,.87);
-  font-weight: 700;
-  text-decoration: none;
 }
 
 .welcome__img {
