@@ -108,6 +108,7 @@ export class BoardsListComponent implements OnInit, OnDestroy {
 
   saveTaskIdToStore(boardId: string, taskId: string) {
     this.store.dispatch(setTaskByIdAction({ taskId }));
+    setTimeout(() => this.store.dispatch(setTaskByIdAction({ taskId: '' })), 5000);
     this.goToBoardPage(boardId);
   }
 
