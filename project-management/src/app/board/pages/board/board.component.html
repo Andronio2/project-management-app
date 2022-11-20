@@ -4,7 +4,7 @@
       <mat-icon>arrow_back_ios</mat-icon>
     </button>
     <h2 class="board__title">{{ (board$ | async)?.title }}</h2>
-    <button type="button" mat-raised-button (click)="createColumn()">
+    <button class="create-column__btn" type="button" mat-raised-button (click)="createColumn()">
       <mat-icon class="add">add</mat-icon>{{ t('createColumn') }}
     </button>
     <span class="spacer"></span>

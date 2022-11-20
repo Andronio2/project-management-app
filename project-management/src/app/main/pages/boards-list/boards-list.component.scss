@@ -51,6 +51,14 @@
   height: 150px;
   overflow: auto;
   cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    .more-icon {
+      color: rgba(0,0,0,.87);
+      transition: 0.3s;
+    }
+    background-color: #fce4ec;
+  }
 }
 
 .board__header {

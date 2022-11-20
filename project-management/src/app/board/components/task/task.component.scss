@@ -2,7 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
+  padding: 1rem;
+  transition: 0.3s;
+  &:hover {
+    .mat-icon.task__user {
+      color: #3f51b5;
+      transition: 0.3s;
+    }
+    .mat-icon.delete__icon {
+      color: #ff4081;
+      transition: 0.3s;
+    }
+    background-color: #fce4ec;
+  }
 }
 
 .task-content {
@@ -17,4 +29,8 @@
 
 .task__user {
   cursor: default;
+}
+
+.mat-icon {
+  color: #bdbdbd;
 }

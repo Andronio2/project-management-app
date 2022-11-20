@@ -11,6 +11,11 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { ProgressBarService } from '../../services/progress-bar.service';
 
+enum Lang {
+  EN = 'en',
+  RU = 'ru',
+}
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -34,6 +39,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoading$ = new Observable<boolean>();
 
   destroy$ = new Subject();
+
+  isChecked = true;
+
+  lang = Lang.EN;
 
   constructor(
     private modalService: ModalService,
@@ -76,9 +85,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.modalService.openCreateMod(ModalType.CREATE, ModalType.BOARD);
   }
 
-  changeLang(lang: string) {
-    this.translateService.setActiveLang(lang);
-    this.activeLang = lang;
+  changeLang(checkedFlag: boolean) {
+    this.lang = checkedFlag ? Lang.EN : Lang.RU;
+    this.translateService.setActiveLang(this.lang);
+    this.activeLang = this.lang;
     localStorage.setItem('lang', this.activeLang);
   }
 

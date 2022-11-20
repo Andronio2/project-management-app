@@ -27,6 +27,9 @@
   background-image: url('../../../../assets/svg/rs_school_js.svg');
   background-size: contain;
   background-repeat: no-repeat;
+  &:hover {
+    filter: invert(11%) sepia(62%) saturate(0%) hue-rotate(191deg) brightness(88%) contrast(96%);
+  }
 }
 
 .footer__link {
@@ -36,7 +39,7 @@
 }
 
 .footer__link:hover {
-  color: #000000;
+  color: #3949ab;
 }
 
 .spacer {

@@ -4,10 +4,10 @@
   </mat-card-title>
   <ng-template #editColumnTitle>
     <form (ngSubmit)="editColumn()">
-      <button type="button" mat-icon-button color="primary" aria-label="Submit" (click)="editColumn()">
+      <button class="column-edit__btn" type="button" mat-icon-button color="primary" aria-label="Submit" (click)="editColumn()">
         <mat-icon>done</mat-icon>
       </button>
-      <button type="button" class="close__btn" mat-icon-button color="accent" aria-label="Cancel" (click)="isEditColumnTitle=false">
+      <button class="column-close__btn" type="button" mat-icon-button color="accent" aria-label="Cancel" (click)="isEditColumnTitle=false">
         <mat-icon>close</mat-icon>
       </button>
       <mat-form-field appearance="standard">
@@ -17,9 +17,9 @@
     </form>
   </ng-template>
   <button
+    class="column-delete__btn"
     type="button"
     mat-icon-button
-    color="accent"
     aria-label="delete button"
     (click)="deleteColumn(fromBoard.column.id)"
   >

@@ -23,6 +23,10 @@
 
 .header__logo {
   cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    color: #fce4ec;
+  }
 }
 
 .spacer {
@@ -31,7 +35,20 @@
 
 .buttons__container {
   display: flex;
+  align-items: center;
   gap: 1rem;
+}
+
+.header__button:hover {
+  background-color: #fce4ec;
+  transition: 0.3s;
+}
+
+.header__lang {
+  transition: 0.3s;
+  &:hover {
+    color: #fce4ec;
+  }
 }
 
 .add {
