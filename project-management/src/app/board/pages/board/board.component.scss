@@ -27,6 +27,11 @@
   margin-bottom: 0;
 }
 
+.create-column__btn:hover {
+  background-color: #fce4ec;
+  transition: 0.3s;
+}
+
 .spacer {
   flex: 1 1 auto;
   @media (max-width: 500px) {
