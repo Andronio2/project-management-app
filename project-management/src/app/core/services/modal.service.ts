@@ -31,7 +31,7 @@ export class ModalService {
       },
       width: '295px',
     });
-    setTimeout(() => dialogRef.close(), 3000);
+    setTimeout(() => dialogRef.close(), 5000);
   }
 
   public openCreateMod(
