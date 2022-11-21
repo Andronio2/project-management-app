@@ -9,13 +9,7 @@
           {{ t('text') }}
         </p>
         <div class="buttons__wrapper">
-          <button class="get-started__btn" mat-raised-button color="primary">{{ t('button.getStarted') }}</button>
-          <a class="video__link" href="#">
-            <button class="video__btn" mat-mini-fab color="accent" aria-label="Watch video">
-              <mat-icon>play_arrow</mat-icon>
-            </button>
-            <span class="video__text">{{ t('button.watchVideo') }}</span>
-          </a>
+          <a class="get-started__btn" [routerLink]="['/auth','signin']" mat-raised-button color="accent">{{ t('button.getStarted') }}</a>
         </div>
       </div>
       <img class="welcome__img" src="../../../../assets/img/4584.png" alt="">

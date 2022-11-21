@@ -27,8 +27,9 @@
   background-image: url('../../../../assets/svg/rs_school_js.svg');
   background-size: contain;
   background-repeat: no-repeat;
+  transition: 0.3s;
   &:hover {
-    filter: invert(11%) sepia(62%) saturate(0%) hue-rotate(191deg) brightness(88%) contrast(96%);
+    filter: invert(24%) sepia(92%) saturate(1022%) hue-rotate(210deg) brightness(95%) contrast(96%);
   }
 }
 
