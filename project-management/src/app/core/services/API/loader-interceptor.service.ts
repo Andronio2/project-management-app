@@ -8,7 +8,7 @@ export class LoaderInterceptorService implements HttpInterceptor {
   constructor(private progressBar: ProgressBarService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.progressBar.show();
+    setTimeout(() => this.progressBar.show());
     return next.handle(req).pipe(
       tap({
         error: () => this.progressBar.hide(),
