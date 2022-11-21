@@ -7,8 +7,7 @@
     },
     "text": "Join forces, manage projects, and take productivity to new heights. Achieve all your goals with our Project Management System.",
     "button": {
-      "getStarted": "Get started",
-      "watchVideo": "Watch video"
+      "getStarted": "Get started"
     },
     "aboutTitle": "Opportunities for successful teamwork",
     "aboutText": "For a team to be productive, it needs powerful tools. Intuitive features of our system allow the team to quickly set up any workflow: from meetings and projects to events and goal setting.",
@@ -20,13 +19,13 @@
     "teamAndreyName": "Andrey Smirnov",
     "teamAndreyRole": "Frontend developer",
     "teamAndreyRole2": "Team leader",
-    "teamAndreyText": "Some text...",
+    "teamAndreyText": "Setting up NgRX: creating Actions, Effects, Reducers, Selectors for Boards. Creating an API for working with the Board. Deploy Backend. Drag-n-drop implementation.",
     "teamDianaName": "Diana Abdykassenova",
     "teamDianaRole": "Frontend developer",
-    "teamDianaText": "Some text...",
+    "teamDianaText": "Creation of Welcome, Main and Board pages. Application design. Localization. Adaptive layout. Interactivity of elements and animation. Filtering tasks by users.",
     "teamAibekName": "Aibek Kenzhebayev",
     "teamAibekRole": "Frontend developer",
-    "teamAibekText": "Some text...",
+    "teamAibekText": "Setting up NgRX: creating Actions, Effects, Reducers, Selectors for authorization pages and for users. Modal windows for deleting, creating/editing and errors.",
     "courseTitle": "About Angular Course",
     "courseText": "This project was developed as part of the Angular Course provided by The Rolling Scopes developer community.",
     "courseFreeTitle": "Free-Of-Charge Learning",
@@ -37,7 +36,7 @@
     "courseCertificateText": "After accomplishing all three stages of education, students will receive an electronic certificate of completion."
   },
   "header": {
-    "logo": "Project Management System",
+    "logo": "Project Management",
     "button": {
       "login": "Login",
       "logout": "Logout",
@@ -48,19 +47,87 @@
   },
   "main": {
     "boards": "Boards",
-    "searchBoards": "Search boards",
+    "searchTasks": "Search tasks",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "task": "task",
+    "board": "board",
+    "column": "column"
   },
   "board": {
     "createColumn": "Create a column",
-    "addTask": "Add a task"
+    "addTask": "Add a task",
+    "editColumn": "Edit column",
+    "filterBy": "Filter tasks by",
+    "allUsers": "All users"
   },
   "error": {
     "title": "Invalid URL",
     "content": {
       "text": "This page was not found. Please check the entered URL or go to the",
       "link": "Main page"
+    },
+    "code": {
+      "500": "Internal Server error",
+      "404": "Not founded",
+      "403": "User was not founded",
+      "401": "User not unauthorized",
+      "409": "User login already exists",
+      "400": "Bad Request",
+      "0": "Http failure response"
+
+    }
+  },
+  "authAndModal": {
+    "signIn": "Sign in",
+    "editProfile": "Edit profile",
+    "name": "Name",
+    "login": "Login",
+    "password": "Password",
+    "userProfile": "User profile",
+    "title": "Title",
+    "description": "Description",
+    "user": "User",
+    "error2": "Error",
+    "deleteQuestion": "Are you sure you want to delete this",
+    "error": {
+      "nameIs": "Name is",
+      "loginIs": "Login is",
+      "titleIs": "Title is",
+      "descriptionIs": "Description is",
+      "userIs": "User is",
+      "required": "required",
+      "tooShort": "too short",
+      "tooShort2": "too short",
+      "tooLong": "too long",
+      "tooLong2": "too long",
+      "atLeast3": "At least 3 characters.",
+      "atLeast8": "At least 8 characters. Has to contain uppercase letters, lowercase letters, numbers, and symbols.",
+      "noMore": "No more than 20 characters.",
+      "noMore2": "No more than 255 characters.",
+      "passwordIs": "Password is",
+      "passwordStrength": "Your password isn't strong enough."
+    },
+    "button": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "submit": "Submit",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "modalQuestion": {
+      "board": "board",
+      "column": "column",
+      "task": "task",
+      "user": "user",
+      "create": "Create",
+      "update": "Edit"
+    },
+    "placeholder": {
+      "title": "To do...",
+      "description": "In this task..."
     }
   }
 }

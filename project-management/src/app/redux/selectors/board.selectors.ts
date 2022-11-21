@@ -1,8 +1,10 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { BoardLoadedState } from 'src/app/share/constants/constants';
 import { IBoardState } from '../state.model';
 
 export namespace Selectors {
   export const selectBoardState = createFeatureSelector<IBoardState>('board');
+  export const selectBoardLoadedState = createFeatureSelector<BoardLoadedState>('boardLoaded');
 
   export const selectBoards = createSelector(selectBoardState, (state) => state.allBoards);
 
@@ -21,7 +23,7 @@ export namespace Selectors {
   export const selectTasks = (columnId: string) =>
     createSelector(selectColumnById(columnId), (state) => state?.tasks);
 
-  export const selectTasksBiId = (columnId: string, taskId: string) =>
+  export const selectTasksById = (columnId: string, taskId: string) =>
     createSelector(selectColumnById(columnId), (state) =>
       state?.tasks?.find((task) => task.id === taskId),
     );

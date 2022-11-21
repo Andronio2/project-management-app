@@ -15,6 +15,7 @@ import { BoardEffects } from './redux/effects/board.effects';
 import { appReducer } from './redux/reducers/app.reducer';
 import { ColumnEffects } from './redux/effects/column.effects';
 import { TaskEffects } from './redux/effects/task.effects';
+import { ErrorEffects } from './redux/effects/error.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,7 @@ import { TaskEffects } from './redux/effects/task.effects';
         strictActionTypeUniqueness: true,
       },
     }),
-    EffectsModule.forRoot([UserEffects, BoardEffects, ColumnEffects, TaskEffects]),
+    EffectsModule.forRoot([UserEffects, BoardEffects, ColumnEffects, TaskEffects, ErrorEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],

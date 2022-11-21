@@ -1,13 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, take, takeUntil } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { BoardActions } from 'src/app/redux/actions/board.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
-import { ModalType } from 'src/app/share/constants/constants';
+import { BoardLoadedState, ModalType } from 'src/app/share/constants/constants';
 import { IBoard } from 'src/app/share/models/board.model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { ColumnActions } from 'src/app/redux/actions/column.action';
+import { UserActions } from 'src/app/redux/actions/users.actions';
+import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
+import { IUser } from 'src/app/share/models/auth.model';
+import { ProgressBarService } from 'src/app/core/services/progress-bar.service';
 
 @Component({
   selector: 'app-board',
@@ -21,11 +27,22 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   destroy$ = new Subject();
 
+  isDragDisable = false;
+
+  users: IUser[] = [];
+
+  selected = 'allUsers';
+
+  selected$ = new Subject<string>();
+
+  isLoading$ = this.progressBarService.isLoading$;
+
   constructor(
     private store: Store,
     public route: ActivatedRoute,
     private modalService: ModalService,
     private router: Router,
+    private progressBarService: ProgressBarService,
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +51,20 @@ export class BoardComponent implements OnInit, OnDestroy {
       const boardId = this.boardId;
       this.store.dispatch(BoardActions.getBoardAction({ boardId }));
       this.board$ = this.store.select(Selectors.selectBoard);
+      this.store
+        .select(Selectors.selectBoardLoadedState)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((state) => {
+          if (state === BoardLoadedState.error) this.router.navigate(['/error']);
+        });
     });
+    this.store.dispatch(UserActions.getUsers());
+    this.store
+      .select(UserSelectors.selectUsers)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((users) => {
+        this.users = users;
+      });
   }
 
   ngOnDestroy(): void {
@@ -50,31 +80,26 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.router.navigate(['/main']);
   }
 
-  dropTask(event: CdkDragDrop<IBoard>) {
-    console.log('taskEvent ', event);
-    (window as any).eee = event;
-    (window as any).qqq = event.container.data;
-    // if (event.container === event.previousContainer) {
-    //   moveItemInArray(this.list, event.previousIndex, event.currentIndex);
-    // }
-    // console.log(this.list);
-  }
-
   dropColumn(event: CdkDragDrop<IBoard>) {
-    console.log('ColumnEvent', event);
-    (window as any).eee = event;
-    (window as any).qqq = event.container.data;
-    // if (event.container === event.previousContainer) {
-    //   moveItemInArray(this.list, event.previousIndex, event.currentIndex);
-    // }
-    // console.log(this.list);
+    const columnId = event.item.element.nativeElement.getAttribute('data-col-id')!;
+    const order = event.currentIndex + 1;
+    this.store
+      .select(Selectors.selectColumnById(columnId))
+      .pipe(take(1))
+      .subscribe((columnInfo) => {
+        const title = columnInfo!.title;
+        const column = { title, order };
+        this.store.dispatch(
+          ColumnActions.updateColumnAction({
+            boardId: this.boardId,
+            columnId,
+            column,
+          }),
+        );
+      });
   }
 
-  getOtherColumns(columnId: string): string[] {
-    let columnList: string[] = [];
-    this.board$.pipe(take(1)).subscribe((board) => {
-      columnList = board!.columns!.map((column) => column.id);
-    });
-    return columnList.filter((colId) => colId !== columnId);
+  setDragDisable(isDisable: boolean) {
+    this.isDragDisable = isDisable;
   }
 }

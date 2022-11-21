@@ -1,6 +1,6 @@
 <ng-container *transloco="let t; read: 'welcome'">
   <div class="welcome__wrapper">
-    <div class="welcome__container container">
+    <div class="welcome__container container" data-aos="zoom-in" data-aos-duration="700">
       <div class="welcome__content">
         <h2 class="welcome__title">
           {{ t('title.simple') }} <span class="welcome__title_colored">{{ t('title.project') }}</span> {{ t('title.with') }}
@@ -9,19 +9,13 @@
           {{ t('text') }}
         </p>
         <div class="buttons__wrapper">
-          <button mat-raised-button color="primary">{{ t('button.getStarted') }}</button>
-          <a class="video__link" href="#">
-            <button mat-mini-fab color="accent" aria-label="Watch video">
-              <mat-icon>play_arrow</mat-icon>
-            </button>
-            <span>{{ t('button.watchVideo') }}</span>
-          </a>
+          <a class="get-started__btn" [routerLink]="['/auth','signin']" mat-raised-button color="accent">{{ t('button.getStarted') }}</a>
         </div>
       </div>
       <img class="welcome__img" src="../../../../assets/img/4584.png" alt="">
     </div>
   </div>
-  <div class="about__wrapper">
+  <div class="about__wrapper" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="300">
     <div class="about__container container">
       <img class="welcome__img about__img" src="../../../../assets/img/4380.png" alt="">
       <div class="about__content">
@@ -30,7 +24,7 @@
           {{ t('aboutText') }}
         </p>
       </div>
-      <mat-card class="about__card">
+      <mat-card class="about__card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="600">
         <mat-card-header>
           <mat-card-title>{{ t('aboutBoardsTitle') }}</mat-card-title>
         </mat-card-header>
@@ -40,7 +34,7 @@
           </p>
         </mat-card-content>
       </mat-card>
-      <mat-card class="about__card">
+      <mat-card class="about__card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="900">
         <mat-card-header>
           <mat-card-title>{{ t('aboutTasksTitle') }}</mat-card-title>
         </mat-card-header>
@@ -52,11 +46,11 @@
       </mat-card>
     </div>
   </div>
-  <div class="developers__wrapper">
+  <div class="developers__wrapper" data-aos="fade-up" data-aos-duration="700">
     <div class="developers__container container">
       <h2 class="developers__title title">{{ t('teamTitle') }}</h2>
       <div class="developers__cards">
-        <mat-card class="developer__card">
+        <mat-card class="developer__card" data-aos="flip-left" data-aos-duration="700" data-aos-delay="300">
           <mat-card-title-group>
             <mat-card-title class="developer__name">{{ t('teamAndreyName') }}</mat-card-title>
             <mat-card-subtitle>{{ t('teamAndreyRole') }}<br>{{ t('teamAndreyRole2') }}</mat-card-subtitle>
@@ -66,7 +60,7 @@
             {{ t('teamAndreyText') }}
           </mat-card-content>
         </mat-card>
-        <mat-card class="developer__card">
+        <mat-card class="developer__card" data-aos="flip-left" data-aos-duration="700" data-aos-delay="600">
           <mat-card-title-group>
             <mat-card-title class="developer__name">{{ t('teamDianaName') }}</mat-card-title>
             <mat-card-subtitle>{{ t('teamDianaRole') }}</mat-card-subtitle>
@@ -76,7 +70,7 @@
             {{ t('teamDianaText') }}
           </mat-card-content>
         </mat-card>
-        <mat-card class="developer__card">
+        <mat-card class="developer__card" data-aos="flip-left" data-aos-duration="700" data-aos-delay="900">
           <mat-card-title-group>
             <mat-card-title class="developer__name">{{ t('teamAibekName') }}</mat-card-title>
             <mat-card-subtitle>{{ t('teamAibekRole') }}</mat-card-subtitle>
@@ -90,14 +84,14 @@
     </div>
   </div>
   <div class="course__wrapper">
-    <div class="course__container container">
+    <div class="course__container container" data-aos="zoom-in" data-aos-duration="700">
       <div class="course__content">
         <h2 class="course__title title">{{ t('courseTitle') }}</h2>
         <p>
           {{ t('courseText') }}
         </p>
       </div>
-      <mat-card class="about__card">
+      <mat-card class="about__card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="300">
         <mat-card-header>
           <mat-card-title class="course__subtitle">{{ t('courseFreeTitle') }}</mat-card-title>
         </mat-card-header>
@@ -107,7 +101,7 @@
           </p>
         </mat-card-content>
       </mat-card>
-      <mat-card class="about__card">
+      <mat-card class="about__card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="600">
         <mat-card-header>
           <mat-card-title class="course__subtitle">{{ t('courseOpenTitle') }}</mat-card-title>
         </mat-card-header>
@@ -117,7 +111,7 @@
           </p>
         </mat-card-content>
       </mat-card>
-      <mat-card class="about__card">
+      <mat-card class="about__card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="900">
         <mat-card-header>
           <mat-card-title class="course__subtitle">{{ t('courseCertificateTitle') }}</mat-card-title>
         </mat-card-header>

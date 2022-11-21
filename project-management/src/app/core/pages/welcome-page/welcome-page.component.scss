@@ -64,13 +64,11 @@
   gap: 2rem;
 }
 
-.video__link {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  color: rgba(0,0,0,.87);
-  font-weight: 700;
-  text-decoration: none;
+.get-started__btn {
+  transition: 0.3s;
+  &:hover {
+    background-color: #e91e63;
+  }
 }
 
 .welcome__img {

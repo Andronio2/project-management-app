@@ -1,22 +1,18 @@
 <ng-container *transloco="let t; read: 'header'">
-  <mat-toolbar color="primary">
+  <mat-toolbar [ngClass]="headerChanged?'header__changed':'header__inner'" color="primary" (scroll)="onScroll()">
     <h1 class="header__logo" (click)="goToMainPage()">{{ t('logo') }}</h1>
     <span class="spacer"></span>
     <div class="buttons__container" *ngIf="!hideSideMenu; else navMenu">
       <ng-container *ngIf="(isAuth$ | async) === false; else authBlock">
-        <a [routerLink]="['/auth','signin']" mat-flat-button>{{ t('button.login') }}</a>
-        <a [routerLink]="['/auth','signup']" mat-flat-button>{{ t('button.signUp') }}</a>
+        <a class="header__button" [routerLink]="['/auth','signin']" mat-flat-button>{{ t('button.login') }}</a>
+        <a class="header__button" [routerLink]="['/auth','signup']" mat-flat-button>{{ t('button.signUp') }}</a>
       </ng-container>
       <ng-template #authBlock>
-        <button mat-flat-button (click)="openCreateMod()"><mat-icon class="add">add</mat-icon>{{ t('button.createBoard') }}</button>
-        <a [routerLink]="['/auth', 'user']" mat-flat-button>{{ t('button.editProfile') }}</a>
-        <button (click)="logOut()" mat-flat-button>{{ t('button.logout') }}</button>
+        <button class="header__button" mat-flat-button (click)="openCreateMod()"><mat-icon class="add">add</mat-icon>{{ t('button.createBoard') }}</button>
+        <a class="header__button" [routerLink]="['/auth', 'user']" mat-flat-button>{{ t('button.editProfile') }}</a>
+        <button class="header__button" (click)="logOut()" mat-flat-button>{{ t('button.logout') }}</button>
       </ng-template>
-      <button mat-button [matMenuTriggerFor]="menu">{{activeLang}}</button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="changeLang('en')">en</button>
-        <button mat-menu-item (click)="changeLang('ru')">ru</button>
-      </mat-menu>
+      <mat-slide-toggle class="header__lang" [(ngModel)]="isChecked" (change)="changeLang(isChecked)">{{lang}}</mat-slide-toggle>
     </div>
     <ng-template #navMenu>
       <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
@@ -30,12 +26,14 @@
           <a mat-menu-item [routerLink]="['/auth', 'user']">{{ t('button.editProfile') }}</a>
           <button mat-menu-item (click)="logOut()">{{ t('button.logout') }}</button>
         </ng-template>
-        <button mat-menu-item [matMenuTriggerFor]="languages">{{activeLang}}</button>
-      </mat-menu>
-      <mat-menu #languages="matMenu">
-        <button mat-menu-item (click)="changeLang('en')">en</button>
-        <button mat-menu-item (click)="changeLang('ru')">ru</button>
+        <button mat-menu-item>
+          <mat-slide-toggle [(ngModel)]="isChecked" (change)="changeLang(isChecked)">{{lang}}</mat-slide-toggle>
+        </button>
       </mat-menu>
     </ng-template>
   </mat-toolbar>
 </ng-container>
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="isLoading$ | async; else elseProgressBar"></mat-progress-bar>
+<ng-template #elseProgressBar>
+  <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+</ng-template>

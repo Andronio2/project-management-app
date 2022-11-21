@@ -11,6 +11,7 @@ import { UserActions } from 'src/app/redux/actions/users.actions';
 import { TaskActions } from 'src/app/redux/actions/task.action';
 import { ModalType } from 'src/app/share/constants/constants';
 import { take } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-create-modal',
@@ -18,6 +19,14 @@ import { take } from 'rxjs';
   styleUrls: ['./create-modal.component.scss'],
 })
 export class CreateModalComponent implements OnInit {
+  type: string = `${this.translocoService.translate(
+    `authAndModal.modalQuestion.${this.data.type}`,
+  )}`;
+
+  name: string = `${this.translocoService.translate(
+    `authAndModal.modalQuestion.${this.data.name}`,
+  )}`;
+
   boardForm: FormGroup;
 
   updateData = {
@@ -55,31 +64,24 @@ export class CreateModalComponent implements OnInit {
     private store: Store,
     private dialogRef: MatDialogRef<CreateModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IBoardModal,
+    private translocoService: TranslocoService,
   ) {
     this.currBoard$.pipe(take(1)).subscribe((board) => {
       if (this.data.type === ModalType.UPDATE && board) {
         switch (this.data.name) {
           case ModalType.COLUMN:
-            this.updateData.title = board.columns!.find(
-              (column) => column.id === this.data.columnId,
-            )!.title;
-            this.updateData.order = board.columns!.find(
-              (column) => column.id === this.data.columnId,
-            )!.order;
+            const col = board.columns!.find((column) => column.id === this.data.columnId)!;
+            this.updateData.title = col.title;
+            this.updateData.order = col.order;
             break;
           case ModalType.TASK:
-            this.updateData.title = board
+            const tsk = board
               .columns!.find((column) => column.id === this.data.columnId)!
-              .tasks!.find((task) => task.id === this.data.taskId)!.title;
-            this.updateData.description = board
-              .columns!.find((column) => column.id === this.data.columnId)!
-              .tasks!.find((task) => task.id === this.data.taskId)!.description;
-            this.updateData.order = board
-              .columns!.find((column) => column.id === this.data.columnId)!
-              .tasks!.find((task) => task.id === this.data.taskId)!.order;
-            this.updateData.userId = board
-              .columns!.find((column) => column.id === this.data.columnId)!
-              .tasks!.find((task) => task.id === this.data.taskId)!.userId;
+              .tasks!.find((task) => task.id === this.data.taskId)!;
+            this.updateData.title = tsk.title;
+            this.updateData.description = tsk.description;
+            this.updateData.order = tsk.order;
+            this.updateData.userId = tsk.userId;
             break;
           default:
             break;
@@ -88,10 +90,9 @@ export class CreateModalComponent implements OnInit {
     });
     this.allBoards$.pipe(take(1)).subscribe((boards) => {
       if (this.data.type === ModalType.UPDATE && this.data.name === ModalType.BOARD) {
-        this.updateData.title = boards.find((board) => board.id === this.data.boardId)!.title;
-        this.updateData.description = boards.find(
-          (board) => board.id === this.data.boardId,
-        )!.description;
+        const brd = boards.find((board) => board.id === this.data.boardId)!;
+        this.updateData.title = brd.title;
+        this.updateData.description = brd.description;
       }
     });
     this.boardForm = this.fb.group({
@@ -170,8 +171,10 @@ export class CreateModalComponent implements OnInit {
               columnId: this.data.columnId,
               taskId: this.data.taskId,
               task: {
+                ...this.updateData,
                 ...this.boardForm.getRawValue(),
                 boardId: this.data.boardId,
+                columnId: this.data.columnId,
               },
             }),
           );

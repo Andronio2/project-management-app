@@ -3,6 +3,6 @@
   {{data.question}}
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button color="primary" (click)="getAnswer(false)" mat-button mat-dialog-close>No</button>
-  <button mat-raised-button color="accent" (click)="getAnswer(true)" mat-button mat-dialog-close cdkFocusInitial>Yes</button>
+  <button mat-raised-button color="primary" (click)="getAnswer(false)" mat-button mat-dialog-close>{{ 'authAndModal.button.no' | transloco }}</button>
+  <button mat-raised-button color="accent" (click)="getAnswer(true)" mat-button mat-dialog-close cdkFocusInitial>{{ 'authAndModal.button.yes' | transloco }}</button>
 </div>

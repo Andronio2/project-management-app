@@ -1,7 +1,31 @@
+:host {
+  position: sticky;
+  top: 0;
+  transition: 0.3s;
+  z-index: 1;
+}
+
+.header__inner {
+  position: sticky;
+  top: 0;
+  transition: 0.3s;
+  background-color: #3f51b5;
+}
+
+.header__changed {
+  position: sticky;
+  top: 0;
+  height: 50px;
+  transition: 0.3s;
+  background-color: #3949ab,
+  ;
+}
+
 .header__logo {
   cursor: pointer;
-  @media (max-width: 425px) {
-    font-size: 1.1rem;
+  transition: 0.3s;
+  &:hover {
+    color: #fce4ec;
   }
 }
 
@@ -11,7 +35,20 @@
 
 .buttons__container {
   display: flex;
+  align-items: center;
   gap: 1rem;
+}
+
+.header__button:hover {
+  background-color: #fce4ec;
+  transition: 0.3s;
+}
+
+.header__lang {
+  transition: 0.3s;
+  &:hover {
+    color: #fce4ec;
+  }
 }
 
 .add {

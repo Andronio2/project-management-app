@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { BoardActions } from 'src/app/redux/actions/board.action';
 import { ColumnActions } from 'src/app/redux/actions/column.action';
@@ -15,12 +16,18 @@ import { AuthService } from './API/auth.service';
   providedIn: 'root',
 })
 export class ModalService {
-  constructor(private dialog: MatDialog, private store: Store, private authService: AuthService) {}
+  constructor(
+    private dialog: MatDialog,
+    private store: Store,
+    private authService: AuthService,
+    private translocoService: TranslocoService,
+  ) {}
 
-  public openErrorMod(message: string) {
+  public openErrorMod(message: string, status: number) {
     const dialogRef = this.dialog.open(ErrorModalComponent, {
       data: {
         message,
+        status,
       },
       width: '295px',
     });
@@ -50,8 +57,12 @@ export class ModalService {
   public openConfirmDelete(type: ModalType, id: string, columnId?: string, taskId?: string) {
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
       data: {
-        title: `Delete ${type}`,
-        question: `Are you sure you want to delete this ${type}?`,
+        title: `${this.translocoService.translate(
+          'authAndModal.button.delete',
+        )} ${this.translocoService.translate(`authAndModal.modalQuestion.${type}`)}`,
+        question: `${this.translocoService.translate(
+          'authAndModal.deleteQuestion',
+        )} ${this.translocoService.translate(`authAndModal.modalQuestion.${type}`)}?`,
       },
       width: '295px',
     });

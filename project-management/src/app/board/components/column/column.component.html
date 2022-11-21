@@ -4,22 +4,54 @@
   </mat-card-title>
   <ng-template #editColumnTitle>
     <form (ngSubmit)="editColumn()">
+      <button class="column-edit__btn" type="button" mat-icon-button color="primary" aria-label="Submit" (click)="editColumn()">
+        <mat-icon>done</mat-icon>
+      </button>
+      <button class="column-close__btn" type="button" mat-icon-button color="accent" aria-label="Cancel" (click)="isEditColumnTitle=false">
+        <mat-icon>close</mat-icon>
+      </button>
       <mat-form-field appearance="standard">
-        <mat-label>Edit title</mat-label>
-        <input matInput type="text" [(ngModel)]="columnTitle" name="column-title"/>
+        <mat-label>{{ 'board.editColumn' | transloco }}</mat-label>
+        <input matInput type="text" [(ngModel)]="columnTitle" name="column-title" />
       </mat-form-field>
     </form>
   </ng-template>
-  <button mat-icon-button color="accent" aria-label="delete button" (click)="deleteColumn(fromBoard.column.id)">
+  <button
+    class="column-delete__btn"
+    type="button"
+    mat-icon-button
+    aria-label="delete button"
+    (click)="deleteColumn(fromBoard.column.id)"
+  >
     <mat-icon>delete</mat-icon>
   </button>
 </mat-card-header>
 <mat-card-content class="column__content">
-  <div class="column__tasks">
-    <mat-card class="column__task" *ngFor="let task of fromBoard.column.tasks || [] | sortColumnsTasks" cdkDrag
-      (click)="editTask(task.id)" id="{{ task.id }}">
-      <app-task [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task }"></app-task>
+  <div
+    class="column__tasks"
+    cdkDropList
+    (cdkDropListDropped)="dropTask($event)"
+    [cdkDropListConnectedTo]="getOtherColumns(fromBoard.column.id)"
+    id="{{ fromBoard.column.id }}"
+  >
+    <div class="column__empty" *ngIf="(fromBoard.column.tasks || []).length === 0"></div>
+    <mat-card
+      class="column__task"
+      *ngFor="let task of fromBoard.column.tasks || [] |
+      sortColumnsTasks |
+      filterTasks:[fromBoard.users, selected]"
+      cdkDrag
+      [cdkDragDisabled]="isLoading$ | async"
+      (click)="editTask(task.id)"
+      [class.column__task_colored]="(taskId$ | async) === task.id"
+      id="{{ task.id }}"
+    >
+      <app-task
+        [fromColumn]="{ boardId: fromBoard.boardId, column: fromBoard.column, task, users: fromBoard.users }"
+      ></app-task>
     </mat-card>
   </div>
-  <button mat-button color="primary" (click)="createTask(fromBoard.column.id)"><mat-icon class="add">add</mat-icon>{{ "board.addTask" | transloco }}</button>
+  <button type="button" mat-button color="primary" (click)="createTask(fromBoard.column.id)">
+    <mat-icon class="add">add</mat-icon>{{ 'board.addTask' | transloco }}
+  </button>
 </mat-card-content>

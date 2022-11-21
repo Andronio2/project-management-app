@@ -25,6 +25,16 @@
   width: 300px;
 }
 
+.boards__search-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.boards__search-full-width {
+  width: 100%;
+}
+
 .boards__container {
   display: flex;
   flex-wrap: wrap;
@@ -41,12 +51,24 @@
   height: 150px;
   overflow: auto;
   cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    .more-icon {
+      color: rgba(0,0,0,.87);
+      transition: 0.3s;
+    }
+    background-color: #fce4ec;
+  }
 }
 
 .board__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.search__colored {
+  color: #3f51b5;
 }
 
 .board__create-content {
@@ -58,4 +80,8 @@
 .mat-button {
   min-width: 40px;
   padding: 0;
+}
+
+.more-icon {
+  color: #bdbdbd;
 }

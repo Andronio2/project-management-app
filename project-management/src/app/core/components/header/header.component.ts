@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { UserActions } from 'src/app/redux/actions/users.actions';
@@ -7,8 +7,14 @@ import { ModalType } from 'src/app/share/constants/constants';
 import { AuthService } from '../../services/API/auth.service';
 import { ModalService } from '../../services/modal.service';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
+import { ProgressBarService } from '../../services/progress-bar.service';
+
+enum Lang {
+  EN = 'en',
+  RU = 'ru',
+}
 
 @Component({
   selector: 'app-header',
@@ -16,6 +22,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  @HostListener('window:scroll', ['event']) onScroll() {
+    this.headerChanged = window.scrollY > 64 ? true : false;
+  }
+
+  headerChanged = false;
+
   activeLang: string;
 
   availableLang: string[] | { id: string; label: string }[];
@@ -24,7 +36,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   hideSideMenu = false;
 
+  isLoading$ = new Observable<boolean>();
+
   destroy$ = new Subject();
+
+  isChecked = true;
+
+  lang = Lang.EN;
 
   constructor(
     private modalService: ModalService,
@@ -33,9 +51,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private store: Store,
     private responsive: BreakpointObserver,
     private router: Router,
+    private progressBarService: ProgressBarService,
   ) {
     this.activeLang = localStorage.getItem('lang') || this.translateService.getActiveLang();
     this.availableLang = this.translateService.getAvailableLangs();
+    this.isLoading$ = this.progressBarService.isLoading$;
   }
 
   ngOnInit() {
@@ -65,9 +85,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.modalService.openCreateMod(ModalType.CREATE, ModalType.BOARD);
   }
 
-  changeLang(lang: string) {
-    this.translateService.setActiveLang(lang);
-    this.activeLang = lang;
+  changeLang(checkedFlag: boolean) {
+    this.lang = checkedFlag ? Lang.EN : Lang.RU;
+    this.translateService.setActiveLang(this.lang);
+    this.activeLang = this.lang;
     localStorage.setItem('lang', this.activeLang);
   }
 
