@@ -70,8 +70,8 @@
     "code": {
       "500": "Internal Server error",
       "404": "Not founded",
-      "403": "User was not founded",
-      "401": "User not unauthorized",
+      "403": "User not found",
+      "401": "User unauthorized",
       "409": "User login already exists",
       "400": "Bad Request",
       "0": "Http failure response"

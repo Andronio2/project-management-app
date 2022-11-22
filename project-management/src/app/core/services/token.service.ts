@@ -34,7 +34,7 @@ export class TokenService {
       }
     } catch {
       this.store.dispatch(
-        showActionAction({ errorMessage: 'User not unauthorized', errorStatus: 401 }),
+        showActionAction({ errorMessage: 'User unauthorized', errorStatus: 401 }),
       );
     }
     return true;
