@@ -29,7 +29,8 @@ export class ModalService {
         message,
         status,
       },
-      width: '295px',
+      minWidth: '280px',
+      maxWidth: '400px',
     });
     setTimeout(() => dialogRef.close(), 5000);
   }
