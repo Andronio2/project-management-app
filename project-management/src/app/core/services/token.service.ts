@@ -30,7 +30,7 @@ export class TokenService {
       const decode = jwtDecode<JwtPayload>(token);
       if (decode.iat) {
         const expire = (+decode.iat + EXP_TIME) * 1000;
-        return +new Date() > expire;
+        return Date.now() > expire;
       }
     } catch {
       this.store.dispatch(
