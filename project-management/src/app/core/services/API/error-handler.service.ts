@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { errorMessageAction, showActionAction } from 'src/app/redux/actions/error-message.action';
+import { showActionAction } from 'src/app/redux/actions/error-message.action';
 import { IErrorResponse } from 'src/app/share/models/error-message.model';
 
 @Injectable({
