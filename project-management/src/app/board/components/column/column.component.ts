@@ -106,6 +106,8 @@ export class ColumnComponent implements OnInit, OnDestroy {
   }
 
   dropTask(event: CdkDragDrop<IBoard>) {
+    if (event.container === event.previousContainer && event.currentIndex === event.previousIndex)
+      return;
     const id = event.item.element.nativeElement.id;
     const oldColumnId = event.previousContainer.id;
     const columnId = event.container.id;
