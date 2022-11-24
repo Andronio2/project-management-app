@@ -38,7 +38,13 @@
 .column__tasks {
   display: flex;
   flex-direction: column;
+  max-height: calc(100vh - 420px);
   gap: 0.7rem;
+  overflow-y: auto;
+  padding-right: 50px;
+  @media (max-width: 530px) {
+    max-height: calc(100vh - 460px);
+  }
 }
 
 .column__task {
@@ -54,17 +60,37 @@
 }
 
 @keyframes fade {
-  0% {background-color: #fce4ec;}
-  10% {background-color: #ffffff;}
-  20% {background-color: #fce4ec;}
-  30% {background-color: #ffffff;}
-  40% {background-color: #fce4ec;}
-  50% {background-color: #ffffff;}
-  60% {background-color: #fce4ec;}
-  70% {background-color: #ffffff;}
-  80% {background-color: #fce4ec;}
-  100% {background-color: #ffffff;}
- }
+  0% {
+    background-color: #fce4ec;
+  }
+  10% {
+    background-color: #ffffff;
+  }
+  20% {
+    background-color: #fce4ec;
+  }
+  30% {
+    background-color: #ffffff;
+  }
+  40% {
+    background-color: #fce4ec;
+  }
+  50% {
+    background-color: #ffffff;
+  }
+  60% {
+    background-color: #fce4ec;
+  }
+  70% {
+    background-color: #ffffff;
+  }
+  80% {
+    background-color: #fce4ec;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
 
 .add {
   &.material-icons {

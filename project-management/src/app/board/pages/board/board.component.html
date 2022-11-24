@@ -1,6 +1,13 @@
 <ng-container *transloco="let t; read: 'board'">
   <div class="board__header">
-    <button class="back__btn" type="button" mat-icon-button color="primary" aria-label="back button" (click)="goToMainPage()">
+    <button
+      class="back__btn"
+      type="button"
+      mat-icon-button
+      color="primary"
+      aria-label="back button"
+      (click)="goToMainPage()"
+    >
       <mat-icon>arrow_back_ios_new</mat-icon>
     </button>
     <h2 class="board__title">{{ (board$ | async)?.title }}</h2>
@@ -11,9 +18,9 @@
     <mat-form-field class="board__filter" appearance="outline">
       <mat-label>{{ t('filterBy') }}</mat-label>
       <mat-select [(value)]="selected" (selectionChange)="selected$.next(selected)">
-        <mat-option value="allUsers">{{t('allUsers')}}</mat-option>
+        <mat-option value="allUsers">{{ t('allUsers') }}</mat-option>
         <mat-option *ngFor="let user of users" [value]="user.login">
-          {{user.login}}
+          {{ user.login }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -31,7 +38,11 @@
       [attr.data-col-id]="column.id"
       [cdkDragDisabled]="isDragDisable || (isLoading$ | async)"
     >
-      <app-column [fromBoard]="{ column, boardId, users, selected$ }" (dragDisableEvent)="setDragDisable($event)"></app-column>
+      <div class="column__handle" cdkDragHandle></div>
+      <app-column
+        [fromBoard]="{ column, boardId, users, selected$ }"
+        (dragDisableEvent)="setDragDisable($event)"
+      ></app-column>
     </mat-card>
   </div>
 </ng-container>
