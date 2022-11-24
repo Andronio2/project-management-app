@@ -40,9 +40,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   destroy$ = new Subject();
 
-  isChecked = true;
+  lang = localStorage.getItem('lang');
 
-  lang = Lang.EN;
+  isChecked = this.lang === 'en' ? true : false;
 
   constructor(
     private modalService: ModalService,
