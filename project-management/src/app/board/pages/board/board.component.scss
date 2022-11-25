@@ -39,13 +39,13 @@
 .board__header {
   display: flex;
   align-items: center;
-  gap: 2rem 0.4rem;
+  gap: 2rem;
   margin-bottom: 1rem;
   flex-wrap: wrap;
   @media (max-width: 768px) {
-    row-gap: 1rem;
+    gap: 1rem;
   }
-  @media (max-width: 530px) {
+  @media (max-width: 695px) {
     margin-bottom: 0;
   }
 }
@@ -73,7 +73,7 @@
 
 .board__filter {
   width: 100%;
-  max-width: 210px;
+  max-width: 300px;
 }
 
 .board__columns {
