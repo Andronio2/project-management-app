@@ -9,6 +9,7 @@ export const initialState: IBoard | undefined = undefined;
 
 export const currBoardReducer = createReducer(
   initialState as IBoard | undefined,
+  on(BoardActions.clearStoreBoardAction, () => undefined),
   on(BoardActions.boardLoadedAction, (state, { board }): IBoard => board),
   on(
     ColumnActions.allColumnsLoadedAction,

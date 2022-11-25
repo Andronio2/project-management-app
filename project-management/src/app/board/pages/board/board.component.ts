@@ -87,6 +87,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   goToMainPage() {
+    this.store.dispatch(BoardActions.clearStoreBoardAction());
     this.router.navigate(['/main']);
   }
 
