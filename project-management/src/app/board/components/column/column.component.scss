@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin: 1rem 1rem 1rem 0;
 }
 
 .mat-card-header .mat-card-title {
@@ -38,7 +38,25 @@
 .column__tasks {
   display: flex;
   flex-direction: column;
+  max-height: calc(100vh - 470px);
   gap: 0.7rem;
+  overflow-y: auto;
+  padding: 0 1rem 0.2rem 0;
+  @media (max-width: 1024px) {
+    padding: 0 3rem 0.2rem 0;
+  }
+  @media (max-width: 768px) {
+    max-height: calc(100vh - 440px);
+  }
+  @media (max-width: 631px) {
+    max-height: calc(100vh - 480px);
+  }
+  @media (max-width: 599px) {
+    max-height: calc(100vh - 460px);
+  }
+  @media (max-width: 530px) {
+    max-height: calc(100vh - 505px);
+  }
 }
 
 .column__task {
@@ -54,17 +72,41 @@
 }
 
 @keyframes fade {
-  0% {background-color: #fce4ec;}
-  10% {background-color: #ffffff;}
-  20% {background-color: #fce4ec;}
-  30% {background-color: #ffffff;}
-  40% {background-color: #fce4ec;}
-  50% {background-color: #ffffff;}
-  60% {background-color: #fce4ec;}
-  70% {background-color: #ffffff;}
-  80% {background-color: #fce4ec;}
-  100% {background-color: #ffffff;}
- }
+  0% {
+    background-color: #fce4ec;
+  }
+  10% {
+    background-color: #ffffff;
+  }
+  20% {
+    background-color: #fce4ec;
+  }
+  30% {
+    background-color: #ffffff;
+  }
+  40% {
+    background-color: #fce4ec;
+  }
+  50% {
+    background-color: #ffffff;
+  }
+  60% {
+    background-color: #fce4ec;
+  }
+  70% {
+    background-color: #ffffff;
+  }
+  80% {
+    background-color: #fce4ec;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
+
+.column__add-btn {
+  margin-right: 1rem;
+}
 
 .add {
   &.material-icons {

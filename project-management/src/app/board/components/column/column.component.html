@@ -10,8 +10,7 @@
       <button class="column-close__btn" type="button" mat-icon-button color="accent" aria-label="Cancel" (click)="isEditColumnTitle=false">
         <mat-icon>close</mat-icon>
       </button>
-      <mat-form-field appearance="standard">
-        <mat-label>{{ 'board.editColumn' | transloco }}</mat-label>
+      <mat-form-field>
         <input matInput type="text" [(ngModel)]="columnTitle" name="column-title" />
       </mat-form-field>
     </form>
