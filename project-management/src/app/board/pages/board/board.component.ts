@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { filter, take, takeUntil, tap } from 'rxjs/operators';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { BoardActions } from 'src/app/redux/actions/board.action';
 import { Selectors } from 'src/app/redux/selectors/board.selectors';
@@ -14,6 +14,7 @@ import { UserActions } from 'src/app/redux/actions/users.actions';
 import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { IUser } from 'src/app/share/models/auth.model';
 import { ProgressBarService } from 'src/app/core/services/progress-bar.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-board',
@@ -43,6 +44,8 @@ export class BoardComponent implements OnInit, OnDestroy {
     private modalService: ModalService,
     private router: Router,
     private progressBarService: ProgressBarService,
+    private translateService: TranslocoService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -65,6 +68,13 @@ export class BoardComponent implements OnInit, OnDestroy {
       .subscribe((users) => {
         this.users = users;
       });
+    this.translateService.events$
+      .pipe(
+        takeUntil(this.destroy$),
+        filter((e) => e.type === 'langChanged'),
+        tap(() => this.cdr.detectChanges()),
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {
