@@ -36,4 +36,6 @@ export namespace BoardActions {
     '[BOARD] Board updated',
     props<{ id: string; board: IBoard }>(),
   );
+
+  export const clearStoreBoardAction = createAction('[BOARD] Clear board in store');
 }
