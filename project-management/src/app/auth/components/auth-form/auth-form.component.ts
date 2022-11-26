@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { ProgressBarService } from 'src/app/core/services/progress-bar.service';
 import { ICreateUserDto, ISigninUserDto } from 'src/app/share/models/auth.model';
 import passwordValidator from '../../validators/passwordValidator';
@@ -46,6 +46,20 @@ export class AuthFormComponent implements OnInit, OnDestroy {
       } else {
         this.authForm?.enable();
       }
+    });
+
+    [this.name, this.login].forEach((control) => {
+      control?.valueChanges
+        .pipe(takeUntil(this.destroy$), debounceTime(300))
+        .subscribe((change) => {
+          if (change === null) {
+            return;
+          }
+          const trimmed = change.trim();
+          if (!trimmed.length) {
+            control.setValue('');
+          }
+        });
     });
   }
 
