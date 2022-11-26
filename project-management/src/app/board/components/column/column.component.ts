@@ -32,6 +32,7 @@ export class ColumnComponent implements OnInit, OnDestroy {
   board$ = this.store.select(Selectors.selectBoard);
 
   columnTitle = '';
+  oldColumnTitle = '';
 
   isEditColumnTitle = false;
 
@@ -78,21 +79,27 @@ export class ColumnComponent implements OnInit, OnDestroy {
   setEditMode() {
     this.isEditColumnTitle = true;
     this.dragDisableEvent.emit(true);
+    this.oldColumnTitle = this.columnTitle;
   }
 
-  editColumn() {
+  editColumn(submit: boolean) {
     this.isEditColumnTitle = false;
     this.dragDisableEvent.emit(false);
-    this.store.dispatch(
-      ColumnActions.updateColumnAction({
-        boardId: this.fromBoard.boardId,
-        columnId: this.fromBoard.column.id,
-        column: {
-          title: this.columnTitle,
-          order: this.fromBoard.column.order,
-        },
-      }),
-    );
+    if (submit) {
+      if (this.oldColumnTitle === this.columnTitle) return;
+      this.store.dispatch(
+        ColumnActions.updateColumnAction({
+          boardId: this.fromBoard.boardId,
+          columnId: this.fromBoard.column.id,
+          column: {
+            title: this.columnTitle,
+            order: this.fromBoard.column.order,
+          },
+        }),
+      );
+    } else {
+      this.columnTitle = this.oldColumnTitle;
+    }
   }
 
   editTask(id: string) {
