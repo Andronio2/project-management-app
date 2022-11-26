@@ -37,6 +37,7 @@
   },
   "header": {
     "logo": "Project Management",
+    "boards": "Boards",
     "button": {
       "login": "Login",
       "logout": "Logout",
@@ -69,9 +70,9 @@
     },
     "code": {
       "500": "Internal Server error",
-      "404": "Not founded",
-      "403": "User not found",
-      "401": "User unauthorized",
+      "404": "Data not found on server",
+      "403": "User not found. Please check your name or password",
+      "401": "User unauthorized. Please enter your name and password",
       "409": "User login already exists",
       "400": "Bad Request",
       "0": "Http failure response"

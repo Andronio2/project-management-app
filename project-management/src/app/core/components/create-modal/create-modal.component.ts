@@ -12,6 +12,8 @@ import { TaskActions } from 'src/app/redux/actions/task.action';
 import { ModalType } from 'src/app/share/constants/constants';
 import { debounceTime, Subject, take, takeUntil } from 'rxjs';
 import { TranslocoService } from '@ngneat/transloco';
+import { ITaskCreateDto } from 'src/app/share/models/task.model';
+import { IBoardDto } from 'src/app/share/models/board.model';
 
 @Component({
   selector: 'app-create-modal',
@@ -146,12 +148,18 @@ export class CreateModalComponent implements OnInit, OnDestroy {
           );
         }
         if (this.data.type === ModalType.UPDATE) {
-          this.store.dispatch(
-            BoardActions.updateBoardAction({
-              id: this.data.boardId,
-              board: this.boardForm.getRawValue(),
-            }),
-          );
+          const newData: IBoardDto = this.boardForm.getRawValue();
+          if (
+            newData.title !== this.updateData.title ||
+            newData.description !== this.updateData.description
+          ) {
+            this.store.dispatch(
+              BoardActions.updateBoardAction({
+                id: this.data.boardId,
+                board: this.boardForm.getRawValue(),
+              }),
+            );
+          }
         }
         break;
 
@@ -186,19 +194,26 @@ export class CreateModalComponent implements OnInit, OnDestroy {
           );
         }
         if (this.data.type === ModalType.UPDATE) {
-          this.store.dispatch(
-            TaskActions.updateTaskAction({
-              boardId: this.data.boardId,
-              columnId: this.data.columnId,
-              taskId: this.data.taskId,
-              task: {
-                ...this.updateData,
-                ...this.boardForm.getRawValue(),
+          const newData: ITaskCreateDto = this.boardForm.getRawValue();
+          if (
+            newData.title !== this.updateData.title ||
+            newData.description !== this.updateData.description ||
+            newData.userId !== this.updateData.userId
+          ) {
+            this.store.dispatch(
+              TaskActions.updateTaskAction({
                 boardId: this.data.boardId,
                 columnId: this.data.columnId,
-              },
-            }),
-          );
+                taskId: this.data.taskId,
+                task: {
+                  ...this.updateData,
+                  ...newData,
+                  boardId: this.data.boardId,
+                  columnId: this.data.columnId,
+                },
+              }),
+            );
+          }
         }
         break;
 

@@ -9,6 +9,7 @@
       </ng-container>
       <ng-template #authBlock>
         <button class="header__button" mat-flat-button (click)="openCreateMod()"><mat-icon class="add">add</mat-icon>{{ t('button.createBoard') }}</button>
+        <a class="header__button" [routerLink]="['/main']" mat-flat-button>{{ t('boards') }}</a>
         <a class="header__button" [routerLink]="['/auth', 'user']" mat-flat-button>{{ t('button.editProfile') }}</a>
         <button class="header__button" (click)="logOut()" mat-flat-button>{{ t('button.logout') }}</button>
       </ng-template>
@@ -23,6 +24,7 @@
         </ng-container>
         <ng-template #authBlock>
           <button mat-menu-item (click)="openCreateMod()">{{ t('button.createBoard') }}</button>
+          <a mat-menu-item [routerLink]="['/main']">{{ t('boards') }}</a>
           <a mat-menu-item [routerLink]="['/auth', 'user']">{{ t('button.editProfile') }}</a>
           <button mat-menu-item (click)="logOut()">{{ t('button.logout') }}</button>
         </ng-template>
