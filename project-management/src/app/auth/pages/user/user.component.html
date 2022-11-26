@@ -10,6 +10,9 @@
             <mat-error *ngIf="name.hasError('required')">
               {{ t('error.nameIs') }} <strong>{{ t('error.required') }}</strong>
             </mat-error>
+            <mat-error *ngIf="login.hasError('maxlength')">
+              {{ t('error.nameIs') }} <strong>{{ t('error.tooLong2') }}</strong>. {{ t('error.noMore') }}
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="register-form__field" appearance="fill">
             <mat-label>{{ t('login') }}</mat-label>
@@ -19,6 +22,9 @@
             </mat-error>
             <mat-error *ngIf="login.hasError('minlength')">
               {{ t('error.loginIs') }} <strong>{{ t('error.tooShort') }}</strong>. {{ t('error.atLeast3') }}
+            </mat-error>
+            <mat-error *ngIf="login.hasError('maxlength')">
+              {{ t('error.loginIs') }} <strong>{{ t('error.tooLong') }}</strong>. {{ t('error.noMore') }}
             </mat-error>
           </mat-form-field>
           <mat-form-field class="register-form__field" appearance="fill">
