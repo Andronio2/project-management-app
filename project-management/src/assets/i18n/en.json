@@ -37,6 +37,7 @@
   },
   "header": {
     "logo": "Project Management",
+    "boards": "Boards",
     "button": {
       "login": "Login",
       "logout": "Logout",
