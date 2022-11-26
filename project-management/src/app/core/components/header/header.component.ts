@@ -23,7 +23,8 @@ enum Lang {
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll', ['event']) onScroll() {
-    this.headerChanged = window.scrollY > 64 ? true : false;
+    if (this.headerChanged === false) this.headerChanged = window.scrollY > 64 ? true : false;
+    if (this.headerChanged === true) this.headerChanged = window.scrollY > 20 ? true : false;
   }
 
   headerChanged = false;
