@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { ProgressBarService } from 'src/app/core/services/progress-bar.service';
 import { ICreateUserDto, ISigninUserDto } from 'src/app/share/models/auth.model';
+import noSpaceValidator from '../../validators/noSpaceValidator';
 import passwordValidator from '../../validators/passwordValidator';
 
 @Component({
@@ -21,7 +22,7 @@ export class AuthFormComponent implements OnInit, OnDestroy {
 
   name: FormControl | null = null;
 
-  login = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  login = new FormControl('', [Validators.required, Validators.minLength(3), noSpaceValidator]);
 
   password = new FormControl('', [Validators.required, passwordValidator]);
 

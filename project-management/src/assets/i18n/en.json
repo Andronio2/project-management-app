@@ -99,6 +99,7 @@
       "required": "required",
       "tooShort": "too short",
       "tooShort2": "too short",
+      "noSpace": "cannot contain spaces",
       "tooLong": "too long",
       "tooLong2": "too long",
       "atLeast3": "At least 3 characters.",
