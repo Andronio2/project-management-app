@@ -105,7 +105,7 @@
       "atLeast3": "At least 3 characters.",
       "atLeast8": "At least 8 characters. Has to contain uppercase letters, lowercase letters, numbers, and symbols.",
       "noMore": "No more than 20 characters.",
-      "noMore2": "No more than 255 characters.",
+      "noMore2": "No more than 50 characters.",
       "passwordIs": "Password is",
       "passwordStrength": "Your password isn't strong enough."
     },

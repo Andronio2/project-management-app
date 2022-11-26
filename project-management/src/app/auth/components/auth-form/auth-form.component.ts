@@ -22,7 +22,12 @@ export class AuthFormComponent implements OnInit, OnDestroy {
 
   name: FormControl | null = null;
 
-  login = new FormControl('', [Validators.required, Validators.minLength(3), noSpaceValidator]);
+  login = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+    noSpaceValidator,
+    Validators.maxLength(20),
+  ]);
 
   password = new FormControl('', [Validators.required, passwordValidator]);
 
@@ -34,7 +39,11 @@ export class AuthFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.name = !(this.formType === 'signin')
-      ? new FormControl('', [Validators.required, Validators.minLength(3)])
+      ? new FormControl('', [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ])
       : null;
     this.authForm = this.fb.group({
       ...(this.name && { name: this.name }),

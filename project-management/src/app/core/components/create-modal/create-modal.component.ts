@@ -47,7 +47,7 @@ export class CreateModalComponent implements OnInit, OnDestroy {
     new FormControl(this.updateData.description, [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(255),
+      Validators.maxLength(50),
     ]);
 
   userId =
