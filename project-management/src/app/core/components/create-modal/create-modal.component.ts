@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IBoardModal } from '../../models/modal.model';
@@ -10,7 +10,7 @@ import { UserSelectors } from 'src/app/redux/selectors/user.selectors';
 import { UserActions } from 'src/app/redux/actions/users.actions';
 import { TaskActions } from 'src/app/redux/actions/task.action';
 import { ModalType } from 'src/app/share/constants/constants';
-import { take } from 'rxjs';
+import { debounceTime, Subject, take, takeUntil } from 'rxjs';
 import { TranslocoService } from '@ngneat/transloco';
 import { ITaskCreateDto } from 'src/app/share/models/task.model';
 import { IBoardDto } from 'src/app/share/models/board.model';
@@ -20,7 +20,7 @@ import { IBoardDto } from 'src/app/share/models/board.model';
   templateUrl: './create-modal.component.html',
   styleUrls: ['./create-modal.component.scss'],
 })
-export class CreateModalComponent implements OnInit {
+export class CreateModalComponent implements OnInit, OnDestroy {
   type: string = `${this.translocoService.translate(
     `authAndModal.modalQuestion.${this.data.type}`,
   )}`;
@@ -49,7 +49,7 @@ export class CreateModalComponent implements OnInit {
     new FormControl(this.updateData.description, [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(255),
+      Validators.maxLength(50),
     ]);
 
   userId =
@@ -60,6 +60,8 @@ export class CreateModalComponent implements OnInit {
   allBoards$ = this.store.select(Selectors.selectBoards);
 
   users$ = this.store.select(UserSelectors.selectUsers);
+
+  destroy$ = new Subject();
 
   constructor(
     private fb: FormBuilder,
@@ -116,6 +118,25 @@ export class CreateModalComponent implements OnInit {
     if (this.userId) {
       this.userId.setValue(this.updateData.userId);
     }
+
+    const controls = [this.title];
+    if (this.description) {
+      controls.push(this.description);
+    }
+
+    controls.forEach((control) => {
+      control?.valueChanges
+        .pipe(takeUntil(this.destroy$), debounceTime(300))
+        .subscribe((change) => {
+          if (change === null) {
+            return;
+          }
+          const trimmed = change.trim();
+          if (!trimmed.length) {
+            control.setValue('');
+          }
+        });
+    });
   }
 
   createBoard() {
@@ -204,5 +225,10 @@ export class CreateModalComponent implements OnInit {
 
   cancelBoard() {
     this.dialogRef.close();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }

@@ -31,9 +31,17 @@ export class UserComponent implements OnInit {
 
   editForm: FormGroup;
 
-  name = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  name = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+    Validators.maxLength(20),
+  ]);
 
-  login = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  login = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+    Validators.maxLength(20),
+  ]);
 
   password = new FormControl('', [Validators.required, passwordValidator]);
 

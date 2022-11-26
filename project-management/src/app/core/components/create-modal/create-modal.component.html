@@ -17,14 +17,14 @@
       </mat-form-field>
       <mat-form-field class="register-form__field" appearance="fill" *ngIf="description">
         <mat-label>{{ t('description') }}</mat-label>
-        <input type="text" matInput [formControl]="description" [placeholder]="t('placeholder.description')">
+        <textarea type="text" matInput [formControl]="description" [placeholder]="t('placeholder.description')"></textarea>
         <mat-error *ngIf="description.hasError('required')">
           {{ t('error.descriptionIs') }} <strong>{{ t('error.required') }}</strong>
         </mat-error>
         <mat-error *ngIf="description.hasError('minlength')">
           {{ t('error.descriptionIs') }} <strong>{{ t('error.tooShort2') }}</strong>. {{ t('error.atLeast3') }}
         </mat-error>
-        <mat-error *ngIf="title.hasError('maxlength')">
+        <mat-error *ngIf="description.hasError('maxlength')">
           {{ t('error.descriptionIs') }} <strong>{{ t('error.tooLong2') }}</strong>. {{ t('error.noMore2') }}
         </mat-error>
       </mat-form-field>
