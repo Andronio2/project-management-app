@@ -68,6 +68,8 @@ export class AuthFormComponent implements OnInit, OnDestroy {
           const trimmed = change.trim();
           if (!trimmed.length) {
             control.setValue('');
+          } else {
+            control.setValue(change.trimStart());
           }
         });
     });

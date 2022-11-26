@@ -26,6 +26,9 @@
             <mat-error *ngIf="login.hasError('maxlength')">
               {{ t('error.loginIs') }} <strong>{{ t('error.tooLong') }}</strong>. {{ t('error.noMore') }}
             </mat-error>
+            <mat-error *ngIf="login.getError('whitespace')" class="validator-message">
+              {{ t('login') }} <strong>{{ t('error.noSpace') }}</strong>
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="register-form__field" appearance="fill">
             <mat-label>{{ t('password') }}</mat-label>

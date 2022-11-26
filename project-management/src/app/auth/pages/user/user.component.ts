@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, tap } from 'rxjs';
+import { debounceTime, Observable, Subject, takeUntil, tap } from 'rxjs';
 import { UserActions } from 'src/app/redux/actions/users.actions';
 import { IUser } from 'src/app/share/models/auth.model';
 import { TokenService } from 'src/app/core/services/token.service';
@@ -9,14 +9,18 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import passwordValidator from '../../validators/passwordValidator';
 import { ModalService } from 'src/app/core/services/modal.service';
 import { ModalType } from 'src/app/share/constants/constants';
+import noSpaceValidator from '../../validators/noSpaceValidator';
+import { setValue } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
   isEditMode: boolean = false;
+
+  destroy$ = new Subject();
 
   user$: Observable<IUser | undefined> = this.store.select(UserSelectors.selectUser).pipe(
     tap((user) => {
@@ -41,6 +45,7 @@ export class UserComponent implements OnInit {
     Validators.required,
     Validators.minLength(3),
     Validators.maxLength(20),
+    noSpaceValidator,
   ]);
 
   password = new FormControl('', [Validators.required, passwordValidator]);
@@ -61,6 +66,22 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+
+    [this.name, this.login].forEach((control) => {
+      control?.valueChanges
+        .pipe(takeUntil(this.destroy$), debounceTime(300))
+        .subscribe((change) => {
+          if (change === null) {
+            return;
+          }
+          const trimmed = change.trim();
+          if (!trimmed.length) {
+            control.setValue('');
+          } else {
+            control.setValue(change.trimStart());
+          }
+        });
+    });
   }
 
   private getUser() {
@@ -92,5 +113,10 @@ export class UserComponent implements OnInit {
     if (this.userId) {
       this.modalService.openConfirmDelete(ModalType.USER, this.userId);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 }
