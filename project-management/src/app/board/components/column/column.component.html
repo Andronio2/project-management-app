@@ -1,5 +1,5 @@
 <mat-card-header class="column__header">
-  <mat-card-title *ngIf="!isEditColumnTitle; else editColumnTitle" (click)="setEditMode()">
+  <mat-card-title class="column__title" *ngIf="!isEditColumnTitle; else editColumnTitle" (click)="setEditMode()">
     {{ fromBoard.column.title }}
   </mat-card-title>
   <ng-template #editColumnTitle>

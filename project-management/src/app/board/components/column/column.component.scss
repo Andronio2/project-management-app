@@ -9,6 +9,14 @@
   margin-bottom: 0;
 }
 
+.column__title {
+  max-width: 300px;
+  overflow: hidden;
+  @media (max-width: 465px) {
+    max-width: 160px;
+  }
+}
+
 .column-delete__btn {
   color: #bdbdbd;
   transition: 0.3s;
