@@ -60,8 +60,10 @@
 
 .board__title {
   margin-bottom: 0;
-  max-width: 170px;
   overflow-y: hidden;
+  @media (max-width: 1024px) {
+    max-width: 170px;
+  }
 }
 
 .create-column__btn {
