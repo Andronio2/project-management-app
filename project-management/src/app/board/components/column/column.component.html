@@ -50,7 +50,7 @@
       ></app-task>
     </mat-card>
   </div>
-  <button type="button" mat-button color="primary" (click)="createTask(fromBoard.column.id)">
+  <button class="column__add-btn" type="button" mat-button color="primary" (click)="createTask(fromBoard.column.id)">
     <mat-icon class="add">add</mat-icon>{{ 'board.addTask' | transloco }}
   </button>
 </mat-card-content>
