@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  transition: 0.3s;
+  &:hover {
+    background-color: #fce4ec;
+  }
+}
+
+.task-content {
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.task__icons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task__user {
+  cursor: default;
+}
+
+.mat-icon {
+  color: #bdbdbd;
+}
+
+.mat-icon.task__user:hover {
+  color: #3f51b5;
+  transition: 0.3s;
+}
+.mat-icon.delete__icon:hover {
+  color: #ff4081;
+  transition: 0.3s;
+}

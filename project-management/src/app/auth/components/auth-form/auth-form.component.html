@@ -1,0 +1,54 @@
+<ng-container *transloco="let t; read: 'authAndModal'">
+  <div class="container">
+    <form [formGroup]="authForm!" class="register-form" (ngSubmit)="onSubmit()">
+      <mat-card class="register-form__card">
+        <div class="register-form__inputs-block">
+          <mat-card-title class="register-form__title">{{title}}</mat-card-title>
+          <mat-form-field *ngIf="name" class="register-form__field" appearance="fill">
+            <mat-label>{{ t('name') }}</mat-label>
+            <input type="text" matInput [formControl]="name" placeholder="John">
+            <mat-error *ngIf="name.hasError('required')">
+              {{ t('error.nameIs') }} <strong>{{ t('error.required') }}</strong>
+            </mat-error>
+            <mat-error *ngIf="name.hasError('minlength')">
+              {{ t('error.nameIs') }} <strong>{{ t('error.tooShort') }}</strong>. {{ t('error.atLeast3') }}
+            </mat-error>
+            <mat-error *ngIf="name.hasError('maxlength')">
+              {{ t('error.nameIs') }} <strong>{{ t('error.tooLong2') }}</strong>. {{ t('error.noMore') }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="register-form__field" appearance="fill">
+            <mat-label>{{ t('login') }}</mat-label>
+            <input type="text" matInput [formControl]="login" placeholder="John007">
+            <mat-error *ngIf="login.getError('whitespace')" class="validator-message">
+              {{ t('login') }} <strong>{{ t('error.noSpace') }}</strong>
+            </mat-error>
+            <mat-error *ngIf="login.hasError('required')">
+              {{ t('error.loginIs') }} <strong>{{ t('error.required') }}</strong>
+            </mat-error>
+            <mat-error *ngIf="login.hasError('minlength')">
+              {{ t('error.loginIs') }} <strong>{{ t('error.tooShort') }}</strong>. {{ t('error.atLeast3') }}
+            </mat-error>
+            <mat-error *ngIf="login.hasError('maxlength')">
+              {{ t('error.loginIs') }} <strong>{{ t('error.tooLong') }}</strong>. {{ t('error.noMore') }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="register-form__field" appearance="fill">
+            <mat-label>{{ t('password') }}</mat-label>
+            <input type="password" matInput [formControl]="password" placeholder="*****">
+            <mat-error *ngIf="password.hasError('required')">
+              {{ t('error.passwordIs') }} <strong>{{ t('error.required') }}</strong>
+            </mat-error>
+            <mat-error *ngIf="password.getError('inValidPass')" class="validator-message">
+              {{ t('error.passwordStrength') }}
+              <p> {{ t('error.atLeast8') }}
+              </p>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button type="submit" [disabled]="authForm!.invalid || (isLoading$ | async)" mat-raised-button
+          color="primary">{{ t('button.submit') }}</button>
+      </mat-card>
+    </form>
+  </div>
+</ng-container>

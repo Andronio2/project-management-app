@@ -1,0 +1,48 @@
+.footer__container {
+  display: flex;
+  background-color: #bdbdbd;
+  @media (max-width: 530px) {
+    flex-direction: column;
+    align-items: center;
+    height: 100px;
+    padding: 1rem;
+  }
+}
+
+.footer__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer__year,
+.footer__item {
+  font-size: 1rem;
+}
+
+.footer__icon {
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  background-image: url('../../../../assets/svg/rs_school_js.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: 0.3s;
+  &:hover {
+    filter: invert(24%) sepia(92%) saturate(1022%) hue-rotate(210deg) brightness(95%) contrast(96%);
+  }
+}
+
+.footer__link {
+  color: rgba(0,0,0,.87);
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.footer__link:hover {
+  color: #3949ab;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

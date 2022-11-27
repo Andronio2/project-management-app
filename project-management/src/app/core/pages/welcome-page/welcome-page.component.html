@@ -1,0 +1,126 @@
+<ng-container *transloco="let t; read: 'welcome'">
+  <div class="welcome__wrapper">
+    <div class="welcome__container container" data-aos="zoom-in" data-aos-duration="700">
+      <div class="welcome__content">
+        <h2 class="welcome__title">
+          {{ t('title.simple') }} <span class="welcome__title_colored">{{ t('title.project') }}</span> {{ t('title.with') }}
+        </h2>
+        <p class="welcome__text">
+          {{ t('text') }}
+        </p>
+        <div class="buttons__wrapper">
+          <a class="get-started__btn" [routerLink]="['/auth','signin']" mat-raised-button color="accent">{{ t('button.getStarted') }}</a>
+        </div>
+      </div>
+      <img class="welcome__img" src="../../../../assets/img/4584.png" alt="">
+    </div>
+  </div>
+  <div class="about__wrapper" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="300">
+    <div class="about__container container">
+      <img class="welcome__img about__img" src="../../../../assets/img/4380.png" alt="">
+      <div class="about__content">
+        <h2 class="about__title title">{{ t('aboutTitle') }}</h2>
+        <p>
+          {{ t('aboutText') }}
+        </p>
+      </div>
+      <mat-card class="about__card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="600">
+        <mat-card-header>
+          <mat-card-title>{{ t('aboutBoardsTitle') }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ t('aboutBoardsText') }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="about__card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="900">
+        <mat-card-header>
+          <mat-card-title>{{ t('aboutTasksTitle') }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ t('aboutTasksText') }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="developers__wrapper" data-aos="fade-up" data-aos-duration="700">
+    <div class="developers__container container">
+      <h2 class="developers__title title">{{ t('teamTitle') }}</h2>
+      <div class="developers__cards">
+        <mat-card class="developer__card" data-aos="flip-left" data-aos-duration="700" data-aos-delay="300">
+          <mat-card-title-group>
+            <mat-card-title class="developer__name">{{ t('teamAndreyName') }}</mat-card-title>
+            <mat-card-subtitle>{{ t('teamAndreyRole') }}<br>{{ t('teamAndreyRole2') }}</mat-card-subtitle>
+            <img mat-card-md-image src="../../../../assets/img/Andrey_foto.jpg" >
+          </mat-card-title-group>
+          <mat-card-content>
+            {{ t('teamAndreyText') }}
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="developer__card" data-aos="flip-left" data-aos-duration="700" data-aos-delay="600">
+          <mat-card-title-group>
+            <mat-card-title class="developer__name">{{ t('teamDianaName') }}</mat-card-title>
+            <mat-card-subtitle>{{ t('teamDianaRole') }}</mat-card-subtitle>
+            <img mat-card-md-image src="../../../../assets/img/diana.jpg" >
+          </mat-card-title-group>
+          <mat-card-content>
+            {{ t('teamDianaText') }}
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="developer__card" data-aos="flip-left" data-aos-duration="700" data-aos-delay="900">
+          <mat-card-title-group>
+            <mat-card-title class="developer__name">{{ t('teamAibekName') }}</mat-card-title>
+            <mat-card-subtitle>{{ t('teamAibekRole') }}</mat-card-subtitle>
+            <img mat-card-md-image src="../../../../assets/img/aibek.jpg" >
+          </mat-card-title-group>
+          <mat-card-content>
+            {{ t('teamAibekText') }}
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="course__wrapper">
+    <div class="course__container container" data-aos="zoom-in" data-aos-duration="700">
+      <div class="course__content">
+        <h2 class="course__title title">{{ t('courseTitle') }}</h2>
+        <p>
+          {{ t('courseText') }}
+        </p>
+      </div>
+      <mat-card class="about__card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="300">
+        <mat-card-header>
+          <mat-card-title class="course__subtitle">{{ t('courseFreeTitle') }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ t('courseFreeText') }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="about__card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="600">
+        <mat-card-header>
+          <mat-card-title class="course__subtitle">{{ t('courseOpenTitle') }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ t('courseOpenText') }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="about__card" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="900">
+        <mat-card-header>
+          <mat-card-title class="course__subtitle">{{ t('courseCertificateTitle') }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ t('courseCertificateText') }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</ng-container>
